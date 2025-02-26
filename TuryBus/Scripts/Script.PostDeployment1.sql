@@ -19,8 +19,8 @@ INSERT INTO Passengers (dni, name, phone) VALUES
 ('78901234F', 'José Ramírez', '741852963'),
 ('89012345G', 'Ana Morales', '852963147');
 
-INSERT INTO Busses (driver_id, license_plate, model, manufacturer, seat_count) VALUES ('123456', '4725YDL', 'K400', 'Scania', '45' )
-INSERT INTO Busses (driver_id, license_plate, model, manufacturer, seat_count) VALUES ('123457', '2574FDS', '9700', 'Volvo, '50' )
-INSERT INTO Busses (driver_id, license_plate, model, manufacturer, seat_count) VALUES ('123458', '3647GAY', 'K500', 'Scania', '45' )
-INSERT INTO Busses (driver_id, license_plate, model, manufacturer, seat_count) VALUES ('123459', '5001YOL', 'K400', 'Scania', '55' )
-INSERT INTO Busses (driver_id, license_plate, model, manufacturer, seat_count) VALUES ('123460', '4795REA', 'Coaster', 'Toyota', '50' )
+INSERT INTO Busses (driver_id, license_plate, model, manufacturer, seat_count) VALUES ('123456', '4725YDL', 'K400', 'Scania', '45')
+INSERT INTO Busses (driver_id, license_plate, model, manufacturer, seat_count) VALUES ('123457', '2574FDS', '9700', 'Volvo, '50')
+INSERT INTO Busses (driver_id, license_plate, model, manufacturer, seat_count) VALUES ('123458', '3647GAY', 'K500', 'Scania', '45')
+INSERT INTO Busses (driver_id, license_plate, model, manufacturer, seat_count) VALUES ('123459', '5001YOL', 'K400', 'Scania', '55')
+INSERT INTO Busses (driver_id, license_plate, model, manufacturer, seat_count) VALUES ('123460', '4795REA', 'Coaster', 'Toyota','50')
