@@ -1,28 +1,28 @@
-﻿-- Eliminar datos previos
-DELETE FROM Repairs;
-DELETE FROM Inspections;
-DELETE FROM Tickets;
-DELETE FROM Passengers;
-DELETE FROM Stops;
-DELETE FROM Activities;
-DELETE FROM Places;
-DELETE FROM DailyServices;
-DELETE FROM Busses;
-DELETE FROM Drivers;
-DELETE FROM Routes;
+﻿---- Eliminar datos previos
+--DELETE FROM Repairs;
+--DELETE FROM Inspections;
+--DELETE FROM Tickets;
+--DELETE FROM Passengers;
+--DELETE FROM Stops;
+--DELETE FROM Activities;
+--DELETE FROM Places;
+--DELETE FROM DailyServices;
+--DELETE FROM Busses;
+--DELETE FROM Drivers;
+--DELETE FROM Routes;
 
--- Resetear el IDENTITY de cada tabla
-DBCC CHECKIDENT ('Routes', RESEED, 0);
-DBCC CHECKIDENT ('Drivers', RESEED, 0);
-DBCC CHECKIDENT ('Busses', RESEED, 0);
-DBCC CHECKIDENT ('DailyServices', RESEED, 0);
-DBCC CHECKIDENT ('Places', RESEED, 0);
-DBCC CHECKIDENT ('Activities', RESEED, 0);
-DBCC CHECKIDENT ('Stops', RESEED, 0);
-DBCC CHECKIDENT ('Passengers', RESEED, 0);
-DBCC CHECKIDENT ('Tickets', RESEED, 0);
-DBCC CHECKIDENT ('Inspections', RESEED, 0);
-DBCC CHECKIDENT ('Repairs', RESEED, 0);
+---- Resetear el IDENTITY de cada tabla
+--DBCC CHECKIDENT ('Routes', RESEED, 0);
+--DBCC CHECKIDENT ('Drivers', RESEED, 0);
+--DBCC CHECKIDENT ('Busses', RESEED, 0);
+--DBCC CHECKIDENT ('DailyServices', RESEED, 0);
+--DBCC CHECKIDENT ('Places', RESEED, 0);
+--DBCC CHECKIDENT ('Activities', RESEED, 0);
+--DBCC CHECKIDENT ('Stops', RESEED, 0);
+--DBCC CHECKIDENT ('Passengers', RESEED, 0);
+--DBCC CHECKIDENT ('Tickets', RESEED, 0);
+--DBCC CHECKIDENT ('Inspections', RESEED, 0);
+--DBCC CHECKIDENT ('Repairs', RESEED, 0);
 
 -- Insertar rutas turísticas
 INSERT INTO Routes (name, description, distance, price) VALUES
