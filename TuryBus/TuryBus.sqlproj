@@ -67,5 +67,6 @@
     <Build Include="Tables\Activities.sql" />
     <Build Include="Tables\DailyServices.sql" />
     <Build Include="Tables\Tickets.sql" />
+    <Build Include="Tables\route.sql" />
   </ItemGroup>
 </Project>
