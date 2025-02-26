@@ -7,7 +7,7 @@ INSERT INTO Drivers (dni, name, phone, address) VALUES ('123457', 'Rafael Sanche
 INSERT INTO Drivers (dni, name, phone, address) VALUES ('123458', 'Carlos Martinez', '73477123', 'Av. Ayacucho');
 INSERT INTO Drivers (dni, name, phone, address) VALUES ('123459', 'Dante Reynaga', '72255163', 'Av. Blanco Galindo');
 INSERT INTO Drivers (dni, name, phone, address) VALUES ('123460', 'Alex Arevalo', '72288883', 'Av. Colon');
---=======
+
 INSERT INTO Routes (name, description, distance, price) VALUES 
 ('Ruta del Sol', 'Explora las hermosas playas', 100.50, 150.00),
 ('Aventura en la Montaña', 'Un recorrido emocionante por las montañas', 80.75, 120.00),
