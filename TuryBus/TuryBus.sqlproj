@@ -69,6 +69,8 @@
     <Build Include="Tables\DailyServices.sql" />
     <Build Include="Tables\Tickets.sql" />
     <Build Include="Tables\Places.sql" />
+    <Build Include="Tables\Stops.sql" />
+    <Build Include="Tables\Repairs.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
