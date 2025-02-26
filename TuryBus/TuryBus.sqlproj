@@ -57,6 +57,7 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="Tables" />
+    <Folder Include="Scripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\Drivers.sql" />
@@ -65,7 +66,8 @@
     <Build Include="Tables\Passengers.sql" />
     <Build Include="Tables\Busses.sql" />
     <Build Include="Tables\Activities.sql" />
-    <Build Include="Tables\DailyServices.sql" />
-    <Build Include="Tables\Tickets.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
   </ItemGroup>
 </Project>
