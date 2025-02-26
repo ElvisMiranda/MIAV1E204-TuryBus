@@ -1,4 +1,0 @@
-﻿CREATE TABLE Places (
-    id INT PRIMARY KEY IDENTITY(1,1),
-    name NVARCHAR(100) NOT NULL
-);
