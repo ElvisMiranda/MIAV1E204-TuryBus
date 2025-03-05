@@ -68,9 +68,10 @@
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Schema\Tables\Test.sql" />
+    <Build Include="Schema\Tables\FactStops.sql" />
     <Build Include="Schema\Security\schemas\staging.sql" />
     <Build Include="Schema\Tables\DimBusses.sql" />
     <Build Include="Schema\Tables\DimDrivers.sql" />
+    <Build Include="Schema\Tables\FactRepairs.sql" />
   </ItemGroup>
 </Project>
