@@ -8,9 +8,9 @@
 5. Ivan Mamani Condori
 
 ---
-# Diseño e Implemento un modelo de base de datos
+# OLTP: Modelo Entidad-Relación
 
-![alt text](TuryBus-Diagram.png)
+![alt text](<TuryBusOLTP/TuryBusOLTP-Modelo E-R.png>)
 
 ## Tablas:
 
@@ -60,3 +60,31 @@ FROM Tickets t
 JOIN DailyServices ds ON t.service_id = ds.id
 GROUP BY t.passenger_id;
 ```
+---
+# Data Warehouse: Modelo Estrella
+![alt text](<TuryBusDW/TuryBusDW-Modelo Estrella.png>)
+
+## Tablas de Dimensión (Dim Tables)
+
+Estas tablas almacenan información descriptiva:
+
+- **DimDate** → Calendario de referencia para análisis por fecha.
+- **DimRoutes** → Información de rutas de transporte.
+- **DimBusses** → Datos de los autobuses.
+- **DimDrivers** → Información de los conductores.
+- **DimPassengers** → Datos de los pasajeros.
+- **DimPlaces** → Lugares de paradas y destinos.
+- **DimRepairs** → Tipos de reparaciones de buses.
+
+## Tablas de Hechos (Fact Tables)
+
+Estas tablas registran eventos medibles:
+
+- **FactServices** → Registro de cada servicio de transporte realizado.
+- **FactStops** → Paradas dentro de un servicio.
+- **FactRepairs** → Historial de reparaciones de autobuses.
+
+Este modelo está diseñado para:
+- Optimizar consultas analíticas sobre viajes de Turismo.
+- Mejorar la trazabilidad de viajes, paradas y reparaciones.
+- Facilitar reportes de rendimiento de rutas, buses y conductores.
