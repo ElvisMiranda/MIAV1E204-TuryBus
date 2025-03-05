@@ -70,5 +70,7 @@
   <ItemGroup>
     <Build Include="Schema\Tables\Test.sql" />
     <Build Include="Schema\Security\schemas\staging.sql" />
+    <Build Include="Schema\Tables\DimPassengers.sql" />
+    <Build Include="Schema\Tables\DimPlaces.sql" />
   </ItemGroup>
 </Project>
