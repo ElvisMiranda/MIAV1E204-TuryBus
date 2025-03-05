@@ -77,5 +77,7 @@
     <Build Include="Schema\Tables\FactRepairs.sql" />
     <Build Include="Schema\Tables\DimDate.sql" />
     <Build Include="Schema\Tables\DimRoutes.sql" />
+    <Build Include="Schema\Tables\DimRepairs.sql" />
+    <Build Include="Schema\Tables\FactServices.sql" />
   </ItemGroup>
 </Project>
