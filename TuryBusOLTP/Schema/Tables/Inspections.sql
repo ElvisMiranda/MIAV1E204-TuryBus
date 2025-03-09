@@ -3,6 +3,7 @@
     bus_id INT NOT NULL,
     [date] DATE NOT NULL, -- Fecha de inspeccion
     diagnosis NVARCHAR(255) NOT NULL -- Diagnóstico
+     [rowversion]  [timestamp]         NOT NULL
 );
 GO
 
