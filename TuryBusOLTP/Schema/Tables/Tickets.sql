@@ -3,6 +3,7 @@
     passenger_id INT NOT NULL,
     service_id INT NOT NULL,
     travel_date DATE NOT NULL -- Fecha de viaje
+     [rowversion]  [timestamp]         NOT NULL
 );
 GO
 
