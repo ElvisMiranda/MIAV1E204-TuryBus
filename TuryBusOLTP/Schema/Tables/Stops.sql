@@ -6,6 +6,7 @@ CREATE TABLE Stops (
     activity_id INT NOT NULL, -- Actividad a realizar
 	arrival_time DATETIME NOT NULL, -- Hora de llegada
     stop_duration INT DEFAULT 0 -- Duración de la parada en minutos
+	[rowversion]  [timestamp]         NOT NULL
 );
 GO
 
