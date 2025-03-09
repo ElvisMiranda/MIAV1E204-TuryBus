@@ -3,6 +3,7 @@
     dni NVARCHAR(20) NOT NULL,
     name NVARCHAR(100) NOT NULL,
     phone NVARCHAR(20) NOT NULL
+     [rowversion]  [timestamp]         NOT NULL
 );
 GO
 
