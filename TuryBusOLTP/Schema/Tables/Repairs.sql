@@ -5,6 +5,7 @@ CREATE TABLE Repairs (
     type NVARCHAR(100) NOT NULL, -- Tipo de reparación
     time_spent INT NOT NULL, -- Tiempo empleado en minutos
     comment NVARCHAR(255)
+    [rowversion]  [timestamp]         NOT NULL
 );
 GO
 
