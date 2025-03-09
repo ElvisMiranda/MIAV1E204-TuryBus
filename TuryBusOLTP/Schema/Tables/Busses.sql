@@ -4,6 +4,7 @@
     license_plate NVARCHAR(20) NOT NULL,
     model NVARCHAR(50) NOT NULL,
     manufacturer NVARCHAR(50) NOT NULL,
+[rowversion]  [timestamp]         NOT NULL
     seat_count INT NOT NULL -- Número de plazas
 );
 GO
