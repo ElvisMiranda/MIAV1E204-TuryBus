@@ -62,9 +62,9 @@
     <Folder Include="Schema\Security" />
     <Folder Include="Schema\Tables" />
     <Folder Include="Schema\Security\schemas" />
-    <Folder Include="Schema\Programmability\Stored Procedures" />
     <Folder Include="Schema\Tables\dbo" />
     <Folder Include="Schema\Tables\staging" />
+    <Folder Include="Schema\Programmability\StoredProcedures" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
