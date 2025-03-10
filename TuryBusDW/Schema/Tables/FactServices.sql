@@ -1,5 +1,5 @@
 ﻿CREATE TABLE FactServices (
-    ServiceSK INT IDENTITY(1,1) NOT NULL CONSTRAINT PK_DimService PRIMARY KEY,
+    ServiceID INT NOT NULL,
     StopSK INT NOT NULL,
     TicketSK INT NOT NULL,
     RouteSK INT NOT NULL,
