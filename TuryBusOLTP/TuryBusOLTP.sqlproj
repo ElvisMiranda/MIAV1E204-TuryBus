@@ -76,6 +76,7 @@
     <Build Include="Schema\Tables\Stops.sql" />
     <Build Include="Schema\Tables\Tickets.sql" />
     <Build Include="Schema\Security\Schema\Sample.sql" />
+    <Build Include="Schema\Programability\GetdatabaseRowversion.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
