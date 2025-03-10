@@ -12,6 +12,7 @@
 
 ![alt text](<TuryBusOLTP/TuryBusOLTP-Modelo E-R.png>)
 
+
 ## Tablas:
 
 - **Routes**: Define las rutas turísticas.
@@ -62,7 +63,8 @@ GROUP BY t.passenger_id;
 ```
 ---
 # Data Warehouse: Modelo Estrella
-![alt text](<TuryBusDW/TuryBusDW-Modelo Estrella.png>)
+
+![turybus](https://github.com/user-attachments/assets/e2a15f11-2323-46a3-ae80-6841a6986cb8)
 
 ## Tablas de Dimensión (Dim Tables)
 
