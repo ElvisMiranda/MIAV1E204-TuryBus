@@ -2,7 +2,8 @@
     id INT IDENTITY(1,1) NOT NULL CONSTRAINT PK_tickets PRIMARY KEY,
     passenger_id INT NOT NULL,
     service_id INT NOT NULL,
-    travel_date DATE NOT NULL -- Fecha de viaje
+    travel_date DATE NOT NULL, -- Fecha de viaje
+    rowversion timestamp  NOT NULL
 );
 GO
 

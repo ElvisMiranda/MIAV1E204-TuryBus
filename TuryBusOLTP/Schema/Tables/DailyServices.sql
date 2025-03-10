@@ -4,7 +4,8 @@
 	bus_id INT NOT NULL,
     departure_time TIME NOT NULL, -- Hora de salida
 	arrival_time TIME NOT NULL, -- Hora de llegada prevista
-    is_holiday bit NOT NULL DEFAULT 0 -- Días de operación (flag 1 | 0)
+    is_holiday bit NOT NULL DEFAULT 0, -- Días de operación (flag 1 | 0)
+    rowversion timestamp  NOT NULL
 );
 GO
 
