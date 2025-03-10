@@ -77,6 +77,14 @@
     <Build Include="Schema\Tables\Tickets.sql" />
     <Build Include="Schema\Security\Schema\Sample.sql" />
     <Build Include="Schema\Programability\GetdatabaseRowversion.sql" />
+    <Build Include="Schema\Programability\GetDriversRowversion.sql" />
+    <Build Include="Schema\Programability\GetBusesRowversion.sql" />
+    <Build Include="Schema\Programability\GetPassangerRowversion.sql" />
+    <Build Include="Schema\Programability\GetPlaceRowversion.sql" />
+    <Build Include="Schema\Programability\GetRepairsRowversion.sql" />
+    <Build Include="Schema\Programability\GetRoutersRowversion.sql" />
+    <Build Include="Schema\Programability\GetServicesRowversion.sql" />
+    <Build Include="Schema\Programability\GetStopsRowversion.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
