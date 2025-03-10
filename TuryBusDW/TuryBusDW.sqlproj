@@ -68,16 +68,12 @@
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Build Include="Schema\Tables\FactStops.sql" />
     <Build Include="Schema\Security\schemas\staging.sql" />
-    <Build Include="Schema\Tables\DimPassengers.sql" />
-    <Build Include="Schema\Tables\DimPlaces.sql" />
-    <Build Include="Schema\Tables\DimBusses.sql" />
-    <Build Include="Schema\Tables\DimDrivers.sql" />
-    <Build Include="Schema\Tables\FactRepairs.sql" />
     <Build Include="Schema\Tables\DimDate.sql" />
-    <Build Include="Schema\Tables\DimRoutes.sql" />
-    <Build Include="Schema\Tables\DimRepairs.sql" />
     <Build Include="Schema\Tables\FactServices.sql" />
+    <Build Include="Schema\Tables\DimStop.sql" />
+    <Build Include="Schema\Tables\DimTicket.sql" />
+    <Build Include="Schema\Tables\DimRoute.sql" />
+    <Build Include="Schema\Tables\DimBus.sql" />
   </ItemGroup>
 </Project>

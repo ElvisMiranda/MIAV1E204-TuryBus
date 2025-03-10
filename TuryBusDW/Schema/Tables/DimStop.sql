@@ -1,0 +1,9 @@
+﻿CREATE TABLE DimStop (
+    StopSK INT IDENTITY(1,1) NOT NULL CONSTRAINT PK_DimStop PRIMARY KEY,
+    StopID INT NOT NULL,
+    PlaceName VARCHAR(100),
+    ActivityDescription VARCHAR(50) NOT NULL,
+    ArrivalTime DATETIME NOT NULL,
+    StopDuration INT DEFAULT 0
+);
+GO
