@@ -71,20 +71,16 @@ GROUP BY t.passenger_id;
 Estas tablas almacenan información descriptiva:
 
 - **DimDate** → Calendario de referencia para análisis por fecha.
-- **DimRoutes** → Información de rutas de transporte.
-- **DimBusses** → Datos de los autobuses.
-- **DimDrivers** → Información de los conductores.
-- **DimPassengers** → Datos de los pasajeros.
-- **DimPlaces** → Lugares de paradas y destinos.
-- **DimRepairs** → Tipos de reparaciones de buses.
+- **DimRoute** → Información de rutas de transporte.
+- **DimBus** → Datos de los autobuses.
+- **DimTicket** → Información de ventas de ticket.
+- **DimStop** → Datos de los lugares de parada.
 
 ## Tablas de Hechos (Fact Tables)
 
 Estas tablas registran eventos medibles:
 
 - **FactServices** → Registro de cada servicio de transporte realizado.
-- **FactStops** → Paradas dentro de un servicio.
-- **FactRepairs** → Historial de reparaciones de autobuses.
 
 Este modelo está diseñado para:
 - Optimizar consultas analíticas sobre viajes de Turismo.
