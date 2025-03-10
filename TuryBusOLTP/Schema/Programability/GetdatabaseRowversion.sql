@@ -1,20 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[Procedure1]
-	(
-   @startRow BIGINT 
-   ,@endRow  BIGINT 
-)
 AS
 BEGIN
-	SELECT [store_id]
-		,[store_name]
-		,[phone]
-		,[email]
-		,[street]
-		,[city]
-		,[state]
-		,[zip_code]
-	FROM [sales].[stores]
-	WHERE [rowversion] > CONVERT(ROWVERSION,@startRow) 
-	AND [rowversion] <= CONVERT(ROWVERSION,@endRow)
+	SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
+	SET NOCOUNT ON
+
+	SELECT DBTS = (CONVERT(BIGINT,MIN_ACTIVE_ROWVERSION())-1);
 END
 GO
