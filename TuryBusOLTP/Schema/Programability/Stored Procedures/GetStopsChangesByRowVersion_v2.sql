@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetStopsChangesByRowVersion]
+﻿CREATE PROCEDURE [dbo].[GetStopsChangesByRowVersion_v2]
 (
 	@startRow BIGINT,
 	@endRow BIGINT
