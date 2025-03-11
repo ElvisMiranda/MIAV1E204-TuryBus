@@ -85,6 +85,7 @@
     <Build Include="Schema\Tables\dbo\PackageConfig.sql" />
     <Build Include="Schema\Programmability\Stored Procedures\GetLastPackageRowVersion.sql" />
     <Build Include="Schema\Programmability\Stored Procedures\UpdateLastPackageRowVersion.sql" />
-    <Build Include="Schema\Tables\DimPassenger.sql" />
+    <Build Include="Schema\Tables\dbo\DimPassenger.sql" />
+    <Build Include="Schema\Tables\staging\Passenger.sql" />
   </ItemGroup>
 </Project>
