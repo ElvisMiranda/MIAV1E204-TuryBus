@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Target"
+  DTS:DTSID="{978BB0AC-B478-4105-95CB-313F5441349D}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=JARAJORECHI\MSSQLSERVER22DEV;Initial Catalog=TuryBusDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Stop-{978BB0AC-B478-4105-95CB-313F5441349D}JARAJORECHI\MSSQLSERVER22DEV.TuryBusDW;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>
