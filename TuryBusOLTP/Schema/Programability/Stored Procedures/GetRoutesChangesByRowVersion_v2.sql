@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetRoutesChangesByRowVersion]
+﻿CREATE PROCEDURE [dbo].[GetRoutesChangesByRowVersion_v2]
 (
 	@startRow BIGINT,
 	@endRow BIGINT

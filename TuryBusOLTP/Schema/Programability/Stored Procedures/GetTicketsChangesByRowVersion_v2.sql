@@ -1,4 +1,4 @@
-﻿CREATE PROCEDURE [dbo].[GetTicketsChangesByRowVersion]
+﻿CREATE PROCEDURE [dbo].[GetTicketsChangesByRowVersion_v2]
 (
 	@startRow BIGINT,
 	@endRow BIGINT
