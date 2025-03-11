@@ -1,6 +1,14 @@
 ﻿CREATE PROCEDURE [dbo].[sp_GetDailyKmByBusAndDriver]
-	@param1 int = 0,
-	@param2 int
 AS
-	SELECT @param1, @param2
-RETURN 0
+BEGIN
+	SET NOCOUNT ON;
+
+	SELECT 
+		b.BusSK AS bus
+		, b.DriverName AS driver,
+		SUM(r.distance) AS total_km
+	FROM FactServices fs
+	JOIN DimBus b ON fs.BusSK = b.BusSK
+	JOIN DimRoute r ON fs.RouteSK = r.RouteSK
+	GROUP BY b.BusSK, b.DriverName
+END
