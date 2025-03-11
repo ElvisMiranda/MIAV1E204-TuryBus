@@ -64,7 +64,8 @@ GROUP BY t.passenger_id;
 ---
 # Data Warehouse: Modelo Estrella
 
-![turybus](https://github.com/user-attachments/assets/e2a15f11-2323-46a3-ae80-6841a6986cb8)
+![WhatsApp Image 2025-03-10 at 10 22 19 PM (1)](https://github.com/user-attachments/assets/75f66548-6c57-4c3a-8983-e86346d22b8d)
+
 
 ## Tablas de Dimensión (Dim Tables)
 
@@ -73,7 +74,7 @@ Estas tablas almacenan información descriptiva:
 - **DimDate** → Calendario de referencia para análisis por fecha.
 - **DimRoute** → Información de rutas de transporte.
 - **DimBus** → Datos de los autobuses.
-- **DimTicket** → Información de ventas de ticket.
+- **DimPassenger** → Clientes que compran los boletos.
 - **DimStop** → Datos de los lugares de parada.
 
 ## Tablas de Hechos (Fact Tables)
