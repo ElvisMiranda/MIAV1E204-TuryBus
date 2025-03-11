@@ -72,7 +72,7 @@
     <Build Include="Schema\Tables\DimDate.sql" />
     <Build Include="Schema\Tables\FactServices.sql" />
     <Build Include="Schema\Tables\DimStop.sql" />
-    <Build Include="Schema\Tables\DimTicket.sql" />
+    <Build Include="Schema\Tables\DimPassenger.sql" />
     <Build Include="Schema\Tables\DimRoute.sql" />
     <Build Include="Schema\Tables\DimBus.sql" />
   </ItemGroup>
