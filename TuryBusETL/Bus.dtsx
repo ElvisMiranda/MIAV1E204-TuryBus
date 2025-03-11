@@ -11,48 +11,10 @@
   DTS:LocaleID="2058"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="21"
-  DTS:VersionGUID="{D99C7FA1-6B6B-4F14-98FB-EAE0F23E828E}">
+  DTS:VersionBuild="41"
+  DTS:VersionGUID="{9755366F-C72C-442F-8E08-4BC39F8B0CAD}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[localhost.TuryBusDW]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{A4157CBF-B3C8-439F-B2D0-0C7BDD8636AD}"
-      DTS:ObjectName="localhost.TuryBusDW">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=TuryBusDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{A4157CBF-B3C8-439F-B2D0-0C7BDD8636AD}localhost.TuryBusDW;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[localhost.TuryBusDW 1]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{EA435630-FB41-4D5B-8630-1E5C9BFF9B88}"
-      DTS:ObjectName="localhost.TuryBusDW 1">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=TuryBusDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{EA435630-FB41-4D5B-8630-1E5C9BFF9B88}localhost.TuryBusDW 1;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[localhost.TuryBusOLTP]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{AA9A59AC-B477-4E60-8244-EB6051CED3FF}"
-      DTS:ObjectName="localhost.TuryBusOLTP">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=TuryBusOLTP;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Package1-{AA9A59AC-B477-4E60-8244-EB6051CED3FF}localhost.TuryBusOLTP;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -87,62 +49,18 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{A4157CBF-B3C8-439F-B2D0-0C7BDD8636AD}"
+          SQLTask:Connection="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
           SQLTask:SqlStatementSource="truncate table [staging].[bus]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\Get DataBase RowVersion"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Get DataBase RowVersion"
-      DTS:DTSID="{0F04A4AB-E5D7-4511-90C3-5657FE467444}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Get DataBase RowVersion"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{AA9A59AC-B477-4E60-8244-EB6051CED3FF}"
-          SQLTask:SqlStatementSource="EXECUTE  [dbo].[GetDatabaseRowVersion] "
-          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ResultBinding
-            SQLTask:ResultName="DBTS"
-            SQLTask:DtsVariableName="User::dbts" />
-        </SQLTask:SqlTaskData>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Last VersionRow"
-      DTS:CreationName="Microsoft.ExecuteSQLTask"
-      DTS:Description="Tarea Ejecutar SQL"
-      DTS:DTSID="{B04B37E7-6AA2-4606-BF0D-885951530FC5}"
-      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Last VersionRow"
-      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <SQLTask:SqlTaskData
-          SQLTask:Connection="{A4157CBF-B3C8-439F-B2D0-0C7BDD8636AD}"
-          SQLTask:SqlStatementSource="EXECUTE [dbo].[GetLastPackageRowVersion]  @tableName = 'Bus'"
-          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
-          <SQLTask:ResultBinding
-            SQLTask:ResultName="lastRowVersion"
-            SQLTask:DtsVariableName="User::lastRowVersion" />
-        </SQLTask:SqlTaskData>
-      </DTS:ObjectData>
-    </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\Load Bus"
+      DTS:refId="Package\Data Flow Task"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{57F230CD-F930-4F18-A1FB-B69F635451D7}"
+      DTS:DTSID="{57D198C9-6C45-424E-9F59-5C0CB0323C73}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
-      DTS:ObjectName="Load Bus"
+      DTS:ObjectName="Data Flow Task"
       DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
       <DTS:Variables />
       <DTS:ObjectData>
@@ -150,7 +68,7 @@
           version="1">
           <components>
             <component
-              refId="Package\Load Bus\Lookup"
+              refId="Package\Data Flow Task\Lookup"
               componentClassID="Microsoft.Lookup"
               contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
               description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
@@ -163,14 +81,14 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimBus]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [staging].[bus]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimBus]) [refTable]
-where [refTable].[BusID] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [staging].[bus]) [refTable]
+where [refTable].[BusSK] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -201,12 +119,12 @@ where [refTable].[BusID] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="BusSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="BusID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LicensePlate" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Model" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Manufacturer" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SeatCount" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DriverDni" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DriverName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DriverPhone" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DriverAddress" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InspectionDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InspectionDiagnosis" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RepairType" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RepairTimeSpent" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RepairComment" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="BusSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="LicensePlate" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Model" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Manufacturer" dataType="DT_WSTR" length="50" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="SeatCount" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DriverDni" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DriverName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DriverPhone" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DriverAddress" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InspectionDate" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="InspectionDiagnosis" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RepairType" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RepairTimeSpent" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="RepairComment" dataType="DT_WSTR" length="255" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
                   description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
-                  name="ParameterMap">#{Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]};</property>
+                  name="ParameterMap">#{Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]};</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -218,27 +136,27 @@ where [refTable].[BusID] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load Bus\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.TuryBusDW]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.TuryBusDW]"
+                  refId="Package\Data Flow Task\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Target DW]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load Bus\Lookup.Inputs[Lookup Input]"
+                  refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]"
                   name="Lookup Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load Bus\Lookup.Inputs[Lookup Input].Columns[id]"
+                      refId="Package\Data Flow Task\Lookup.Inputs[Lookup Input].Columns[id]"
                       cachedDataType="i4"
                       cachedName="id"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]">
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]">
                       <properties>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">BusID</property>
+                          name="JoinToReferenceColumn">BusSK</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -251,17 +169,17 @@ where [refTable].[BusID] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load Bus\Lookup.Outputs[Lookup Match Output]"
+                  refId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output]"
                   errorOrTruncationOperation="Lookup"
                   exclusionGroup="1"
                   name="Lookup Match Output"
-                  synchronousInputId="Package\Load Bus\Lookup.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Bus\Lookup.Outputs[Lookup Match Output].Columns[BusSK]"
+                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[BusSK]"
                       dataType="i4"
                       errorOrTruncationOperation="Copy Column"
-                      lineageId="Package\Load Bus\Lookup.Outputs[Lookup Match Output].Columns[BusSK]"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[BusSK]"
                       name="BusSK"
                       truncationRowDisposition="FailComponent">
                       <properties>
@@ -275,30 +193,30 @@ where [refTable].[BusID] = ?</property>
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load Bus\Lookup.Outputs[Lookup No Match Output]"
+                  refId="Package\Data Flow Task\Lookup.Outputs[Lookup No Match Output]"
                   description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
                   exclusionGroup="1"
                   name="Lookup No Match Output"
-                  synchronousInputId="Package\Load Bus\Lookup.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]">
                   <externalMetadataColumns />
                 </output>
                 <output
-                  refId="Package\Load Bus\Lookup.Outputs[Lookup Error Output]"
+                  refId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="Lookup Error Output"
-                  synchronousInputId="Package\Load Bus\Lookup.Inputs[Lookup Input]">
+                  synchronousInputId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Bus\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Bus\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Bus\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Bus\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -307,278 +225,11 @@ where [refTable].[BusID] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Load Bus\OLE DB Destination"
+              refId="Package\Data Flow Task\OLE DB Destination"
               componentClassID="Microsoft.OLEDBDestination"
               contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
               description="OLE DB Destination"
               name="OLE DB Destination"
-              usesDispositions="true"
-              version="4">
-              <properties>
-                <property
-                  dataType="System.Int32"
-                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
-                  name="CommandTimeout">0</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[DimBus]</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies the variable that contains the name of the database object used to open a rowset."
-                  name="OpenRowsetVariable"></property>
-                <property
-                  dataType="System.String"
-                  description="The SQL command to be executed."
-                  name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the column code page to use when code page information is unavailable from the data source."
-                  name="DefaultCodePage">1252</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Forces the use of the DefaultCodePage property value when describing character data."
-                  name="AlwaysUseDefaultCodePage">false</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies the mode used to access the database."
-                  name="AccessMode"
-                  typeConverter="AccessMode">0</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepIdentity">false</property>
-                <property
-                  dataType="System.Boolean"
-                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
-                  name="FastLoadKeepNulls">false</property>
-                <property
-                  dataType="System.String"
-                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
-                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
-                <property
-                  dataType="System.Int32"
-                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
-                  name="FastLoadMaxInsertCommitSize">2147483647</property>
-              </properties>
-              <connections>
-                <connection
-                  refId="Package\Load Bus\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.TuryBusDW]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.TuryBusDW]"
-                  description="The OLE DB runtime connection used to access the database."
-                  name="OleDbConnection" />
-              </connections>
-              <inputs>
-                <input
-                  refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input]"
-                  errorOrTruncationOperation="Insert"
-                  errorRowDisposition="FailComponent"
-                  hasSideEffects="true"
-                  name="OLE DB Destination Input">
-                  <inputColumns>
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[model]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="model"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Model]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[model]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[manufacturer]"
-                      cachedDataType="wstr"
-                      cachedLength="50"
-                      cachedName="manufacturer"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Manufacturer]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[manufacturer]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[license_plate]"
-                      cachedDataType="wstr"
-                      cachedLength="20"
-                      cachedName="license_plate"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LicensePlate]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[license_plate]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[seat_count]"
-                      cachedDataType="i4"
-                      cachedName="seat_count"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SeatCount]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[seat_count]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[dni]"
-                      cachedDataType="wstr"
-                      cachedLength="20"
-                      cachedName="dni"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverDni]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[name]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="name"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverName]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[name]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[phone]"
-                      cachedDataType="wstr"
-                      cachedLength="20"
-                      cachedName="phone"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverPhone]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[phone]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[address]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="address"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverAddress]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[address]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[date]"
-                      cachedDataType="dbDate"
-                      cachedName="date"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDate]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[date]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[diagnosis]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="diagnosis"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDiagnosis]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[diagnosis]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[type]"
-                      cachedDataType="wstr"
-                      cachedLength="100"
-                      cachedName="type"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RepairType]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[type]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[time_spent]"
-                      cachedDataType="i4"
-                      cachedName="time_spent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RepairTimeSpent]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[time_spent]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[comment]"
-                      cachedDataType="wstr"
-                      cachedLength="255"
-                      cachedName="comment"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RepairComment]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]" />
-                    <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id]"
-                      cachedDataType="i4"
-                      cachedName="id"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BusID]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]" />
-                  </inputColumns>
-                  <externalMetadataColumns
-                    isUsed="True">
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BusSK]"
-                      dataType="i4"
-                      name="BusSK" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LicensePlate]"
-                      dataType="wstr"
-                      length="20"
-                      name="LicensePlate" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Model]"
-                      dataType="wstr"
-                      length="100"
-                      name="Model" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Manufacturer]"
-                      dataType="wstr"
-                      length="50"
-                      name="Manufacturer" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SeatCount]"
-                      dataType="i4"
-                      name="SeatCount" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverDni]"
-                      dataType="wstr"
-                      length="20"
-                      name="DriverDni" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverName]"
-                      dataType="wstr"
-                      length="100"
-                      name="DriverName" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverPhone]"
-                      dataType="wstr"
-                      length="20"
-                      name="DriverPhone" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverAddress]"
-                      dataType="wstr"
-                      length="255"
-                      name="DriverAddress" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDate]"
-                      dataType="dbDate"
-                      name="InspectionDate" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDiagnosis]"
-                      dataType="wstr"
-                      length="255"
-                      name="InspectionDiagnosis" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RepairType]"
-                      dataType="wstr"
-                      length="100"
-                      name="RepairType" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RepairTimeSpent]"
-                      dataType="i4"
-                      name="RepairTimeSpent" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RepairComment]"
-                      dataType="wstr"
-                      length="255"
-                      name="RepairComment" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BusID]"
-                      dataType="i4"
-                      name="BusID" />
-                  </externalMetadataColumns>
-                </input>
-              </inputs>
-              <outputs>
-                <output
-                  refId="Package\Load Bus\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
-                  exclusionGroup="1"
-                  isErrorOut="true"
-                  name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input]">
-                  <outputColumns>
-                    <outputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      dataType="i4"
-                      lineageId="Package\Load Bus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
-                      name="ErrorCode"
-                      specialFlags="1" />
-                    <outputColumn
-                      refId="Package\Load Bus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      dataType="i4"
-                      lineageId="Package\Load Bus\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
-                      name="ErrorColumn"
-                      specialFlags="2" />
-                  </outputColumns>
-                  <externalMetadataColumns />
-                </output>
-              </outputs>
-            </component>
-            <component
-              refId="Package\Load Bus\OLE DB Destination 1"
-              componentClassID="Microsoft.OLEDBDestination"
-              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
-              description="OLE DB Destination"
-              name="OLE DB Destination 1"
               usesDispositions="true"
               version="4">
               <properties>
@@ -631,180 +282,180 @@ where [refTable].[BusID] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load Bus\OLE DB Destination 1.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.TuryBusDW]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.TuryBusDW]"
+                  refId="Package\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Target DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <inputs>
                 <input
-                  refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                  refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
                   errorOrTruncationOperation="Insert"
                   errorRowDisposition="FailComponent"
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[model]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[model]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="model"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Model]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[model]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Model]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[model]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[manufacturer]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[manufacturer]"
                       cachedDataType="wstr"
                       cachedLength="50"
                       cachedName="manufacturer"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Manufacturer]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[manufacturer]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Manufacturer]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[manufacturer]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[BusSK]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[BusSK]"
                       cachedDataType="i4"
                       cachedName="BusSK"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[BusSK]"
-                      lineageId="Package\Load Bus\Lookup.Outputs[Lookup Match Output].Columns[BusSK]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BusSK]"
+                      lineageId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output].Columns[BusSK]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[license_plate]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[license_plate]"
                       cachedDataType="wstr"
                       cachedLength="20"
                       cachedName="license_plate"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LicensePlate]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[license_plate]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LicensePlate]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[license_plate]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[seat_count]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[seat_count]"
                       cachedDataType="i4"
                       cachedName="seat_count"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[SeatCount]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[seat_count]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SeatCount]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[seat_count]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[dni]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[dni]"
                       cachedDataType="wstr"
                       cachedLength="20"
                       cachedName="dni"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverDni]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverDni]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[name]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[name]"
                       cachedDataType="wstr"
                       cachedLength="100"
                       cachedName="name"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverName]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[name]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverName]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[name]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[phone]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[phone]"
                       cachedDataType="wstr"
                       cachedLength="20"
                       cachedName="phone"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverPhone]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[phone]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverPhone]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[phone]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[address]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[address]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="address"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverAddress]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[address]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverAddress]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[address]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[date]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[date]"
                       cachedDataType="dbDate"
                       cachedName="date"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDate]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[date]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDate]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[date]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[diagnosis]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[diagnosis]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="diagnosis"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDiagnosis]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[diagnosis]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDiagnosis]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[diagnosis]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[type]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[type]"
                       cachedDataType="wstr"
                       cachedLength="100"
                       cachedName="type"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RepairType]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[type]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RepairType]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[type]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[time_spent]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[time_spent]"
                       cachedDataType="i4"
                       cachedName="time_spent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RepairTimeSpent]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[time_spent]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RepairTimeSpent]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[time_spent]" />
                     <inputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[comment]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[comment]"
                       cachedDataType="wstr"
                       cachedLength="255"
                       cachedName="comment"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RepairComment]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]" />
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RepairComment]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[BusSK]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[BusSK]"
                       dataType="i4"
                       name="BusSK" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LicensePlate]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[LicensePlate]"
                       dataType="wstr"
                       length="20"
                       name="LicensePlate" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Model]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Model]"
                       dataType="wstr"
                       length="100"
                       name="Model" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Manufacturer]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Manufacturer]"
                       dataType="wstr"
                       length="50"
                       name="Manufacturer" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[SeatCount]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SeatCount]"
                       dataType="i4"
                       name="SeatCount" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverDni]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverDni]"
                       dataType="wstr"
                       length="20"
                       name="DriverDni" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverName]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverName]"
                       dataType="wstr"
                       length="100"
                       name="DriverName" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverPhone]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverPhone]"
                       dataType="wstr"
                       length="20"
                       name="DriverPhone" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverAddress]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DriverAddress]"
                       dataType="wstr"
                       length="255"
                       name="DriverAddress" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDate]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDate]"
                       dataType="dbDate"
                       name="InspectionDate" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDiagnosis]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDiagnosis]"
                       dataType="wstr"
                       length="255"
                       name="InspectionDiagnosis" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RepairType]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RepairType]"
                       dataType="wstr"
                       length="100"
                       name="RepairType" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RepairTimeSpent]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RepairTimeSpent]"
                       dataType="i4"
                       name="RepairTimeSpent" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RepairComment]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[RepairComment]"
                       dataType="wstr"
                       length="255"
                       name="RepairComment" />
@@ -813,22 +464,22 @@ where [refTable].[BusID] = ?</property>
               </inputs>
               <outputs>
                 <output
-                  refId="Package\Load Bus\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
+                  refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
                   exclusionGroup="1"
                   isErrorOut="true"
                   name="OLE DB Destination Error Output"
-                  synchronousInputId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
+                  synchronousInputId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Bus\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Bus\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -837,7 +488,267 @@ where [refTable].[BusID] = ?</property>
               </outputs>
             </component>
             <component
-              refId="Package\Load Bus\OLE DB Source"
+              refId="Package\Data Flow Task\OLE DB Destination 1"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination 1"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[DimBus]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\Data Flow Task\OLE DB Destination 1.Connections[OleDbConnection]"
+                  connectionManagerID="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Target DW]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[model]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="model"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Model]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[model]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[manufacturer]"
+                      cachedDataType="wstr"
+                      cachedLength="50"
+                      cachedName="manufacturer"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Manufacturer]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[manufacturer]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[BusID]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[license_plate]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="license_plate"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LicensePlate]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[license_plate]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[seat_count]"
+                      cachedDataType="i4"
+                      cachedName="seat_count"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[SeatCount]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[seat_count]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[dni]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="dni"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverDni]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[name]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="name"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverName]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[name]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[phone]"
+                      cachedDataType="wstr"
+                      cachedLength="20"
+                      cachedName="phone"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverPhone]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[phone]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[address]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="address"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverAddress]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[address]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[date]"
+                      cachedDataType="dbDate"
+                      cachedName="date"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDate]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[date]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[type]"
+                      cachedDataType="wstr"
+                      cachedLength="100"
+                      cachedName="type"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RepairType]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[type]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[time_spent]"
+                      cachedDataType="i4"
+                      cachedName="time_spent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RepairTimeSpent]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[time_spent]" />
+                    <inputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].Columns[comment]"
+                      cachedDataType="wstr"
+                      cachedLength="255"
+                      cachedName="comment"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RepairComment]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[BusSK]"
+                      dataType="i4"
+                      name="BusSK" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[BusID]"
+                      dataType="i4"
+                      name="BusID" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[LicensePlate]"
+                      dataType="wstr"
+                      length="20"
+                      name="LicensePlate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Model]"
+                      dataType="wstr"
+                      length="100"
+                      name="Model" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[Manufacturer]"
+                      dataType="wstr"
+                      length="50"
+                      name="Manufacturer" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[SeatCount]"
+                      dataType="i4"
+                      name="SeatCount" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverDni]"
+                      dataType="wstr"
+                      length="20"
+                      name="DriverDni" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverName]"
+                      dataType="wstr"
+                      length="100"
+                      name="DriverName" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverPhone]"
+                      dataType="wstr"
+                      length="20"
+                      name="DriverPhone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[DriverAddress]"
+                      dataType="wstr"
+                      length="255"
+                      name="DriverAddress" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDate]"
+                      dataType="dbDate"
+                      name="InspectionDate" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[InspectionDiagnosis]"
+                      dataType="wstr"
+                      length="255"
+                      name="InspectionDiagnosis" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RepairType]"
+                      dataType="wstr"
+                      length="100"
+                      name="RepairType" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RepairTimeSpent]"
+                      dataType="i4"
+                      name="RepairTimeSpent" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input].ExternalColumns[RepairComment]"
+                      dataType="wstr"
+                      length="255"
+                      name="RepairComment" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\Data Flow Task\OLE DB Destination 1.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\Data Flow Task\OLE DB Source"
               componentClassID="Microsoft.OLEDBSource"
               contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
               description="OLE DB Source"
@@ -852,7 +763,7 @@ where [refTable].[BusID] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset"></property>
+                  name="OpenRowset">[dbo].[Busses]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -861,7 +772,7 @@ where [refTable].[BusID] = ?</property>
                   dataType="System.String"
                   description="The SQL command to be executed."
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXECUTE [dbo].[GetBussesChangesByRowVersion]@startRow=?,@endRow=?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXECUTE [dbo].[GetBussesChangesByRowVersion] @startRow=?,@endRow=?</property>
                 <property
                   dataType="System.String"
                   description="The variable that contains the SQL command to be executed."
@@ -886,319 +797,319 @@ where [refTable].[BusID] = ?</property>
               </properties>
               <connections>
                 <connection
-                  refId="Package\Load Bus\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[localhost.TuryBusOLTP]"
-                  connectionManagerRefId="Package.ConnectionManagers[localhost.TuryBusOLTP]"
+                  refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                  connectionManagerID="{A348B0EF-F278-4990-A457-15C7759BAC98}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source OLTP]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
               <outputs>
                 <output
-                  refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output]"
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
                   name="OLE DB Source Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]"
                       name="id"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[name]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[license_plate]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[name]"
-                      length="100"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[name]"
-                      name="name"
-                      truncationRowDisposition="FailComponent" />
-                    <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[license_plate]"
-                      dataType="wstr"
-                      errorOrTruncationOperation="Conversion"
-                      errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[license_plate]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[license_plate]"
                       length="20"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[license_plate]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[license_plate]"
                       name="license_plate"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[model]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[model]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[model]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[model]"
                       length="50"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[model]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[model]"
                       name="model"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[manufacturer]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[manufacturer]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[manufacturer]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[manufacturer]"
                       length="50"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[manufacturer]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[manufacturer]"
                       name="manufacturer"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[seat_count]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[seat_count]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[seat_count]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[seat_count]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[seat_count]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[seat_count]"
                       name="seat_count"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dni]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dni]"
                       length="20"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[dni]"
                       name="dni"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[phone]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[name]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[phone]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                      length="100"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[name]"
+                      name="name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[phone]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[phone]"
                       length="20"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[phone]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[phone]"
                       name="phone"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[address]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[address]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[address]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[address]"
                       length="255"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[address]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[address]"
                       name="address"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[date]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[date]"
                       dataType="dbDate"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[date]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[date]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[date]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[date]"
                       name="date"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[diagnosis]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[diagnosis]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[diagnosis]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[diagnosis]"
                       length="255"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[diagnosis]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[diagnosis]"
                       name="diagnosis"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[type]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[type]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[type]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[type]"
                       length="100"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[type]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[type]"
                       name="type"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[time_spent]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[time_spent]"
                       dataType="i4"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[time_spent]"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[time_spent]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[time_spent]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[time_spent]"
                       name="time_spent"
                       truncationRowDisposition="FailComponent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]"
                       dataType="wstr"
                       errorOrTruncationOperation="Conversion"
                       errorRowDisposition="FailComponent"
-                      externalMetadataColumnId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[comment]"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[comment]"
                       length="255"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[comment]"
                       name="comment"
                       truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[id]"
                       dataType="i4"
                       name="id" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[name]"
-                      dataType="wstr"
-                      length="100"
-                      name="name" />
-                    <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[license_plate]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[license_plate]"
                       dataType="wstr"
                       length="20"
                       name="license_plate" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[model]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[model]"
                       dataType="wstr"
                       length="50"
                       name="model" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[manufacturer]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[manufacturer]"
                       dataType="wstr"
                       length="50"
                       name="manufacturer" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[seat_count]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[seat_count]"
                       dataType="i4"
                       name="seat_count" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dni]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[dni]"
                       dataType="wstr"
                       length="20"
                       name="dni" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[phone]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[name]"
+                      dataType="wstr"
+                      length="100"
+                      name="name" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[phone]"
                       dataType="wstr"
                       length="20"
                       name="phone" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[address]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[address]"
                       dataType="wstr"
                       length="255"
                       name="address" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[date]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[date]"
                       dataType="dbDate"
                       name="date" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[diagnosis]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[diagnosis]"
                       dataType="wstr"
                       length="255"
                       name="diagnosis" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[type]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[type]"
                       dataType="wstr"
                       length="100"
                       name="type" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[time_spent]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[time_spent]"
                       dataType="i4"
                       name="time_spent" />
                     <externalMetadataColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[comment]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[comment]"
                       dataType="wstr"
                       length="255"
                       name="comment" />
                   </externalMetadataColumns>
                 </output>
                 <output
-                  refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                  refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
                   isErrorOut="true"
                   name="OLE DB Source Error Output">
                   <outputColumns>
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id]"
                       dataType="i4"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[id]"
                       name="id" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[license_plate]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[license_plate]"
                       dataType="wstr"
                       length="20"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[license_plate]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[license_plate]"
                       name="license_plate" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[model]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[model]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[model]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[model]"
                       name="model" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[manufacturer]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[manufacturer]"
                       dataType="wstr"
                       length="50"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[manufacturer]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[manufacturer]"
                       name="manufacturer" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[seat_count]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[seat_count]"
                       dataType="i4"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[seat_count]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[seat_count]"
                       name="seat_count" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dni]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dni]"
                       dataType="wstr"
                       length="20"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dni]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[dni]"
                       name="dni" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[name]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[name]"
                       dataType="wstr"
                       length="100"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[name]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[name]"
                       name="name" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[phone]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[phone]"
                       dataType="wstr"
                       length="20"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[phone]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[phone]"
                       name="phone" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[address]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[address]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[address]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[address]"
                       name="address" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[date]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[date]"
                       dataType="dbDate"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[date]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[date]"
                       name="date" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[diagnosis]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[diagnosis]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[diagnosis]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[diagnosis]"
                       name="diagnosis" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[type]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[type]"
                       dataType="wstr"
                       length="100"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[type]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[type]"
                       name="type" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[time_spent]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[time_spent]"
                       dataType="i4"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[time_spent]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[time_spent]"
                       name="time_spent" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[comment]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[comment]"
                       dataType="wstr"
                       length="255"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[comment]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[comment]"
                       name="comment" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       name="ErrorCode"
                       specialFlags="1" />
                     <outputColumn
-                      refId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       dataType="i4"
-                      lineageId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                       name="ErrorColumn"
                       specialFlags="2" />
                   </outputColumns>
@@ -1209,22 +1120,66 @@ where [refTable].[BusID] = ?</property>
           </components>
           <paths>
             <path
-              refId="Package\Load Bus.Paths[Lookup Match Output]"
-              endId="Package\Load Bus\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
+              refId="Package\Data Flow Task.Paths[Lookup Match Output]"
+              endId="Package\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
               name="Lookup Match Output"
-              startId="Package\Load Bus\Lookup.Outputs[Lookup Match Output]" />
+              startId="Package\Data Flow Task\Lookup.Outputs[Lookup Match Output]" />
             <path
-              refId="Package\Load Bus.Paths[Lookup No Match Output]"
-              endId="Package\Load Bus\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              refId="Package\Data Flow Task.Paths[Lookup No Match Output]"
+              endId="Package\Data Flow Task\OLE DB Destination 1.Inputs[OLE DB Destination Input]"
               name="Lookup No Match Output"
-              startId="Package\Load Bus\Lookup.Outputs[Lookup No Match Output]" />
+              startId="Package\Data Flow Task\Lookup.Outputs[Lookup No Match Output]" />
             <path
-              refId="Package\Load Bus.Paths[OLE DB Source Output]"
-              endId="Package\Load Bus\Lookup.Inputs[Lookup Input]"
+              refId="Package\Data Flow Task.Paths[OLE DB Source Output]"
+              endId="Package\Data Flow Task\Lookup.Inputs[Lookup Input]"
               name="OLE DB Source Output"
-              startId="Package\Load Bus\OLE DB Source.Outputs[OLE DB Source Output]" />
+              startId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
           </paths>
         </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Get DataBase RowVersion"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Get DataBase RowVersion"
+      DTS:DTSID="{0F04A4AB-E5D7-4511-90C3-5657FE467444}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Get DataBase RowVersion"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{A348B0EF-F278-4990-A457-15C7759BAC98}"
+          SQLTask:SqlStatementSource="EXECUTE  [dbo].[GetDatabaseRowVersion] "
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="DBTS"
+            SQLTask:DtsVariableName="User::dbts" />
+        </SQLTask:SqlTaskData>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Last VersionRow"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Tarea Ejecutar SQL"
+      DTS:DTSID="{B04B37E7-6AA2-4606-BF0D-885951530FC5}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Last VersionRow"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2022; © 2022 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
+          SQLTask:SqlStatementSource="EXECUTE [dbo].[GetLastPackageRowVersion]  @tableName = 'Bus'"
+          SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
+          <SQLTask:ResultBinding
+            SQLTask:ResultName="lastRowVersion"
+            SQLTask:DtsVariableName="User::lastRowVersion" />
+        </SQLTask:SqlTaskData>
       </DTS:ObjectData>
     </DTS:Executable>
     <DTS:Executable
@@ -1240,7 +1195,7 @@ where [refTable].[BusID] = ?</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{A4157CBF-B3C8-439F-B2D0-0C7BDD8636AD}"
+          SQLTask:Connection="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
           SQLTask:SqlStatementSource="EXECUTE  [dbo].[DW_MergeDimBus] " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -1257,7 +1212,7 @@ where [refTable].[BusID] = ?</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{A4157CBF-B3C8-439F-B2D0-0C7BDD8636AD}"
+          SQLTask:Connection="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
           SQLTask:SqlStatementSource="EXECUTE [dbo].[UpdateLastPackageRowVersion] @tableName='Bus',@lastRowVersion=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
@@ -1270,6 +1225,22 @@ where [refTable].[BusID] = ?</property>
     </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{81C3A94F-0AC2-4024-9097-70FD5FFB2073}"
+      DTS:From="Package\Clean"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Data Flow Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{47D4C523-D4EC-4CBE-8437-AAC5C2F6EE21}"
+      DTS:From="Package\Data Flow Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\syn Staging" />
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restricción]"
       DTS:CreationName=""
@@ -1287,22 +1258,6 @@ where [refTable].[BusID] = ?</property>
       DTS:ObjectName="Restricción 1"
       DTS:To="Package\Clean" />
     <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Restricción 2]"
-      DTS:CreationName=""
-      DTS:DTSID="{EB95F077-0609-45F6-867F-E0FDEEFF5285}"
-      DTS:From="Package\Clean"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Restricción 2"
-      DTS:To="Package\Load Bus" />
-    <DTS:PrecedenceConstraint
-      DTS:refId="Package.PrecedenceConstraints[Restricción 3]"
-      DTS:CreationName=""
-      DTS:DTSID="{4145AE08-BA8B-4A3D-A9E2-E9342E9B441F}"
-      DTS:From="Package\Load Bus"
-      DTS:LogicalAnd="True"
-      DTS:ObjectName="Restricción 3"
-      DTS:To="Package\syn Staging" />
-    <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Restricción 4]"
       DTS:CreationName=""
       DTS:DTSID="{EC57DD81-86C8-4630-90BE-5209DB25F8DF}"
@@ -1312,47 +1267,51 @@ where [refTable].[BusID] = ?</property>
       DTS:To="Package\Update Conf" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
-<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
-<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
   Version="8">
-  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="169.6,41.6"
+          Size="170,42"
           Id="Package\Clean"
           TopLeft="143.571428877054,163.647058680086" />
         <NodeLayout
-          Size="200.8,41.6"
+          Size="201,42"
           Id="Package\Get DataBase RowVersion"
-          TopLeft="137.142857434798,14.5294117519703" />
+          TopLeft="135.142857434798,14.5294117519703" />
         <NodeLayout
-          Size="178.4,41.6"
+          Size="178,42"
           Id="Package\Last VersionRow"
           TopLeft="140.71428601383,82.5882352217254" />
         <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\Load Bus"
-          TopLeft="147.857143171892,243.823529226093" />
+          Size="133,42"
+          Id="Package\syn Staging"
+          TopLeft="138.571428866411,318.164705619598" />
+        <NodeLayout
+          Size="137,42"
+          Id="Package\Update Conf"
+          TopLeft="135.714286003186,383.035293901812" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción]"
-          TopLeft="233.728571724314,56.1294117519703">
+          TopLeft="232.678571724314,56.5294117519703">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,26.4588234697556"
+              EndConnector="0,26.0588234697551"
               Start="0,0"
-              End="0,18.9588234697556">
+              End="0,18.5588234697551">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18.9588234697556" />
+                    End="0,18.5588234697551" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1384,70 +1343,6 @@ where [refTable].[BusID] = ?</property>
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 2]"
-          TopLeft="225.714286024473,205.247058680086">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,38.5764705460069"
-              Start="0,0"
-              End="0,31.0764705460069">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,31.0764705460069" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="132.8,41.6"
-          Id="Package\syn Staging"
-          TopLeft="138.571428866411,318.164705619598" />
-        <EdgeLayout
-          Id="Package.PrecedenceConstraints[Restricción 3]"
-          TopLeft="223.057143171892,285.423529226093">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-18.0857143054813,32.7411763935046"
-              Start="0,0"
-              End="-18.0857143054813,25.2411763935046">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,12.3705881967523" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,12.3705881967523"
-                    Point2="0,16.3705881967523"
-                    Point3="-4,16.3705881967523" />
-                  <mssgle:LineSegment
-                    End="-14.0857143054813,16.3705881967523" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-14.0857143054813,16.3705881967523"
-                    Point2="-18.0857143054813,16.3705881967523"
-                    Point3="-18.0857143054813,20.3705881967523" />
-                  <mssgle:LineSegment
-                    End="-18.0857143054813,25.2411763935046" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <NodeLayout
-          Size="136.8,41.6"
-          Id="Package\Update Conf"
-          TopLeft="135.714286003186,383.035293901812" />
-        <EdgeLayout
           Id="Package.PrecedenceConstraints[Restricción 4]"
           TopLeft="204.542857434798,359.764705619598">
           <EdgeLayout.Curve>
@@ -1469,116 +1364,58 @@ where [refTable].[BusID] = ?</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-      </GraphLayout>
-    </LayoutInfo>
-  </Package>
-  <TaskHost
-    design-time-name="Package\Load Bus">
-    <LayoutInfo>
-      <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="170.4,41.6"
-          Id="Package\Load Bus\OLE DB Destination"
-          TopLeft="60.7142858435305,214.882352752824" />
-        <NodeLayout
-          Size="149.6,41.6"
-          Id="Package\Load Bus\OLE DB Source"
-          TopLeft="144.285714592861,35.9411764390844" />
-        <NodeLayout
-          Size="112.8,41.6"
-          Id="Package\Load Bus\Lookup"
-          TopLeft="159.285714624792,128.470588122685" />
-        <NodeLayout
-          Size="179.2,41.6"
-          Id="Package\Load Bus\OLE DB Destination 1"
-          TopLeft="371.428572219245,222.247058668691" />
+          Size="151,42"
+          Id="Package\Data Flow Task"
+          TopLeft="158,239" />
         <EdgeLayout
-          Id="Package\Load Bus.Paths[Lookup No Match Output]"
-          TopLeft="215.685714624792,170.070588122685">
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="231.035714438527,205.647058680086">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-69.7714287812612,44.8117646301391"
+              EndConnector="0,33.352941319914"
               Start="0,0"
-              End="-69.7714287812612,37.3117646301391">
+              End="0,25.852941319914">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18.4058823150696" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,18.4058823150696"
-                    Point2="0,22.4058823150696"
-                    Point3="-4,22.4058823150696" />
-                  <mssgle:LineSegment
-                    End="-65.7714287812612,22.4058823150696" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-65.7714287812612,22.4058823150696"
-                    Point2="-69.7714287812612,22.4058823150696"
-                    Point3="-69.7714287812612,26.4058823150696" />
-                  <mssgle:LineSegment
-                    End="-69.7714287812612,37.3117646301391" />
+                    End="0,25.852941319914" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="-90.6921011093806,27.4058823150696,111.6127734375,11.609375"
-              RelativePosition="Any" />
+            <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
-          Id="Package\Load Bus.Paths[Lookup Match Output]"
-          TopLeft="233.152381291458,170.070588122685">
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="233.5,281">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="227.876190927787,52.1764705460067"
+              EndConnector="-28.428571133589,37.164705619598"
               Start="0,0"
-              End="227.876190927787,44.6764705460067">
+              End="-28.428571133589,29.664705619598">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,17.3084327264811" />
+                    End="0,14.582352809799" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,17.3084327264811"
-                    Point2="0,21.3084327264811"
-                    Point3="4,21.3084327264811" />
+                    Point1="0,14.582352809799"
+                    Point2="0,18.582352809799"
+                    Point3="-4,18.582352809799" />
                   <mssgle:LineSegment
-                    End="223.876190927787,21.3084327264811" />
+                    End="-24.428571133589,18.582352809799" />
                   <mssgle:CubicBezierSegment
-                    Point1="223.876190927787,21.3084327264811"
-                    Point2="227.876190927787,21.3084327264811"
-                    Point3="227.876190927787,25.3084327264811" />
+                    Point1="-24.428571133589,18.582352809799"
+                    Point2="-28.428571133589,18.582352809799"
+                    Point3="-28.428571133589,22.582352809799" />
                   <mssgle:LineSegment
-                    End="227.876190927787,44.6764705460067" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <mssgm:EdgeLabel
-              BoundingBox="65.7467087451435,26.3084327264811,96.3827734375,11.609375"
-              RelativePosition="Any" />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Bus.Paths[OLE DB Source Output]"
-          TopLeft="217.385714608826,77.5411764390844">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="0,50.9294116836003"
-              Start="0,0"
-              End="0,43.4294116836003">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,43.4294116836003" />
+                    End="-28.428571133589,29.664705619598" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1589,9 +1426,139 @@ where [refTable].[BusID] = ?</property>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="150,42"
+          Id="Package\Data Flow Task\OLE DB Source"
+          TopLeft="355,68" />
+        <NodeLayout
+          Size="113,42"
+          Id="Package\Data Flow Task\Lookup"
+          TopLeft="360,155" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="430,110">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-13.5,45"
+              Start="0,0"
+              End="-13.5,37.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,18.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,18.5"
+                    Point2="0,22.5"
+                    Point3="-4,22.5" />
+                  <mssgle:LineSegment
+                    End="-9.5,22.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-9.5,22.5"
+                    Point2="-13.5,22.5"
+                    Point3="-13.5,26.5" />
+                  <mssgle:LineSegment
+                    End="-13.5,37.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Data Flow Task\OLE DB Destination"
+          TopLeft="196,241" />
+        <NodeLayout
+          Size="180,42"
+          Id="Package\Data Flow Task\OLE DB Destination 1"
+          TopLeft="540,236" />
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup Match Output]"
+          TopLeft="399,197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-117.5,44"
+              Start="0,0"
+              End="-117.5,36.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,13.9685863874346" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,13.9685863874346"
+                    Point2="0,17.9685863874346"
+                    Point3="-4,17.9685863874346" />
+                  <mssgle:LineSegment
+                    End="-113.5,17.9685863874346" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-113.5,17.9685863874346"
+                    Point2="-117.5,17.9685863874346"
+                    Point3="-117.5,21.9685863874346" />
+                  <mssgle:LineSegment
+                    End="-117.5,36.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-106.94138671875,22.9685863874346,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Data Flow Task.Paths[Lookup No Match Output]"
+          TopLeft="434,197">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="196,39"
+              Start="0,0"
+              End="196,31.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.9267015706806" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.9267015706806"
+                    Point2="0,15.9267015706806"
+                    Point3="4,15.9267015706806" />
+                  <mssgle:LineSegment
+                    End="192,15.9267015706806" />
+                  <mssgle:CubicBezierSegment
+                    Point1="192,15.9267015706806"
+                    Point2="196,15.9267015706806"
+                    Point3="196,19.9267015706806" />
+                  <mssgle:LineSegment
+                    End="196,31.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="42.19361328125,20.9267015706806,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Bus\OLE DB Destination">
+    design-time-name="Package\Data Flow Task\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1604,30 +1571,22 @@ where [refTable].[BusID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Bus\OLE DB Source">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Load Bus\Lookup">
+    design-time-name="Package\Data Flow Task\Lookup">
     <Properties>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:string">false</Value>
+          type="q2:boolean">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[DimBus]</Value>
+          type="q3:string">[staging].[bus]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:string">0</Value>
+          type="q4:int">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1635,7 +1594,20 @@ where [refTable].[BusID] = ?</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Bus\OLE DB Destination 1">
+    design-time-name="Package\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\OLE DB Destination 1">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
