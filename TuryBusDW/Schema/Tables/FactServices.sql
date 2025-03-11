@@ -1,7 +1,7 @@
 ﻿CREATE TABLE FactServices (
     ServiceID INT NOT NULL,
     StopSK INT NOT NULL,
-    TicketSK INT NOT NULL,
+    PassengerSK INT NOT NULL,
     RouteSK INT NOT NULL,
     BusSK INT NOT NULL,
     DateKey INT NOT NULL,
@@ -14,7 +14,7 @@ GO
 ALTER TABLE FactServices ADD CONSTRAINT FK_factServices_dimStop FOREIGN KEY (StopSK) REFERENCES DimStop(StopSK)
 GO
 
-ALTER TABLE FactServices ADD CONSTRAINT FK_factServices_dimTicket FOREIGN KEY (TicketSK) REFERENCES DimTicket(TicketSK)
+ALTER TABLE FactServices ADD CONSTRAINT FK_factServices_dimPassenger FOREIGN KEY (PassengerSK) REFERENCES DimPassenger(PassengerSK)
 GO
 
 ALTER TABLE FactServices ADD CONSTRAINT FK_factServices_dimRoute FOREIGN KEY (RouteSK) REFERENCES DimRoute(RouteSK)
