@@ -90,5 +90,6 @@
     <Build Include="Schema\Programmability\Stored Procedures\sp_GetAvgPassengersByRoute.sql" />
     <Build Include="Schema\Programmability\Stored Procedures\sp_GetDailyKmByBusAndDriver.sql" />
     <Build Include="Schema\Programmability\Stored Procedures\sp_GetTotalHoursByUser.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimRoute.sql" />
   </ItemGroup>
 </Project>
