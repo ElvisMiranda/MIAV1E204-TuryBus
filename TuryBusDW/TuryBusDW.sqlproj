@@ -87,5 +87,6 @@
     <Build Include="Schema\Programmability\Stored Procedures\UpdateLastPackageRowVersion.sql" />
     <Build Include="Schema\Tables\dbo\DimPassenger.sql" />
     <Build Include="Schema\Tables\staging\Passenger.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimRoute.sql" />
   </ItemGroup>
 </Project>
