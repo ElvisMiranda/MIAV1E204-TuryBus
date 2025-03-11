@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RptDataSource xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="MainDataSource">
+  <ConnectionProperties>
+    <Extension>SQL</Extension>
+    <ConnectString>Data Source=jarajorechi\mssqlserver22dev;Initial Catalog=TuryBusDW</ConnectString>
+  </ConnectionProperties>
+  <DataSourceID>a4929dae-04f6-4730-8730-1dc01300028f</DataSourceID>
+</RptDataSource>

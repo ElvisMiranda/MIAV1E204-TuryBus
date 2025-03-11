@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35806.99 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "TuryBusRpt", "TuryBusRpt.rptproj", "{509D891B-43F1-ACCE-F465-BAC75B31A202}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		DebugLocal|Default = DebugLocal|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{509D891B-43F1-ACCE-F465-BAC75B31A202}.Debug|Default.ActiveCfg = Debug
+		{509D891B-43F1-ACCE-F465-BAC75B31A202}.Debug|Default.Build.0 = Debug
+		{509D891B-43F1-ACCE-F465-BAC75B31A202}.Debug|Default.Deploy.0 = Debug
+		{509D891B-43F1-ACCE-F465-BAC75B31A202}.DebugLocal|Default.ActiveCfg = DebugLocal
+		{509D891B-43F1-ACCE-F465-BAC75B31A202}.DebugLocal|Default.Build.0 = DebugLocal
+		{509D891B-43F1-ACCE-F465-BAC75B31A202}.Release|Default.ActiveCfg = Release
+		{509D891B-43F1-ACCE-F465-BAC75B31A202}.Release|Default.Build.0 = Release
+		{509D891B-43F1-ACCE-F465-BAC75B31A202}.Release|Default.Deploy.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BDD79BEC-E0A6-4E0B-9AE1-7E2AAAC7F907}
+	EndGlobalSection
+EndGlobal
