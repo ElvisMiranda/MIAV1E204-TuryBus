@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="Target DW"
+  DTS:DTSID="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectRetryCount="1"
+      DTS:ConnectRetryInterval="5"
+      DTS:ConnectionString="Data Source=JARAJORECHI\MSSQLSERVER22DEV;Initial Catalog=TuryBusDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-TuryBusETL-{7C335B8B-BEE7-4201-AA23-4436F7C9C127}JARAJORECHI\MSSQLSERVER22DEV.TuryBusDW;Auto Translate=False;" />
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

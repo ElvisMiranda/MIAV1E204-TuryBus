@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Stop"
   DTS:PackageType="5"
-  DTS:VersionBuild="39"
-  DTS:VersionGUID="{F5AE66C0-713B-4762-A9F8-0DFA31F59866}">
+  DTS:VersionBuild="47"
+  DTS:VersionGUID="{19A7E4BA-0584-4A4F-97E5-D7537A936B6A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -49,7 +49,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{978BB0AC-B478-4105-95CB-313F5441349D}"
+          SQLTask:Connection="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
           SQLTask:SqlStatementSource="truncate table [staging].[stop]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -88,7 +88,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{978BB0AC-B478-4105-95CB-313F5441349D}"
+          SQLTask:Connection="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
           SQLTask:SqlStatementSource="EXECUTE [dbo].[GetLastPackageRowVersion]  @tableName = 'Stop'"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
@@ -125,13 +125,13 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimStop]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [staging].[stop]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimStop]) [refTable]
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [staging].[stop]) [refTable]
 where [refTable].[StopSK] = ?</property>
                 <property
                   dataType="System.Int32"
@@ -163,7 +163,7 @@ where [refTable].[StopSK] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="StopSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="StopID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PlaceName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ActivityDescription" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ArrivalTime" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="StopDuration" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="StopSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PlaceName" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ActivityDescription" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="ArrivalTime" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="StopDuration" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
@@ -181,8 +181,8 @@ where [refTable].[StopSK] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Stop\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="{978BB0AC-B478-4105-95CB-313F5441349D}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Target]"
+                  connectionManagerID="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Target DW]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -231,6 +231,64 @@ where [refTable].[StopSK] = ?</property>
                           dataType="System.String"
                           description="Specifies the column in the reference table from which a column is copied."
                           name="CopyFromReferenceColumn">StopSK</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Stop\Lookup.Outputs[Lookup Match Output].Columns[PlaceName]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\Load Stop\Lookup.Outputs[Lookup Match Output].Columns[PlaceName]"
+                      name="PlaceName"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">PlaceName</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Stop\Lookup.Outputs[Lookup Match Output].Columns[StopDuration]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load Stop\Lookup.Outputs[Lookup Match Output].Columns[StopDuration]"
+                      name="StopDuration"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">StopDuration</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Stop\Lookup.Outputs[Lookup Match Output].Columns[ArrivalTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Copy Column"
+                      lineageId="Package\Load Stop\Lookup.Outputs[Lookup Match Output].Columns[ArrivalTime]"
+                      name="ArrivalTime"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ArrivalTime</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\Load Stop\Lookup.Outputs[Lookup Match Output].Columns[ActivityDescription]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Copy Column"
+                      length="100"
+                      lineageId="Package\Load Stop\Lookup.Outputs[Lookup Match Output].Columns[ActivityDescription]"
+                      name="ActivityDescription"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">ActivityDescription</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -306,7 +364,7 @@ where [refTable].[StopSK] = ?</property>
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">0</property>
+                  typeConverter="AccessMode">3</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
@@ -327,8 +385,8 @@ where [refTable].[StopSK] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Stop\OLE DB Destination.Connections[OleDbConnection]"
-                  connectionManagerID="{978BB0AC-B478-4105-95CB-313F5441349D}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Target]"
+                  connectionManagerID="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Target DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -340,24 +398,6 @@ where [refTable].[StopSK] = ?</property>
                   hasSideEffects="true"
                   name="OLE DB Destination Input">
                   <inputColumns>
-                    <inputColumn
-                      refId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id]"
-                      cachedDataType="i4"
-                      cachedName="id"
-                      externalMetadataColumnId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopID]"
-                      lineageId="Package\Load Stop\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]" />
-                    <inputColumn
-                      refId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[arrival_time]"
-                      cachedDataType="dbTimeStamp"
-                      cachedName="arrival_time"
-                      externalMetadataColumnId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ArrivalTime]"
-                      lineageId="Package\Load Stop\OLE DB Source.Outputs[OLE DB Source Output].Columns[arrival_time]" />
-                    <inputColumn
-                      refId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[stop_duration]"
-                      cachedDataType="i4"
-                      cachedName="stop_duration"
-                      externalMetadataColumnId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopDuration]"
-                      lineageId="Package\Load Stop\OLE DB Source.Outputs[OLE DB Source Output].Columns[stop_duration]" />
                     <inputColumn
                       refId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[place_name]"
                       cachedDataType="wstr"
@@ -372,6 +412,24 @@ where [refTable].[StopSK] = ?</property>
                       cachedName="activity_description"
                       externalMetadataColumnId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ActivityDescription]"
                       lineageId="Package\Load Stop\OLE DB Source.Outputs[OLE DB Source Output].Columns[activity_description]" />
+                    <inputColumn
+                      refId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[arrival_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="arrival_time"
+                      externalMetadataColumnId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ArrivalTime]"
+                      lineageId="Package\Load Stop\OLE DB Source.Outputs[OLE DB Source Output].Columns[arrival_time]" />
+                    <inputColumn
+                      refId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[stop_duration]"
+                      cachedDataType="i4"
+                      cachedName="stop_duration"
+                      externalMetadataColumnId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopDuration]"
+                      lineageId="Package\Load Stop\OLE DB Source.Outputs[OLE DB Source Output].Columns[stop_duration]" />
+                    <inputColumn
+                      refId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[id]"
+                      cachedDataType="i4"
+                      cachedName="id"
+                      externalMetadataColumnId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopID]"
+                      lineageId="Package\Load Stop\OLE DB Source.Outputs[OLE DB Source Output].Columns[id]" />
                   </inputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -379,10 +437,6 @@ where [refTable].[StopSK] = ?</property>
                       refId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopSK]"
                       dataType="i4"
                       name="StopSK" />
-                    <externalMetadataColumn
-                      refId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopID]"
-                      dataType="i4"
-                      name="StopID" />
                     <externalMetadataColumn
                       refId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[PlaceName]"
                       dataType="wstr"
@@ -401,6 +455,10 @@ where [refTable].[StopSK] = ?</property>
                       refId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopDuration]"
                       dataType="i4"
                       name="StopDuration" />
+                    <externalMetadataColumn
+                      refId="Package\Load Stop\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[StopID]"
+                      dataType="i4"
+                      name="StopID" />
                   </externalMetadataColumns>
                 </input>
               </inputs>
@@ -488,8 +546,8 @@ where [refTable].[StopSK] = ?</property>
               <connections>
                 <connection
                   refId="Package\Load Stop\OLE DB Destination 1.Connections[OleDbConnection]"
-                  connectionManagerID="{978BB0AC-B478-4105-95CB-313F5441349D}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Target]"
+                  connectionManagerID="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Target DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -647,7 +705,7 @@ JOIN [dbo].Places p ON s.place_id = p.id</property>
                 <connection
                   refId="Package\Load Stop\OLE DB Source.Connections[OleDbConnection]"
                   connectionManagerID="{A348B0EF-F278-4990-A457-15C7759BAC98}:external"
-                  connectionManagerRefId="Project.ConnectionManagers[Source]"
+                  connectionManagerRefId="Project.ConnectionManagers[Source OLTP]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -813,7 +871,7 @@ JOIN [dbo].Places p ON s.place_id = p.id</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{978BB0AC-B478-4105-95CB-313F5441349D}"
+          SQLTask:Connection="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
           SQLTask:SqlStatementSource="EXECUTE  [dbo].[DW_MergeDimStop] " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -830,7 +888,7 @@ JOIN [dbo].Places p ON s.place_id = p.id</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{978BB0AC-B478-4105-95CB-313F5441349D}"
+          SQLTask:Connection="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
           SQLTask:SqlStatementSource="EXECUTE [dbo].[UpdateLastPackageRowVersion] @tableName='Stop',@lastRowVersion=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
@@ -912,6 +970,14 @@ JOIN [dbo].Places p ON s.place_id = p.id</property>
           Size="126,42"
           Id="Package\Load Stop"
           TopLeft="393,238" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Sync Staging"
+          TopLeft="372,302" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Update Package Config"
+          TopLeft="380,370" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
           TopLeft="459,46">
@@ -978,10 +1044,6 @@ JOIN [dbo].Places p ON s.place_id = p.id</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="163,42"
-          Id="Package\Sync Staging"
-          TopLeft="372,302" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 3]"
           TopLeft="519,259">
@@ -1016,36 +1078,32 @@ JOIN [dbo].Places p ON s.place_id = p.id</property>
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="163,42"
-          Id="Package\Update Package Config"
-          TopLeft="379,352" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 4]"
-          TopLeft="372,323">
+          TopLeft="453.5,344">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="7,50"
+              EndConnector="8,26"
               Start="0,0"
-              End="-0.5,50">
+              End="8,18.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="-18.5,0" />
+                    End="0,9" />
                   <mssgle:CubicBezierSegment
-                    Point1="-18.5,0"
-                    Point2="-22.5,0"
-                    Point3="-22.5,4" />
+                    Point1="0,9"
+                    Point2="0,13"
+                    Point3="4,13" />
                   <mssgle:LineSegment
-                    End="-22.5,46" />
+                    End="4,13" />
                   <mssgle:CubicBezierSegment
-                    Point1="-22.5,46"
-                    Point2="-22.5,50"
-                    Point3="-18.5,50" />
+                    Point1="4,13"
+                    Point2="8,13"
+                    Point3="8,17" />
                   <mssgle:LineSegment
-                    End="-0.5,50" />
+                    End="8,18.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1063,9 +1121,9 @@ JOIN [dbo].Places p ON s.place_id = p.id</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="171,42"
-          Id="Package\Load Stop\OLE DB Destination"
-          TopLeft="222,221" />
+          Size="150,42"
+          Id="Package\Load Stop\OLE DB Source"
+          TopLeft="432,48" />
         <NodeLayout
           Size="180,42"
           Id="Package\Load Stop\OLE DB Destination 1"
@@ -1073,102 +1131,104 @@ JOIN [dbo].Places p ON s.place_id = p.id</property>
         <NodeLayout
           Size="113,42"
           Id="Package\Load Stop\Lookup"
-          TopLeft="455,128" />
+          TopLeft="454,130" />
         <NodeLayout
-          Size="150,42"
-          Id="Package\Load Stop\OLE DB Source"
-          TopLeft="432,48" />
+          Size="171,42"
+          Id="Package\Load Stop\OLE DB Destination"
+          TopLeft="222,221" />
         <EdgeLayout
           Id="Package\Load Stop.Paths[OLE DB Source Output]"
-          TopLeft="509.25,90">
+          TopLeft="508.75,90">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,38"
+              EndConnector="0,40"
               Start="0,0"
-              End="0,30.5">
+              End="0,32.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.5" />
-                </mssgle:SegmentCollection>
-              </mssgle:Curve.Segments>
-            </mssgle:Curve>
-          </EdgeLayout.Curve>
-          <EdgeLayout.Labels>
-            <EdgeLabelCollection />
-          </EdgeLayout.Labels>
-        </EdgeLayout>
-        <EdgeLayout
-          Id="Package\Load Stop.Paths[Lookup No Match Output]"
-          TopLeft="494,170">
-          <EdgeLayout.Curve>
-            <mssgle:Curve
-              StartConnector="{assembly:Null}"
-              EndConnector="-186.5,51"
-              Start="0,0"
-              End="-186.5,43.5">
-              <mssgle:Curve.Segments>
-                <mssgle:SegmentCollection
-                  Capacity="5">
-                  <mssgle:LineSegment
-                    End="0,16.82722513089" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,16.82722513089"
-                    Point2="0,20.82722513089"
-                    Point3="-4,20.82722513089" />
-                  <mssgle:LineSegment
-                    End="-182.5,20.82722513089" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-182.5,20.82722513089"
-                    Point2="-186.5,20.82722513089"
-                    Point3="-186.5,24.82722513089" />
-                  <mssgle:LineSegment
-                    End="-186.5,43.5" />
+                    End="0,32.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-149.05638671875,25.82722513089,111.6127734375,11.609375"
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Load Stop.Paths[Lookup No Match Output]"
+          TopLeft="493,172">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-185.5,49"
+              Start="0,0"
+              End="-185.5,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,16.0104712041885" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,16.0104712041885"
+                    Point2="0,20.0104712041885"
+                    Point3="-4,20.0104712041885" />
+                  <mssgle:LineSegment
+                    End="-181.5,20.0104712041885" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-181.5,20.0104712041885"
+                    Point2="-185.5,20.0104712041885"
+                    Point3="-185.5,24.0104712041885" />
+                  <mssgle:LineSegment
+                    End="-185.5,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-148.55638671875,25.0104712041885,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Load Stop.Paths[Lookup Match Output]"
-          TopLeft="529,170">
+          TopLeft="528,172">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="193,62"
+              EndConnector="194,60"
               Start="0,0"
-              End="193,54.5">
+              End="194,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,21.3193717277487" />
+                    End="0,20.5026178010471" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,21.3193717277487"
-                    Point2="0,25.3193717277487"
-                    Point3="4,25.3193717277487" />
+                    Point1="0,20.5026178010471"
+                    Point2="0,24.5026178010471"
+                    Point3="4,24.5026178010471" />
                   <mssgle:LineSegment
-                    End="189,25.3193717277487" />
+                    End="190,24.5026178010471" />
                   <mssgle:CubicBezierSegment
-                    Point1="189,25.3193717277487"
-                    Point2="193,25.3193717277487"
-                    Point3="193,29.3193717277487" />
+                    Point1="190,24.5026178010471"
+                    Point2="194,24.5026178010471"
+                    Point3="194,28.5026178010471" />
                   <mssgle:LineSegment
-                    End="193,54.5" />
+                    End="194,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="48.30861328125,30.3193717277487,96.3827734375,11.609375"
+              BoundingBox="48.80861328125,29.5026178010471,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -1176,7 +1236,7 @@ JOIN [dbo].Places p ON s.place_id = p.id</property>
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Stop\OLE DB Destination">
+    design-time-name="Package\Load Stop\OLE DB Source">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1207,17 +1267,17 @@ JOIN [dbo].Places p ON s.place_id = p.id</property>
       <Property>
         <Name>OverwriteParamsSQLProp</Name>
         <Value
-          type="q2:boolean">false</Value>
+          type="q2:string">false</Value>
       </Property>
       <Property>
         <Name>UsedTableName</Name>
         <Value
-          type="q3:string">[dbo].[DimStop]</Value>
+          type="q3:string">[staging].[stop]</Value>
       </Property>
       <Property>
         <Name>TableInfoObjectType</Name>
         <Value
-          type="q4:int">0</Value>
+          type="q4:string">0</Value>
       </Property>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1225,7 +1285,7 @@ JOIN [dbo].Places p ON s.place_id = p.id</property>
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\Load Stop\OLE DB Source">
+    design-time-name="Package\Load Stop\OLE DB Destination">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
