@@ -63,17 +63,28 @@
     <Folder Include="Schema\Tables" />
     <Folder Include="Schema\Security\schemas" />
     <Folder Include="Schema\Programmability\Stored Procedures" />
+    <Folder Include="Schema\Tables\dbo" />
+    <Folder Include="Schema\Tables\staging" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment.sql" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schema\Security\schemas\staging.sql" />
-    <Build Include="Schema\Tables\DimDate.sql" />
-    <Build Include="Schema\Tables\FactServices.sql" />
-    <Build Include="Schema\Tables\DimStop.sql" />
-    <Build Include="Schema\Tables\DimTicket.sql" />
-    <Build Include="Schema\Tables\DimRoute.sql" />
-    <Build Include="Schema\Tables\DimBus.sql" />
+    <Build Include="Schema\Tables\dbo\DimBus.sql" />
+    <Build Include="Schema\Tables\dbo\DimDate.sql" />
+    <Build Include="Schema\Tables\dbo\DimRoute.sql" />
+    <Build Include="Schema\Tables\dbo\DimStop.sql" />
+    <Build Include="Schema\Tables\dbo\DimTicket.sql" />
+    <Build Include="Schema\Tables\dbo\FactServices.sql" />
+    <Build Include="Schema\Tables\staging\Bus.sql" />
+    <Build Include="Schema\Tables\staging\Route.sql" />
+    <Build Include="Schema\Tables\staging\Stop.sql" />
+    <Build Include="Schema\Tables\staging\Ticket.sql" />
+    <Build Include="Schema\Tables\staging\Services.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimBus.sql" />
+    <Build Include="Schema\Tables\dbo\PackageConfig.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\GetLastPackageRowVersion.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\UpdateLastPackageRowVersion.sql" />
   </ItemGroup>
 </Project>
