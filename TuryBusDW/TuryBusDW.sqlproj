@@ -92,5 +92,6 @@
     <Build Include="Schema\Programmability\Stored Procedures\sp_GetTotalHoursByUser.sql" />
     <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimRoute.sql" />
     <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimStop.sql" />
+    <Build Include="Schema\Programmability\Stored Procedures\DW_MergeDimPassenger.sql" />
   </ItemGroup>
 </Project>

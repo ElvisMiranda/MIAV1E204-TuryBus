@@ -82,6 +82,7 @@
     <Build Include="Schema\Programability\Stored Procedures\GetStopsChangesByRowVersion.sql" />
     <Build Include="Schema\Programability\Stored Procedures\GetTicketsChangesByRowVersion.sql" />
     <Build Include="Schema\Programability\Stored Procedures\GetServicesChangesByRowVersion.sql" />
+    <None Include="Schema\Programability\Stored Procedures\GetPassengerChangesByRowVersion.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
