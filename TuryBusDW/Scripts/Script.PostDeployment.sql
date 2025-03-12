@@ -13,6 +13,15 @@ Post-Deployment Script Template
 -- Verificar si no existe una entrada en PackageConfig para la tabla 'Bus'
 IF NOT EXISTS(SELECT TOP(1) 1
               FROM [dbo].[PackageConfig]
+              WHERE [TableName] = 'Passenger')
+BEGIN
+    INSERT [dbo].[PackageConfig] ([TableName], [LastRowVersion]) VALUES ('Passenger', 0)
+END
+GO
+
+-- Verificar si no existe una entrada en PackageConfig para la tabla 'Bus'
+IF NOT EXISTS(SELECT TOP(1) 1
+              FROM [dbo].[PackageConfig]
               WHERE [TableName] = 'Bus')
 BEGIN
     INSERT [dbo].[PackageConfig] ([TableName], [LastRowVersion]) VALUES ('Bus', 0)
@@ -54,6 +63,7 @@ BEGIN
     INSERT [dbo].[PackageConfig] ([TableName], [LastRowVersion]) VALUES ('Ticket', 0)
 END
 GO
+
 
 ---###########################
 

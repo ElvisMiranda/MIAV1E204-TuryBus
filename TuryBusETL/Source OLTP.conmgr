@@ -7,6 +7,6 @@
     <DTS:ConnectionManager
       DTS:ConnectRetryCount="1"
       DTS:ConnectRetryInterval="5"
-      DTS:ConnectionString="Data Source=JARAJORECHI\MSSQLSERVER22DEV;Initial Catalog=TuryBusOLTP;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Stop-{A348B0EF-F278-4990-A457-15C7759BAC98}JARAJORECHI\MSSQLSERVER22DEV.TuryBusOLTP;Auto Translate=False;" />
+      DTS:ConnectionString="Data Source=localhost;Initial Catalog=TuryBusOLTP;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Stop-{A348B0EF-F278-4990-A457-15C7759BAC98}JARAJORECHI\MSSQLSERVER22DEV.TuryBusOLTP;" />
   </DTS:ObjectData>
 </DTS:ConnectionManager>
