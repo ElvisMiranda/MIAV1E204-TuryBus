@@ -5,7 +5,7 @@ BEGIN
 	SELECT 
 		r.RouteID AS route_id
 		, r.name AS route_name
-	   , COUNT(fs.ServiceID) / COUNT(DISTINCT fs.ServiceID) AS avg_passengers
+	   , COUNT(fs.service_id) / COUNT(DISTINCT fs.service_id) AS avg_passengers
 	FROM FactServices fs
 	JOIN DimRoute r ON fs.RouteSK = r.RouteSK
 	GROUP BY r.RouteID, r.Name;
