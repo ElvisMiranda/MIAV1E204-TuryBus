@@ -1,12 +1,18 @@
 ﻿CREATE TABLE staging.Services (
-    ServiceID INT NOT NULL,
-    StopSK INT NOT NULL,
-    TicketSK INT NOT NULL,
-    RouteSK INT NOT NULL,
-    BusSK INT NOT NULL,
-    DateKey INT NOT NULL,
-    DepartureTime TIME NOT NULL,
-    ArrivalTime TIME NOT NULL,
-    IsHoliday BIT NOT NULL DEFAULT 0    
+    [ServicioSK] [int] NOT NULL,
+	[service_id] [int] NOT NULL,
+	[ticket_id] [int] NOT NULL,
+	[StopSK] [int] NOT NULL,
+	[PassengerSK] [int] NOT NULL,
+	[RouteSK] [int] NOT NULL,
+	[BusSK] [int] NOT NULL,
+	[DateKey] [int] NOT NULL,
+	[DepartureTime] [time](7) NOT NULL,
+	[ArrivalTime] [time](7) NOT NULL,
+	[IsHoliday] [bit] NOT NULL,
+	[DuracionHrs_Ticket] [int] NOT NULL,
+	[cantTickets] [int] NOT NULL,
+	[ImporteTotal] [decimal](10, 2) NOT NULL
+
 );
 GO
