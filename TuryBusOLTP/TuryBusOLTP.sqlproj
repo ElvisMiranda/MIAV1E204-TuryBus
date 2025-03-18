@@ -77,17 +77,15 @@
     <Build Include="Schema\Tables\Stops.sql" />
     <Build Include="Schema\Tables\Tickets.sql" />
     <Build Include="Schema\Security\Schema\Sample.sql" />
+    <Build Include="Schema\Programability\Stored Procedures\GetBussesChangesByRowVersion.sql" />
     <Build Include="Schema\Programability\Stored Procedures\GetDatabaseRowVersion.sql" />
     <Build Include="Schema\Programability\Stored Procedures\GetRoutesChangesByRowVersion.sql" />
     <Build Include="Schema\Programability\Stored Procedures\GetStopsChangesByRowVersion.sql" />
     <Build Include="Schema\Programability\Stored Procedures\GetTicketsChangesByRowVersion.sql" />
     <Build Include="Schema\Programability\Stored Procedures\GetServicesChangesByRowVersion.sql" />
-    <None Include="Schema\Programability\Stored Procedures\GetPassengerChangesByRowVersion.sql" />
+    <Build Include="Schema\Programability\Stored Procedures\GetPassengerChangesByRowVersion.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="Scripts\Script.PostDeployment1.sql" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Schema\Programability\Stored Procedures\GetBussesChangesByRowVersion.sql" />
   </ItemGroup>
 </Project>
