@@ -55,15 +55,6 @@ BEGIN
 END
 GO
 
--- Verificar si no existe una entrada en PackageConfig para la tabla 'Ticket'
-IF NOT EXISTS(SELECT TOP(1) 1
-              FROM [dbo].[PackageConfig]
-              WHERE [TableName] = 'Ticket')
-BEGIN
-    INSERT [dbo].[PackageConfig] ([TableName], [LastRowVersion]) VALUES ('Ticket', 0)
-END
-GO
-
 
 ---###########################
 
@@ -75,7 +66,7 @@ IF NOT EXISTS(SELECT TOP(1) 1
 BEGIN
     BEGIN TRAN 
         DECLARE @startdate DATE = '2020-01-01',
-                @enddate   DATE = '2025-01-01';
+                @enddate   DATE = '2025-12-31';
         DECLARE @datelist TABLE(FullDate DATE);
 
     -- Si no se especifica @startdate, obtener la primera fecha de DimDate
