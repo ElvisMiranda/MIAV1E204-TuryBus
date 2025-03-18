@@ -10,6 +10,21 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
+-- Clean-up tables
+DELETE FROM Repairs;
+DELETE FROM Inspections;
+DELETE FROM Tickets;
+DELETE FROM Stops;
+DELETE FROM DailyServices;
+DELETE FROM Busses;
+DELETE FROM Passengers;
+DELETE FROM Activities;
+DELETE FROM Places;
+DELETE FROM Drivers;
+DELETE FROM Routes;
+GO
+
+-- Populate Tables.
 -- Insertar rutas turísticas
 SET IDENTITY_INSERT Routes ON;
 INSERT INTO Routes (id, name, description, distance, price) VALUES
@@ -619,209 +634,717 @@ INSERT INTO Drivers (id, dni, name, phone, address) VALUES (299, '5412683LP', 'S
 INSERT INTO Drivers (id, dni, name, phone, address) VALUES (300, '8070917CB', 'José Ramírez', '684779018', 'Av. Independencia 357');
 SET IDENTITY_INSERT Drivers OFF;
 
+-- Insertar lugares turísticos
+SET IDENTITY_INSERT Places ON;
+INSERT INTO Places (id, name) VALUES (1, 'Salar de Uyuni');
+INSERT INTO Places (id, name) VALUES (2, 'Laguna Colorada');
+INSERT INTO Places (id, name) VALUES (3, 'Isla del Sol');
+INSERT INTO Places (id, name) VALUES (4, 'Valle de la Luna');
+INSERT INTO Places (id, name) VALUES (5, 'Parque Nacional Madidi');
+INSERT INTO Places (id, name) VALUES (6, 'Tiwanaku');
+INSERT INTO Places (id, name) VALUES (7, 'Cerro Rico de Potosí');
+INSERT INTO Places (id, name) VALUES (8, 'Misión Jesuítica de San José de Chiquitos');
+INSERT INTO Places (id, name) VALUES (9, 'Cristo de la Concordia');
+INSERT INTO Places (id, name) VALUES (10, 'Yungas Road');
+INSERT INTO Places (id, name) VALUES (11, 'Parque Nacional Noel Kempff Mercado');
+INSERT INTO Places (id, name) VALUES (12, 'Laguna Verde');
+INSERT INTO Places (id, name) VALUES (13, 'Reserva Eduardo Avaroa');
+INSERT INTO Places (id, name) VALUES (14, 'Cascadas de Cuevas');
+INSERT INTO Places (id, name) VALUES (15, 'Cavernas de Umajalanta');
+INSERT INTO Places (id, name) VALUES (16, 'Fortaleza de Samaipata');
+INSERT INTO Places (id, name) VALUES (17, 'Laguna Celeste');
+INSERT INTO Places (id, name) VALUES (18, 'Lomas de Arena');
+INSERT INTO Places (id, name) VALUES (19, 'Puerta del Sol');
+INSERT INTO Places (id, name) VALUES (20, 'Palacio de Sal');
+INSERT INTO Places (id, name) VALUES (21, 'Mirador Laikakota');
+INSERT INTO Places (id, name) VALUES (22, 'Río Yacuma');
+INSERT INTO Places (id, name) VALUES (23, 'Lago Titicaca');
+INSERT INTO Places (id, name) VALUES (24, 'Cataratas Arco Iris');
+INSERT INTO Places (id, name) VALUES (25, 'Piedra de los Apóstoles');
+INSERT INTO Places (id, name) VALUES (26, 'Potosí Casa de la Moneda');
+INSERT INTO Places (id, name) VALUES (27, 'Mercado de las Brujas');
+INSERT INTO Places (id, name) VALUES (28, 'Samaipata');
+INSERT INTO Places (id, name) VALUES (29, 'Parque Amboró');
+INSERT INTO Places (id, name) VALUES (30, 'Mirador Killi Killi');
+INSERT INTO Places (id, name) VALUES (31, 'San Javier Misiones Jesuíticas');
+INSERT INTO Places (id, name) VALUES (32, 'Cascadas Espejillos');
+INSERT INTO Places (id, name) VALUES (33, 'Templo de Kalasasaya');
+INSERT INTO Places (id, name) VALUES (34, 'Cueva del Diablo');
+INSERT INTO Places (id, name) VALUES (35, 'Bosque de Piedras de Paquío');
+INSERT INTO Places (id, name) VALUES (36, 'Chiquitania');
+INSERT INTO Places (id, name) VALUES (37, 'Parque Nacional Torotoro');
+INSERT INTO Places (id, name) VALUES (38, 'Ciudad de Piedra');
+INSERT INTO Places (id, name) VALUES (39, 'Laguna Suárez');
+INSERT INTO Places (id, name) VALUES (40, 'Aguas Termales de Polques');
+INSERT INTO Places (id, name) VALUES (41, 'Puente Colgante de Sorata');
+INSERT INTO Places (id, name) VALUES (42, 'Dunas de arena de San José');
+INSERT INTO Places (id, name) VALUES (43, 'Trufis del Desierto');
+INSERT INTO Places (id, name) VALUES (44, 'Santuario de Cotoca');
+INSERT INTO Places (id, name) VALUES (45, 'Valle de los Cóndores');
+INSERT INTO Places (id, name) VALUES (46, 'Pueblo Fantasma de Potosí');
+INSERT INTO Places (id, name) VALUES (47, 'Fuerte de Samaipata');
+INSERT INTO Places (id, name) VALUES (48, 'Pinturas Rupestres de Calamarca');
+INSERT INTO Places (id, name) VALUES (49, 'Oasis de Lipez');
+INSERT INTO Places (id, name) VALUES (50, 'Río Chapare');
+INSERT INTO Places (id, name) VALUES (51, 'Cataratas del Jukumari');
+INSERT INTO Places (id, name) VALUES (52, 'Pico Austria');
+INSERT INTO Places (id, name) VALUES (53, 'Reserva de Tariquía');
+INSERT INTO Places (id, name) VALUES (54, 'Los Frailes');
+INSERT INTO Places (id, name) VALUES (55, 'Lomas de Yunga Cruz');
+INSERT INTO Places (id, name) VALUES (56, 'Quebrada de Palala');
+INSERT INTO Places (id, name) VALUES (57, 'Aguas Calientes de Roboré');
+INSERT INTO Places (id, name) VALUES (58, 'Termas de Urmiri');
+INSERT INTO Places (id, name) VALUES (59, 'Caminos del Inca en Bolivia');
+INSERT INTO Places (id, name) VALUES (60, 'Reserva El Palmar');
+INSERT INTO Places (id, name) VALUES (61, 'Cerro de Chataquila');
+INSERT INTO Places (id, name) VALUES (62, 'Muelle de Puerto Quijarro');
+INSERT INTO Places (id, name) VALUES (63, 'Laguna Mandioré');
+INSERT INTO Places (id, name) VALUES (64, 'Ruinas de Incallajta');
+INSERT INTO Places (id, name) VALUES (65, 'Parque Nacional Cotapata');
+INSERT INTO Places (id, name) VALUES (66, 'Las Pampas del Yacuma');
+INSERT INTO Places (id, name) VALUES (67, 'Puente Sucre');
+INSERT INTO Places (id, name) VALUES (68, 'Chullpas de Sillustani');
+INSERT INTO Places (id, name) VALUES (69, 'Valle de Tucavaca');
+INSERT INTO Places (id, name) VALUES (70, 'Refugio Los Volcanes');
+INSERT INTO Places (id, name) VALUES (71, 'Trinidad y sus estancias');
+INSERT INTO Places (id, name) VALUES (72, 'Laguna San Luis');
+INSERT INTO Places (id, name) VALUES (73, 'El Vergel');
+INSERT INTO Places (id, name) VALUES (74, 'Cataratas de Arcoiris');
+INSERT INTO Places (id, name) VALUES (75, 'Reserva Manuripi');
+INSERT INTO Places (id, name) VALUES (76, 'Reserva Biológica Cordillera de Sama');
+INSERT INTO Places (id, name) VALUES (77, 'Misiones de Chiquitos');
+INSERT INTO Places (id, name) VALUES (78, 'El Pantanal Boliviano');
+INSERT INTO Places (id, name) VALUES (79, 'Laguna Concepción');
+INSERT INTO Places (id, name) VALUES (80, 'Río Mamoré');
+INSERT INTO Places (id, name) VALUES (81, 'Mina San José');
+INSERT INTO Places (id, name) VALUES (82, 'Camino de los Libertadores');
+INSERT INTO Places (id, name) VALUES (83, 'Cueva de los Murciélagos');
+INSERT INTO Places (id, name) VALUES (84, 'Bosques de Polylepis');
+INSERT INTO Places (id, name) VALUES (85, 'Parque Ecológico Machía');
+INSERT INTO Places (id, name) VALUES (86, 'El Choro Trek');
+INSERT INTO Places (id, name) VALUES (87, 'Parque Nacional Apolobamba');
+INSERT INTO Places (id, name) VALUES (88, 'Reserva de la Biosfera Pilón Lajas');
+INSERT INTO Places (id, name) VALUES (89, 'Las Cuevas de San Pedro');
+INSERT INTO Places (id, name) VALUES (90, 'Parque Nacional Otuquis');
+INSERT INTO Places (id, name) VALUES (91, 'Laguna Chiar Khota');
+INSERT INTO Places (id, name) VALUES (92, 'El Sajama');
+INSERT INTO Places (id, name) VALUES (93, 'Geysers de Sol de Mañana');
+INSERT INTO Places (id, name) VALUES (94, 'Puente de la Amistad');
+INSERT INTO Places (id, name) VALUES (95, 'Bosques de Toborochi');
+INSERT INTO Places (id, name) VALUES (96, 'Cerro Uchumachi');
+INSERT INTO Places (id, name) VALUES (97, 'Pueblo de Sorata');
+INSERT INTO Places (id, name) VALUES (98, 'Cataratas de Coroico');
+INSERT INTO Places (id, name) VALUES (99, 'Templo del Gran Poder');
+INSERT INTO Places (id, name) VALUES (100, 'Laguna Larga');
+INSERT INTO Places (id, name) VALUES (101, 'Balneario de Tarata');
+INSERT INTO Places (id, name) VALUES (102, 'Cataratas de Pailón');
+INSERT INTO Places (id, name) VALUES (103, 'Chiquitano Lodge');
+INSERT INTO Places (id, name) VALUES (104, 'Pico Illimani');
+INSERT INTO Places (id, name) VALUES (105, 'Paredón de Tupiza');
+INSERT INTO Places (id, name) VALUES (106, 'Cataratas de Jorochito');
+INSERT INTO Places (id, name) VALUES (107, 'Laguna de Pampalarama');
+INSERT INTO Places (id, name) VALUES (108, 'Ruinas de Pucara de Tilcara');
+INSERT INTO Places (id, name) VALUES (109, 'Laguna Chulluncani');
+INSERT INTO Places (id, name) VALUES (110, 'Serranías de Santiago de Chiquitos');
+INSERT INTO Places (id, name) VALUES (111, 'El Desierto de Dalí');
+INSERT INTO Places (id, name) VALUES (112, 'Cerro del Elefante');
+INSERT INTO Places (id, name) VALUES (113, 'Mirador de Incachaca');
+INSERT INTO Places (id, name) VALUES (114, 'Parque Nacional Kaa-Iya');
+INSERT INTO Places (id, name) VALUES (115, 'Cerro Kari Kari');
+INSERT INTO Places (id, name) VALUES (116, 'Ruinas de Iskanwaya');
+INSERT INTO Places (id, name) VALUES (117, 'Aguas termales de Sajama');
+INSERT INTO Places (id, name) VALUES (118, 'Parque Natural Serranía Sararenda');
+INSERT INTO Places (id, name) VALUES (119, 'Bosque de los Helechos Gigantes');
+INSERT INTO Places (id, name) VALUES (120, 'Pueblo de Villa Abecia');
+INSERT INTO Places (id, name) VALUES (121, 'Ruinas de Presto');
+INSERT INTO Places (id, name) VALUES (122, 'Balneario de Mizque');
+INSERT INTO Places (id, name) VALUES (123, 'Mirador de Tupiza');
+INSERT INTO Places (id, name) VALUES (124, 'San Ignacio de Velasco');
+INSERT INTO Places (id, name) VALUES (125, 'Parque Nacional Aguaragüe');
+INSERT INTO Places (id, name) VALUES (126, 'Túneles de Socopó');
+INSERT INTO Places (id, name) VALUES (127, 'Ruinas de Inkallajta');
+INSERT INTO Places (id, name) VALUES (128, 'Cerro Mutún');
+INSERT INTO Places (id, name) VALUES (129, 'San Rafael de Velasco');
+INSERT INTO Places (id, name) VALUES (130, 'Cueva de La Felicidad');
+INSERT INTO Places (id, name) VALUES (131, 'Reserva Tahuamanu');
+INSERT INTO Places (id, name) VALUES (132, 'Cueva de los Helechos');
+INSERT INTO Places (id, name) VALUES (133, 'Truchas de Sicasica');
+INSERT INTO Places (id, name) VALUES (134, 'Laguna Alalay');
+INSERT INTO Places (id, name) VALUES (135, 'Cerro de la Silla');
+INSERT INTO Places (id, name) VALUES (136, 'Reserva Ecológica El Tatarenda');
+INSERT INTO Places (id, name) VALUES (137, 'Refugio del Pájaro Bufeo');
+INSERT INTO Places (id, name) VALUES (138, 'El Paredón de Tiquipaya');
+INSERT INTO Places (id, name) VALUES (139, 'Mirador de Bella Vista');
+INSERT INTO Places (id, name) VALUES (140, 'Parque Nacional Carrasco');
+INSERT INTO Places (id, name) VALUES (141, 'Cascadas de Quirusillas');
+INSERT INTO Places (id, name) VALUES (142, 'Serranía del Iñao');
+INSERT INTO Places (id, name) VALUES (143, 'Reserva de Samaipata');
+INSERT INTO Places (id, name) VALUES (144, 'Volcán Tunupa');
+INSERT INTO Places (id, name) VALUES (145, 'Playa del río Parapetí');
+INSERT INTO Places (id, name) VALUES (146, 'Cataratas de Charobamba');
+INSERT INTO Places (id, name) VALUES (147, 'La Higuera');
+INSERT INTO Places (id, name) VALUES (148, 'Camino del Che');
+INSERT INTO Places (id, name) VALUES (149, 'Laguna Juatiña');
+INSERT INTO Places (id, name) VALUES (150, 'Laguna Pastos Grandes');
+INSERT INTO Places (id, name) VALUES (151, 'Ruinas de Tumichucua');
+INSERT INTO Places (id, name) VALUES (152, 'Valle de la Luna en Potosí');
+INSERT INTO Places (id, name) VALUES (153, 'Reserva Biológica Estación Biológica del Beni');
+INSERT INTO Places (id, name) VALUES (154, 'Reserva Biológica El Refugio');
+INSERT INTO Places (id, name) VALUES (155, 'Bosque Encantado de Chiquitos');
+INSERT INTO Places (id, name) VALUES (156, 'Cataratas del Urubó');
+INSERT INTO Places (id, name) VALUES (157, 'Río Grande');
+INSERT INTO Places (id, name) VALUES (158, 'Parque Nacional Cotacajes');
+INSERT INTO Places (id, name) VALUES (159, 'Cataratas de Luribay');
+INSERT INTO Places (id, name) VALUES (160, 'Las Torres del Paquió');
+INSERT INTO Places (id, name) VALUES (161, 'Laguna Huayñakota');
+INSERT INTO Places (id, name) VALUES (162, 'Las Cavernas de Repechón');
+INSERT INTO Places (id, name) VALUES (163, 'Mirador del Río Rocha');
+INSERT INTO Places (id, name) VALUES (164, 'Aguas Termales de Totora');
+INSERT INTO Places (id, name) VALUES (165, 'Reserva de Kaa-Iya');
+INSERT INTO Places (id, name) VALUES (166, 'Mirador del Valle de los Cóndores');
+INSERT INTO Places (id, name) VALUES (167, 'Río Ichilo');
+INSERT INTO Places (id, name) VALUES (168, 'Ruinas de Santa Ana de Velasco');
+INSERT INTO Places (id, name) VALUES (169, 'Piedra de los 12 ángulos de Potosí');
+INSERT INTO Places (id, name) VALUES (170, 'Camino del Yungas');
+INSERT INTO Places (id, name) VALUES (171, 'Parque Nacional Isiboro Sécure');
+INSERT INTO Places (id, name) VALUES (172, 'Laguna Caquingora');
+INSERT INTO Places (id, name) VALUES (173, 'Laguna Castrillo');
+INSERT INTO Places (id, name) VALUES (174, 'Reserva Natural del Bosque de Tarumá');
+INSERT INTO Places (id, name) VALUES (175, 'Los Toboganes de Toro Toro');
+INSERT INTO Places (id, name) VALUES (176, 'Mirador de Villa Montes');
+INSERT INTO Places (id, name) VALUES (177, 'Las Serranías del Pilcomayo');
+INSERT INTO Places (id, name) VALUES (178, 'Reserva de Vida Silvestre Bruno Racua');
+INSERT INTO Places (id, name) VALUES (179, 'Puente del Inca');
+INSERT INTO Places (id, name) VALUES (180, 'Serranías del Aguaragüe');
+INSERT INTO Places (id, name) VALUES (181, 'Laguna Jatuncocha');
+INSERT INTO Places (id, name) VALUES (182, 'Reserva de Vida Silvestre Ríos Blanco y Negro');
+INSERT INTO Places (id, name) VALUES (183, 'Campos do Jordão');
+INSERT INTO Places (id, name) VALUES (184, 'Serra do Rio do Rastro');
+INSERT INTO Places (id, name) VALUES (185, 'Porto Seguro');
+INSERT INTO Places (id, name) VALUES (186, 'Barra Grande');
+INSERT INTO Places (id, name) VALUES (187, 'Ilha do Mel');
+INSERT INTO Places (id, name) VALUES (188, 'Petrópolis');
+INSERT INTO Places (id, name) VALUES (189, 'Angra dos Reis');
+INSERT INTO Places (id, name) VALUES (190, 'Chapada dos Guimarães');
+INSERT INTO Places (id, name) VALUES (191, 'Lençóis Bahianos');
+INSERT INTO Places (id, name) VALUES (192, 'Tamandaré');
+INSERT INTO Places (id, name) VALUES (193, 'Morro de São Paulo');
+INSERT INTO Places (id, name) VALUES (194, 'Chapada das Mesas');
+INSERT INTO Places (id, name) VALUES (195, 'Gruta do Lago Azul');
+INSERT INTO Places (id, name) VALUES (196, 'Jalapão');
+INSERT INTO Places (id, name) VALUES (197, 'Ilha do Cardoso');
+INSERT INTO Places (id, name) VALUES (198, 'Santana de Parnaíba');
+INSERT INTO Places (id, name) VALUES (199, 'Poços de Caldas');
+INSERT INTO Places (id, name) VALUES (200, 'São Roque');
+SET IDENTITY_INSERT Places OFF;
+
+-- Insertar actividades
+SET IDENTITY_INSERT Activities ON;
+INSERT INTO Activities (id, description) VALUES (1, 'Fotografía');
+INSERT INTO Activities (id, description) VALUES (2, 'Senderismo');
+INSERT INTO Activities (id, description) VALUES (3, 'Natación');
+INSERT INTO Activities (id, description) VALUES (4, 'Observación de fauna');
+INSERT INTO Activities (id, description) VALUES (5, 'Camping');
+INSERT INTO Activities (id, description) VALUES (6, 'Paseo en bote');
+INSERT INTO Activities (id, description) VALUES (7, 'Pesca recreativa');
+INSERT INTO Activities (id, description) VALUES (8, 'Picnic');
+INSERT INTO Activities (id, description) VALUES (9, 'Ciclismo de montaña');
+INSERT INTO Activities (id, description) VALUES (10, 'Exploración de cuevas');
+INSERT INTO Activities (id, description) VALUES (11, 'Escalada en roca');
+INSERT INTO Activities (id, description) VALUES (12, 'Paseo en kayak');
+INSERT INTO Activities (id, description) VALUES (13, 'Avistamiento de aves');
+INSERT INTO Activities (id, description) VALUES (14, 'Visita a museos');
+INSERT INTO Activities (id, description) VALUES (15, 'Tour gastronómico');
+INSERT INTO Activities (id, description) VALUES (16, 'Cabalgata');
+INSERT INTO Activities (id, description) VALUES (17, 'Visita a ruinas arqueológicas');
+INSERT INTO Activities (id, description) VALUES (18, 'Tour en 4x4');
+INSERT INTO Activities (id, description) VALUES (19, 'Surfing');
+INSERT INTO Activities (id, description) VALUES (20, 'Paddleboarding');
+INSERT INTO Activities (id, description) VALUES (21, 'Visita a viñedos');
+INSERT INTO Activities (id, description) VALUES (22, 'Paseo en globo aerostático');
+INSERT INTO Activities (id, description) VALUES (23, 'Observación astronómica');
+INSERT INTO Activities (id, description) VALUES (24, 'Descenso en rappel');
+INSERT INTO Activities (id, description) VALUES (25, 'Visita a cascadas');
+INSERT INTO Activities (id, description) VALUES (26, 'Esquí acuático');
+INSERT INTO Activities (id, description) VALUES (27, 'Tirolesa');
+INSERT INTO Activities (id, description) VALUES (28, 'Visita a santuarios naturales');
+INSERT INTO Activities (id, description) VALUES (29, 'Nado con delfines');
+INSERT INTO Activities (id, description) VALUES (30, 'Paseo en tren turístico');
+INSERT INTO Activities (id, description) VALUES (31, 'Excursión en motocicleta');
+INSERT INTO Activities (id, description) VALUES (32, 'Parapente');
+INSERT INTO Activities (id, description) VALUES (33, 'Paseo en teleférico');
+INSERT INTO Activities (id, description) VALUES (34, 'Baño en aguas termales');
+INSERT INTO Activities (id, description) VALUES (35, 'Pesca con mosca');
+INSERT INTO Activities (id, description) VALUES (36, 'Trekking en nevados');
+INSERT INTO Activities (id, description) VALUES (37, 'Yoga en la naturaleza');
+INSERT INTO Activities (id, description) VALUES (38, 'Exploración de manglares');
+INSERT INTO Activities (id, description) VALUES (39, 'Visita a jardines botánicos');
+INSERT INTO Activities (id, description) VALUES (40, 'Caminata por dunas');
+INSERT INTO Activities (id, description) VALUES (41, 'Tour en bicicleta eléctrica');
+INSERT INTO Activities (id, description) VALUES (42, 'Tour de café');
+INSERT INTO Activities (id, description) VALUES (43, 'Buceo en arrecifes');
+INSERT INTO Activities (id, description) VALUES (44, 'Snorkel en cenotes');
+INSERT INTO Activities (id, description) VALUES (45, 'Clases de cocina regional');
+INSERT INTO Activities (id, description) VALUES (46, 'Caminata nocturna');
+INSERT INTO Activities (id, description) VALUES (47, 'Exploración de cañones');
+INSERT INTO Activities (id, description) VALUES (48, 'Tour de mitos y leyendas');
+INSERT INTO Activities (id, description) VALUES (49, 'Vuelo en parapente');
+INSERT INTO Activities (id, description) VALUES (50, 'Tiro con arco');
+INSERT INTO Activities (id, description) VALUES (51, 'Juegos tradicionales locales');
+INSERT INTO Activities (id, description) VALUES (52, 'Patinaje sobre hielo');
+INSERT INTO Activities (id, description) VALUES (53, 'Observación de tortugas marinas');
+INSERT INTO Activities (id, description) VALUES (54, 'Excursión a islas');
+INSERT INTO Activities (id, description) VALUES (55, 'Recorrido por mercados locales');
+INSERT INTO Activities (id, description) VALUES (56, 'Baño en ríos cristalinos');
+INSERT INTO Activities (id, description) VALUES (57, 'Visita a fábricas de chocolate');
+INSERT INTO Activities (id, description) VALUES (58, 'Visita a talleres de artesanía');
+INSERT INTO Activities (id, description) VALUES (59, 'Tour fotográfico');
+INSERT INTO Activities (id, description) VALUES (60, 'Vuelo en ultraligero');
+INSERT INTO Activities (id, description) VALUES (61, 'Nado en lagunas escondidas');
+INSERT INTO Activities (id, description) VALUES (62, 'Exploración de minas antiguas');
+INSERT INTO Activities (id, description) VALUES (63, 'Rutas de vino y queso');
+INSERT INTO Activities (id, description) VALUES (64, 'Visita a represas');
+INSERT INTO Activities (id, description) VALUES (65, 'Tour en tranvía turístico');
+INSERT INTO Activities (id, description) VALUES (66, 'Experiencia de reforestación');
+INSERT INTO Activities (id, description) VALUES (67, 'Recolección de frutas en huertos');
+INSERT INTO Activities (id, description) VALUES (68, 'Clase de cerámica');
+INSERT INTO Activities (id, description) VALUES (69, 'Paseo en barco pirata');
+INSERT INTO Activities (id, description) VALUES (70, 'Escalada en árboles');
+INSERT INTO Activities (id, description) VALUES (71, 'Exploración de acantilados');
+INSERT INTO Activities (id, description) VALUES (72, 'Manejo de vehículos todoterreno');
+INSERT INTO Activities (id, description) VALUES (73, 'Tour de mariposas');
+INSERT INTO Activities (id, description) VALUES (74, 'Carrera de orientación');
+INSERT INTO Activities (id, description) VALUES (75, 'Construcción de balsas');
+INSERT INTO Activities (id, description) VALUES (76, 'Caminata en bosques de niebla');
+INSERT INTO Activities (id, description) VALUES (77, 'Paseo en carruaje');
+INSERT INTO Activities (id, description) VALUES (78, 'Pintura en paisajes naturales');
+INSERT INTO Activities (id, description) VALUES (79, 'Espeleología');
+INSERT INTO Activities (id, description) VALUES (80, 'Clases de danza tradicional');
+INSERT INTO Activities (id, description) VALUES (81, 'Tour de leyendas urbanas');
+INSERT INTO Activities (id, description) VALUES (82, 'Visita a plantaciones de té');
+INSERT INTO Activities (id, description) VALUES (83, 'Demostración de técnicas de pesca local');
+INSERT INTO Activities (id, description) VALUES (84, 'Paseo en trineo');
+INSERT INTO Activities (id, description) VALUES (85, 'Participación en festivales culturales');
+INSERT INTO Activities (id, description) VALUES (86, 'Tour nocturno en la selva');
+INSERT INTO Activities (id, description) VALUES (87, 'Taller de grabado en madera');
+INSERT INTO Activities (id, description) VALUES (88, 'Rappel en cascadas');
+INSERT INTO Activities (id, description) VALUES (89, 'Exploración de arrecifes artificiales');
+INSERT INTO Activities (id, description) VALUES (90, 'Observación de ballenas');
+INSERT INTO Activities (id, description) VALUES (91, 'Tour en góndolas');
+INSERT INTO Activities (id, description) VALUES (92, 'Avistamiento de luciérnagas');
+INSERT INTO Activities (id, description) VALUES (93, 'Recolección de sal en salinas');
+INSERT INTO Activities (id, description) VALUES (94, 'Vuelo en dirigible');
+INSERT INTO Activities (id, description) VALUES (95, 'Participación en ceremonias ancestrales');
+INSERT INTO Activities (id, description) VALUES (96, 'Caminata por viñedos');
+INSERT INTO Activities (id, description) VALUES (97, 'Tour en buggy por el desierto');
+INSERT INTO Activities (id, description) VALUES (98, 'Paseo en bicicleta por senderos históricos');
+INSERT INTO Activities (id, description) VALUES (99, 'Demostración de cocina prehispánica');
+INSERT INTO Activities (id, description) VALUES (100, 'Exploración de pueblos fantasmas');
+INSERT INTO Activities (id, description) VALUES (101, 'Paseo en bicicleta');
+INSERT INTO Activities (id, description) VALUES (102, 'Escalada en roca');
+INSERT INTO Activities (id, description) VALUES (103, 'Rafting');
+INSERT INTO Activities (id, description) VALUES (104, 'Tour en barco');
+INSERT INTO Activities (id, description) VALUES (105, 'Paseo en kayak');
+INSERT INTO Activities (id, description) VALUES (106, 'Esquí acuático');
+INSERT INTO Activities (id, description) VALUES (107, 'Snorkel');
+INSERT INTO Activities (id, description) VALUES (108, 'Buceo');
+INSERT INTO Activities (id, description) VALUES (109, 'Pesca deportiva');
+INSERT INTO Activities (id, description) VALUES (110, 'Tour en cuatrimoto');
+INSERT INTO Activities (id, description) VALUES (111, 'Paseo a caballo');
+INSERT INTO Activities (id, description) VALUES (112, 'Parapente');
+INSERT INTO Activities (id, description) VALUES (113, 'Vuelo en globo aerostático');
+INSERT INTO Activities (id, description) VALUES (114, 'Surf');
+INSERT INTO Activities (id, description) VALUES (115, 'Sandboarding');
+INSERT INTO Activities (id, description) VALUES (116, 'Yoga al aire libre');
+INSERT INTO Activities (id, description) VALUES (117, 'Tirolesa');
+INSERT INTO Activities (id, description) VALUES (118, 'Caminata nocturna');
+INSERT INTO Activities (id, description) VALUES (119, 'Visita a reservas naturales');
+INSERT INTO Activities (id, description) VALUES (120, 'Tour en jeep');
+INSERT INTO Activities (id, description) VALUES (121, 'Observación de estrellas');
+INSERT INTO Activities (id, description) VALUES (122, 'Paseo en góndola');
+INSERT INTO Activities (id, description) VALUES (123, 'Exploración de cuevas');
+INSERT INTO Activities (id, description) VALUES (124, 'Degustación de vinos');
+INSERT INTO Activities (id, description) VALUES (125, 'Visita a cafetales');
+INSERT INTO Activities (id, description) VALUES (126, 'Paseo en helicóptero');
+INSERT INTO Activities (id, description) VALUES (127, 'Festival cultural');
+INSERT INTO Activities (id, description) VALUES (128, 'Visita a sitios arqueológicos');
+INSERT INTO Activities (id, description) VALUES (129, 'Ruta gastronómica');
+INSERT INTO Activities (id, description) VALUES (130, 'Artesanías y manualidades');
+INSERT INTO Activities (id, description) VALUES (131, 'Avistamiento de ballenas');
+INSERT INTO Activities (id, description) VALUES (132, 'Navegación en velero');
+INSERT INTO Activities (id, description) VALUES (133, 'Safari fotográfico');
+INSERT INTO Activities (id, description) VALUES (134, 'Esquí en arena');
+INSERT INTO Activities (id, description) VALUES (135, 'Raquetas de nieve');
+INSERT INTO Activities (id, description) VALUES (136, 'Ciclismo de montaña');
+INSERT INTO Activities (id, description) VALUES (137, 'Espeleología');
+INSERT INTO Activities (id, description) VALUES (138, 'Escalada de árboles');
+INSERT INTO Activities (id, description) VALUES (139, 'Parques de aventura');
+INSERT INTO Activities (id, description) VALUES (140, 'Paseo en burro');
+INSERT INTO Activities (id, description) VALUES (141, 'Carrera de karting');
+INSERT INTO Activities (id, description) VALUES (142, 'Tour de graffiti y arte urbano');
+INSERT INTO Activities (id, description) VALUES (143, 'Festival de globos aerostáticos');
+INSERT INTO Activities (id, description) VALUES (144, 'Buceo con tiburones');
+INSERT INTO Activities (id, description) VALUES (145, 'Clases de cocina local');
+INSERT INTO Activities (id, description) VALUES (146, 'Viaje en tren panorámico');
+INSERT INTO Activities (id, description) VALUES (147, 'Visita a islas vírgenes');
+INSERT INTO Activities (id, description) VALUES (148, 'Aventura en tirolinas');
+INSERT INTO Activities (id, description) VALUES (149, 'Baños en aguas termales');
+INSERT INTO Activities (id, description) VALUES (150, 'Senderismo en volcanes');
+INSERT INTO Activities (id, description) VALUES (151, 'Bungee jumping');
+INSERT INTO Activities (id, description) VALUES (152, 'Descenso en rapel');
+INSERT INTO Activities (id, description) VALUES (153, 'Tour de mitos y leyendas');
+INSERT INTO Activities (id, description) VALUES (154, 'Noche de fogata');
+INSERT INTO Activities (id, description) VALUES (155, 'Observación de luciérnagas');
+INSERT INTO Activities (id, description) VALUES (156, 'Paddle surf');
+INSERT INTO Activities (id, description) VALUES (157, 'Barranquismo');
+INSERT INTO Activities (id, description) VALUES (158, 'Exploración de ruinas antiguas');
+INSERT INTO Activities (id, description) VALUES (159, 'Festival de danza');
+INSERT INTO Activities (id, description) VALUES (160, 'Fiesta de carnaval');
+INSERT INTO Activities (id, description) VALUES (161, 'Rally de orientación');
+INSERT INTO Activities (id, description) VALUES (162, 'Caza fotográfica');
+INSERT INTO Activities (id, description) VALUES (163, 'Día de spa en la naturaleza');
+INSERT INTO Activities (id, description) VALUES (164, 'Senderismo entre cascadas');
+INSERT INTO Activities (id, description) VALUES (165, 'Pesca artesanal');
+INSERT INTO Activities (id, description) VALUES (166, 'Esquí alpino');
+INSERT INTO Activities (id, description) VALUES (167, 'Visita a santuarios de animales');
+INSERT INTO Activities (id, description) VALUES (168, 'Recorridos en segway');
+INSERT INTO Activities (id, description) VALUES (169, 'Buceo nocturno');
+INSERT INTO Activities (id, description) VALUES (170, 'Excursión en bote');
+INSERT INTO Activities (id, description) VALUES (171, 'Recorridos en globo aerostático');
+INSERT INTO Activities (id, description) VALUES (172, 'Exploración de desiertos');
+INSERT INTO Activities (id, description) VALUES (173, 'Festival de luces');
+INSERT INTO Activities (id, description) VALUES (174, 'Ciclismo urbano');
+INSERT INTO Activities (id, description) VALUES (175, 'Picnic en parques naturales');
+INSERT INTO Activities (id, description) VALUES (176, 'Surf de remo');
+INSERT INTO Activities (id, description) VALUES (177, 'Día de pintura al aire libre');
+INSERT INTO Activities (id, description) VALUES (178, 'Caminata sobre puentes colgantes');
+INSERT INTO Activities (id, description) VALUES (179, 'Turismo en fábricas de chocolate');
+INSERT INTO Activities (id, description) VALUES (180, 'Concierto al aire libre');
+INSERT INTO Activities (id, description) VALUES (181, 'Exploración de cenotes');
+INSERT INTO Activities (id, description) VALUES (182, 'Tour de cervecerías artesanales');
+INSERT INTO Activities (id, description) VALUES (183, 'Exploración de glaciares');
+INSERT INTO Activities (id, description) VALUES (184, 'Tour en motocicleta');
+INSERT INTO Activities (id, description) VALUES (185, 'Tour de viñedos');
+INSERT INTO Activities (id, description) VALUES (186, 'Carrera de orientación');
+INSERT INTO Activities (id, description) VALUES (187, 'Pesca en hielo');
+INSERT INTO Activities (id, description) VALUES (188, 'Camping en la playa');
+INSERT INTO Activities (id, description) VALUES (189, 'Escalada en hielo');
+INSERT INTO Activities (id, description) VALUES (190, 'Día de playa con deportes acuáticos');
+INSERT INTO Activities (id, description) VALUES (191, 'Excursión a cañones');
+INSERT INTO Activities (id, description) VALUES (192, 'Visita a fábricas de queso');
+INSERT INTO Activities (id, description) VALUES (193, 'Tour en balsa');
+INSERT INTO Activities (id, description) VALUES (194, 'Excursión a lagunas escondidas');
+INSERT INTO Activities (id, description) VALUES (195, 'Expedición en la selva');
+INSERT INTO Activities (id, description) VALUES (196, 'Tour de iglesias coloniales');
+INSERT INTO Activities (id, description) VALUES (197, 'Caminata por dunas');
+INSERT INTO Activities (id, description) VALUES (198, 'Paseo en telesilla');
+INSERT INTO Activities (id, description) VALUES (199, 'Recorrido en tranvía turístico');
+INSERT INTO Activities (id, description) VALUES (200, 'Visita a minas de sal');
+SET IDENTITY_INSERT Activities OFF;
+
 -- Insertar buses
 SET IDENTITY_INSERT Busses ON;
 INSERT INTO Busses (id, driver_id, license_plate, model, manufacturer, seat_count) VALUES
-(1, 291, '7912VQM', 'Urvan', 'Nissan', 27),
-(2, 6, '2022SHZ', 'Sprinter', 'Mercedes-Benz', 71),
-(3, 116, '4705DEH', 'Marcopolo', 'Volvo', 89),
-(4, 147, '4124SXJ', 'Coaster', 'Toyota', 13),
-(5, 195, '8411JWG', 'Sprinter', 'Mercedes-Benz', 67),
-(6, 171, '4575HUQ', 'Explorer', 'Ford', 33),
-(7, 8, '6868MBD', 'Coaster', 'Toyota', 32),
-(8, 43, '1418VNU', 'Marcopolo', 'Volvo', 51),
-(9, 13, '8389YNZ', 'Ducato', 'Fiat', 45),
-(10, 262, '7264IGZ', 'Marcopolo', 'Volvo', 25),
-(11, 292, '3798ESW', 'Daily', 'Iveco', 21),
-(12, 235, '2615QWK', 'Marcopolo', 'Volvo', 1),
-(13, 249, '6166WLW', 'Daily', 'Iveco', 74),
-(14, 190, '8129ZML', 'Urvan', 'Nissan', 98),
-(15, 237, '3878SOE', 'Urvan', 'Nissan', 52),
-(16, 243, '7100MXU', 'Volare', 'Agrale', 33),
-(17, 176, '6754UES', 'Citaro', 'Mercedes-Benz', 46),
-(18, 174, '7240HZA', 'Tourismo', 'Mercedes-Benz', 39),
-(19, 281, '8802FCP', 'Explorer', 'Ford', 60),
-(20, 288, '6922SIK', 'Coaster', 'Toyota', 32),
-(21, 40, '2382XEN', 'Ducato', 'Fiat', 29),
-(22, 299, '3067YFI', 'Volare', 'Agrale', 12),
-(23, 4, '5096YSJ', 'Volare', 'Agrale', 68),
-(24, 20, '9861BBI', 'Ducato', 'Fiat', 54),
-(25, 263, '4813SIV', 'Volare', 'Agrale', 19),
-(26, 130, '8047FXQ', 'Sprinter', 'Mercedes-Benz', 51),
-(27, 192, '6637QZX', 'Ducato', 'Fiat', 62),
-(28, 203, '8182TPW', 'Explorer', 'Ford', 57),
-(29, 247, '6073GKT', 'Sprinter', 'Mercedes-Benz', 67),
-(30, 271, '4994GQV', 'Sprinter', 'Mercedes-Benz', 84),
-(31, 126, '3003CJS', 'Daily', 'Iveco', 45),
-(32, 79, '9172ZXC', 'Citaro', 'Mercedes-Benz', 95),
-(33, 104, '9686DEK', 'Citaro', 'Mercedes-Benz', 33),
-(34, 36, '4278GZA', 'Citaro', 'Mercedes-Benz', 52),
-(35, 99, '3484OWM', 'Explorer', 'Ford', 42),
-(36, 175, '6816DUO', 'Ducato', 'Fiat', 87),
-(37, 256, '1383KOR', 'Coaster', 'Toyota', 51),
-(38, 55, '2570RSL', 'Sprinter', 'Mercedes-Benz', 3),
-(39, 87, '5805WZM', 'Citaro', 'Mercedes-Benz', 99),
-(40, 49, '5058HMH', 'Tourismo', 'Mercedes-Benz', 92),
-(41, 219, '8212YRE', 'Daily', 'Iveco', 86),
-(42, 142, '5603NKW', 'Tourismo', 'Mercedes-Benz', 66),
-(43, 188, '3890SYF', 'Urvan', 'Nissan', 69),
-(44, 278, '3937YXW', 'Citaro', 'Mercedes-Benz', 1),
-(45, 218, '6819PHU', 'Explorer', 'Ford', 95),
-(46, 16, '2023VJM', 'Marcopolo', 'Volvo', 1),
-(47, 231, '6036FBA', 'Citaro', 'Mercedes-Benz', 65),
-(48, 91, '3166LRE', 'Volare', 'Agrale', 63),
-(49, 223, '5662GFM', 'Daily', 'Iveco', 21),
-(50, 267, '3510YWI', 'Explorer', 'Ford', 13),
-(51, 70, '5048XUN', 'Volare', 'Agrale', 1),
-(52, 139, '5654NPX', 'Daily', 'Iveco', 42),
-(53, 146, '3138QZZ', 'Citaro', 'Mercedes-Benz', 93),
-(54, 232, '2658KQH', 'Tourismo', 'Mercedes-Benz', 9),
-(55, 252, '4445LDI', 'Explorer', 'Ford', 87),
-(56, 153, '6742RPG', 'Volare', 'Agrale', 29),
-(57, 207, '7151MTX', 'Daily', 'Iveco', 51),
-(58, 227, '5539OBC', 'Volare', 'Agrale', 27),
-(59, 88, '1421HJN', 'Marcopolo', 'Volvo', 27),
-(60, 259, '8338MHC', 'Volare', 'Agrale', 98),
-(61, 239, '4381KXJ', 'Sprinter', 'Mercedes-Benz', 91),
-(62, 162, '9511OID', 'Citaro', 'Mercedes-Benz', 25),
-(63, 67, '3065HHU', 'Daily', 'Iveco', 47),
-(64, 211, '6460TPL', 'Urvan', 'Nissan', 22),
-(65, 294, '4989CZE', 'Explorer', 'Ford', 90),
-(66, 290, '3517NIJ', 'Tourismo', 'Mercedes-Benz', 18),
-(67, 224, '2924COB', 'Citaro', 'Mercedes-Benz', 3),
-(68, 46, '1913IHG', 'Tourismo', 'Mercedes-Benz', 85),
-(69, 113, '3131VNA', 'Ducato', 'Fiat', 94),
-(70, 186, '7998APL', 'Sprinter', 'Mercedes-Benz', 92),
-(71, 44, '8564OVJ', 'Ducato', 'Fiat', 33),
-(72, 89, '5985XWO', 'Volare', 'Agrale', 69),
-(73, 51, '9401KHP', 'Explorer', 'Ford', 76),
-(74, 236, '5234JZA', 'Daily', 'Iveco', 14),
-(75, 90, '3158EZV', 'Daily', 'Iveco', 92),
-(76, 166, '7856XWC', 'Volare', 'Agrale', 29),
-(77, 261, '7844GLL', 'Tourismo', 'Mercedes-Benz', 21),
-(78, 155, '1428PQI', 'Volare', 'Agrale', 43),
-(79, 151, '9396VSI', 'Coaster', 'Toyota', 28),
-(80, 184, '4081YRA', 'Ducato', 'Fiat', 11),
-(81, 73, '4549CZP', 'Citaro', 'Mercedes-Benz', 2),
-(82, 180, '8372BWD', 'Marcopolo', 'Volvo', 74),
-(83, 25, '2218JPB', 'Coaster', 'Toyota', 18),
-(84, 181, '2752MMA', 'Citaro', 'Mercedes-Benz', 72),
-(85, 266, '1697HGL', 'Sprinter', 'Mercedes-Benz', 52),
-(86, 215, '7224LHJ', 'Tourismo', 'Mercedes-Benz', 5),
-(87, 84, '6601MVY', 'Urvan', 'Nissan', 43),
-(88, 21, '7786OQX', 'Sprinter', 'Mercedes-Benz', 66),
-(89, 242, '6328EYG', 'Coaster', 'Toyota', 45),
-(90, 185, '4886TYK', 'Ducato', 'Fiat', 17),
-(91, 53, '5046FTB', 'Marcopolo', 'Volvo', 48),
-(92, 124, '9350JUZ', 'Ducato', 'Fiat', 32),
-(93, 54, '5068HXP', 'Coaster', 'Toyota', 5),
-(94, 198, '1896CCP', 'Daily', 'Iveco', 13),
-(95, 222, '3869WOK', 'Volare', 'Agrale', 45),
-(96, 31, '1836JIC', 'Sprinter', 'Mercedes-Benz', 60),
-(97, 274, '1044HVX', 'Tourismo', 'Mercedes-Benz', 42),
-(98, 58, '8043ZOU', 'Ducato', 'Fiat', 8),
-(99, 137, '2881NDM', 'Marcopolo', 'Volvo', 11),
-(100, 189, '1556CJJ', 'Ducato', 'Fiat', 52),
-(101, 23, '2661RHU', 'Volare', 'Agrale', 61),
-(102, 220, '6555YMD', 'Sprinter', 'Mercedes-Benz', 41),
-(103, 101, '2157BBA', 'Sprinter', 'Mercedes-Benz', 3),
-(104, 14, '8920IEH', 'Citaro', 'Mercedes-Benz', 9),
-(105, 145, '2872QKI', 'Daily', 'Iveco', 36),
-(106, 295, '3696YLL', 'Citaro', 'Mercedes-Benz', 38),
-(107, 42, '9705URR', 'Urvan', 'Nissan', 36),
-(108, 182, '6489VVI', 'Tourismo', 'Mercedes-Benz', 43),
-(109, 229, '4503VDH', 'Tourismo', 'Mercedes-Benz', 11),
-(110, 276, '1867YOD', 'Urvan', 'Nissan', 99),
-(111, 17, '3696IFM', 'Urvan', 'Nissan', 51),
-(112, 10, '1906ALX', 'Tourismo', 'Mercedes-Benz', 100),
-(113, 286, '2790YIN', 'Daily', 'Iveco', 71),
-(114, 158, '5704KFO', 'Sprinter', 'Mercedes-Benz', 44),
-(115, 93, '2241SGX', 'Sprinter', 'Mercedes-Benz', 48),
-(116, 32, '5657BFZ', 'Daily', 'Iveco', 25),
-(117, 102, '6119ZMP', 'Ducato', 'Fiat', 55),
-(118, 226, '1362TWC', 'Explorer', 'Ford', 88),
-(119, 132, '3533FVZ', 'Ducato', 'Fiat', 22),
-(120, 63, '3855TNC', 'Citaro', 'Mercedes-Benz', 56),
-(121, 92, '9919OKA', 'Explorer', 'Ford', 91),
-(122, 82, '7326IJY', 'Ducato', 'Fiat', 74),
-(123, 9, '9652PFC', 'Coaster', 'Toyota', 62),
-(124, 210, '1289JNB', 'Explorer', 'Ford', 78),
-(125, 2, '2279WSF', 'Marcopolo', 'Volvo', 70),
-(126, 41, '4442JUD', 'Volare', 'Agrale', 94),
-(127, 277, '4691YCW', 'Citaro', 'Mercedes-Benz', 43),
-(128, 285, '6857DEU', 'Volare', 'Agrale', 39),
-(129, 217, '4808TVL', 'Marcopolo', 'Volvo', 46),
-(130, 106, '7927NHW', 'Sprinter', 'Mercedes-Benz', 97),
-(131, 128, '4824LET', 'Urvan', 'Nissan', 99),
-(132, 97, '6927GYF', 'Tourismo', 'Mercedes-Benz', 76),
-(133, 241, '6837UZP', 'Marcopolo', 'Volvo', 65),
-(134, 214, '7965FRT', 'Marcopolo', 'Volvo', 99),
-(135, 225, '3806KIW', 'Coaster', 'Toyota', 63),
-(136, 127, '7525OTG', 'Urvan', 'Nissan', 81),
-(137, 77, '4484RDI', 'Tourismo', 'Mercedes-Benz', 54),
-(138, 114, '1978PBA', 'Explorer', 'Ford', 55),
-(139, 205, '3187KFR', 'Volare', 'Agrale', 85),
-(140, 245, '5019GZZ', 'Daily', 'Iveco', 16),
-(141, 39, '5938TNC', 'Ducato', 'Fiat', 10),
-(142, 257, '8497KLJ', 'Sprinter', 'Mercedes-Benz', 10),
-(143, 233, '6722LTJ', 'Urvan', 'Nissan', 37),
-(144, 136, '7165YQJ', 'Marcopolo', 'Volvo', 68),
-(145, 280, '2596RUK', 'Volare', 'Agrale', 7),
-(146, 293, '9293PJB', 'Volare', 'Agrale', 99),
-(147, 121, '6961PPO', 'Marcopolo', 'Volvo', 44),
-(148, 47, '6997YPK', 'Urvan', 'Nissan', 8),
-(149, 123, '8264YGP', 'Marcopolo', 'Volvo', 74),
-(150, 238, '2229ATW', 'Explorer', 'Ford', 48),
-(151, 216, '6929PQS', 'Sprinter', 'Mercedes-Benz', 1),
-(152, 287, '4608NTS', 'Coaster', 'Toyota', 19),
-(153, 283, '9319SAD', 'Tourismo', 'Mercedes-Benz', 76),
-(154, 24, '2336PPF', 'Tourismo', 'Mercedes-Benz', 14),
-(155, 248, '2367WHO', 'Daily', 'Iveco', 61),
-(156, 103, '1546BOY', 'Daily', 'Iveco', 100),
-(157, 244, '4085MGU', 'Daily', 'Iveco', 97),
-(158, 202, '5457ZVU', 'Marcopolo', 'Volvo', 80),
-(159, 69, '6851FWR', 'Coaster', 'Toyota', 25),
-(160, 120, '6260WTY', 'Citaro', 'Mercedes-Benz', 66),
-(161, 48, '2307YHG', 'Daily', 'Iveco', 86),
-(162, 254, '5984WIE', 'Sprinter', 'Mercedes-Benz', 98),
-(163, 33, '1758KFI', 'Ducato', 'Fiat', 49),
-(164, 74, '4873UAH', 'Urvan', 'Nissan', 66),
-(165, 138, '9821ONV', 'Tourismo', 'Mercedes-Benz', 93),
-(166, 221, '9196BSY', 'Tourismo', 'Mercedes-Benz', 89),
-(167, 95, '5081XOK', 'Urvan', 'Nissan', 59),
-(168, 157, '1500JMC', 'Citaro', 'Mercedes-Benz', 73),
-(169, 66, '3539MMW', 'Citaro', 'Mercedes-Benz', 61),
-(170, 57, '6436NLT', 'Tourismo', 'Mercedes-Benz', 82),
-(171, 71, '2159NBU', 'Marcopolo', 'Volvo', 100),
-(172, 64, '9238ADS', 'Daily', 'Iveco', 39),
-(173, 105, '9485ZFM', 'Explorer', 'Ford', 54),
-(174, 131, '5416JLV', 'Urvan', 'Nissan', 11),
-(175, 22, '8803EMI', 'Daily', 'Iveco', 8),
-(176, 159, '8408KKI', 'Explorer', 'Ford', 88),
-(177, 29, '1085NZW', 'Ducato', 'Fiat', 96),
-(178, 68, '7129ZKN', 'Sprinter', 'Mercedes-Benz', 22),
-(179, 196, '5781JSS', 'Tourismo', 'Mercedes-Benz', 53),
-(180, 37, '3100UAD', 'Coaster', 'Toyota', 16),
-(181, 193, '9296JKX', 'Urvan', 'Nissan', 39),
-(182, 154, '9173HLS', 'Volare', 'Agrale', 62),
-(183, 270, '1676XFH', 'Marcopolo', 'Volvo', 38),
-(184, 279, '5150BTL', 'Marcopolo', 'Volvo', 86),
-(185, 269, '4829QBK', 'Sprinter', 'Mercedes-Benz', 9),
-(186, 213, '4149RTJ', 'Daily', 'Iveco', 88),
-(187, 135, '1250MEU', 'Ducato', 'Fiat', 96),
-(188, 111, '9580TCY', 'Sprinter', 'Mercedes-Benz', 14),
-(189, 255, '7389COT', 'Citaro', 'Mercedes-Benz', 91),
-(190, 199, '4474ERW', 'Sprinter', 'Mercedes-Benz', 83),
-(191, 62, '1073KBS', 'Volare', 'Agrale', 66),
-(192, 35, '4734VJQ', 'Tourismo', 'Mercedes-Benz', 17),
-(193, 72, '1164MMP', 'Urvan', 'Nissan', 13),
-(194, 45, '9101KLP', 'Marcopolo', 'Volvo', 47),
-(195, 7, '8835OUD', 'Explorer', 'Ford', 11),
-(196, 168, '5553PVW', 'Explorer', 'Ford', 100),
-(197, 150, '6048RIP', 'Marcopolo', 'Volvo', 70),
-(198, 98, '2878EIM', 'Marcopolo', 'Volvo', 10),
-(199, 80, '3135LKF', 'Volare', 'Agrale', 44),
-(200, 300, '6605LFM', 'Ducato', 'Fiat', 55);
+(1, 1, 'MOT-356', 'Urvan', 'Mercedes', 60),
+(2, 2, 'NHJ-930', 'Sprinter', 'Scania', 50),
+(3, 3, 'BVJ-363', 'Marcopolo', 'Mercedes', 40),
+(4, 4, 'RTY-886', 'Coaster', 'Volvo', 30),
+(5, 5, 'RMU-320', 'Sprinter', 'Iveco', 40),
+(6, 6, 'SRW-284', 'Explorer', 'Mercedes', 40),
+(7, 7, 'ZNR-850', 'Coaster', 'Scania', 30),
+(8, 8, 'NNE-550', 'Marcopolo', 'Volvo', 70),
+(9, 9, 'VGL-563', 'Ducato', 'Volvo', 40),
+(10, 10, 'BCZ-888', 'Marcopolo', 'Scania', 70),
+(11, 11, 'MKS-227', 'Daily', 'Mercedes', 40),
+(12, 12, 'LNR-850', 'Marcopolo', 'Iveco', 40),
+(13, 13, 'WXF-906', 'Daily', 'Volvo', 40),
+(14, 14, 'OLO-623', 'Urvan', 'Mercedes', 70),
+(15, 15, 'IIU-913', 'Urvan', 'Mercedes', 50),
+(16, 16, 'PKO-373', 'Volare', 'Iveco', 50),
+(17, 17, 'FZW-162', 'Citaro', 'MAN', 30),
+(18, 18, 'EMO-921', 'Tourismo', 'Volvo', 30),
+(19, 19, 'NTU-876', 'Explorer', 'Mercedes', 50),
+(20, 20, 'DUV-406', 'Coaster', 'Mercedes', 70),
+(21, 21, 'PTU-015', 'Ducato', 'Iveco', 70),
+(22, 22, 'CXM-940', 'Volare', 'Scania', 70),
+(23, 23, 'CUW-033', 'Volare', 'MAN', 50),
+(24, 24, 'BWZ-413', 'Ducato', 'Iveco', 50),
+(25, 25, 'PCO-641', 'Volare', 'Volvo', 50),
+(26, 26, 'BSH-338', 'Sprinter', 'Mercedes', 50),
+(27, 27, 'NTP-399', 'Ducato', 'MAN', 70),
+(28, 28, 'QSH-338', 'Explorer', 'Mercedes', 50),
+(29, 29, 'QOC-456', 'Sprinter', 'MAN', 30),
+(30, 30, 'ZQR-815', 'Sprinter', 'MAN', 40),
+(31, 31, 'MBJ-877', 'Daily', 'Mercedes', 60),
+(32, 32, 'ZRC-039', 'Citaro', 'MAN', 60),
+(33, 33, 'DLM-652', 'Citaro', 'Volvo', 30),
+(34, 34, 'OVK-341', 'Citaro', 'MAN', 60),
+(35, 35, 'FFY-616', 'Explorer', 'MAN', 40),
+(36, 36, 'ZIV-834', 'Ducato', 'Mercedes', 50),
+(37, 37, 'JJG-839', 'Coaster', 'MAN', 60),
+(38, 38, 'WEY-210', 'Sprinter', 'Mercedes', 30),
+(39, 39, 'OCH-373', 'Citaro', 'Mercedes', 60),
+(40, 40, 'FUD-554', 'Tourismo', 'Iveco', 40),
+(41, 41, 'UUG-347', 'Daily', 'Mercedes', 40),
+(42, 42, 'DCP-205', 'Tourismo', 'Iveco', 30),
+(43, 43, 'FTK-508', 'Urvan', 'Volvo', 30),
+(44, 44, 'DGC-426', 'Citaro', 'Volvo', 30),
+(45, 45, 'KKG-839', 'Explorer', 'Iveco', 50),
+(46, 46, 'RHW-523', 'Marcopolo', 'MAN', 50),
+(47, 47, 'NTP-99', 'Citaro', 'Volvo', 70),
+(48, 48, 'EQA-459', 'Volare', 'Scania', 50),
+(49, 49, 'GKS-849', 'Daily', 'Mercedes', 60),
+(50, 50, 'UZN-056', 'Explorer', 'Mercedes', 30),
+(51, 51, 'YSH-338', 'Volare', 'Volvo', 40),
+(52, 52, 'PTQ-371', 'Daily', 'Volvo', 60),
+(53, 53, 'SSS-630', 'Citaro', 'Volvo', 70),
+(54, 54, 'ZRW-329', 'Tourismo', 'MAN', 70),
+(55, 55, 'QZC-456', 'Explorer', 'MAN', 40),
+(56, 56, 'XOM-331', 'Volare', 'Mercedes', 40),
+(57, 57, 'BPD-650', 'Daily', 'Mercedes', 30),
+(58, 58, 'DSM-616', 'Volare', 'Mercedes', 50),
+(59, 59, 'ZSX-713', 'Marcopolo', 'MAN', 30),
+(60, 60, 'CKA-902', 'Volare', 'Scania', 60),
+(61, 61, 'OQU-425', 'Sprinter', 'Iveco', 70),
+(62, 62, 'MEY-259', 'Citaro', 'MAN', 30),
+(63, 63, 'ECM-842', 'Daily', 'MAN', 30),
+(64, 64, 'XWX-176', 'Urvan', 'Mercedes', 40),
+(65, 65, 'UIS-696', 'Explorer', 'Volvo', 40),
+(66, 66, 'TEQ-072', 'Tourismo', 'Volvo', 50),
+(67, 67, 'GBC-226', 'Citaro', 'Mercedes', 50),
+(68, 68, 'DNW-129', 'Tourismo', 'Iveco', 60),
+(69, 69, 'NHI-044', 'Ducato', 'Scania', 40),
+(70, 70, 'WIW-613', 'Sprinter', 'Iveco', 40),
+(71, 71, 'NHJ-910', 'Ducato', 'Iveco', 50),
+(72, 72, 'RPS-955', 'Volare', 'Iveco', 70),
+(73, 73, 'JOT-341', 'Explorer', 'Iveco', 30),
+(74, 74, 'PPT-703', 'Daily', 'Scania', 40),
+(75, 75, 'TKF-680', 'Daily', 'Mercedes', 50),
+(76, 76, 'WPK-585', 'Volare', 'MAN', 30),
+(77, 77, 'NMA-360', 'Tourismo', 'Scania', 50),
+(78, 78, 'GBC-206', 'Volare', 'Iveco', 50),
+(79, 79, 'BPH-068', 'Coaster', 'Mercedes', 60),
+(80, 80, 'BVJ-360', 'Ducato', 'Iveco', 30),
+(81, 81, 'VGL-503', 'Citaro', 'Volvo', 50),
+(82, 82, 'UZE-594', 'Marcopolo', 'MAN', 70),
+(83, 83, 'BJZ-744', 'Coaster', 'Mercedes', 70),
+(84, 84, 'ZDV-345', 'Citaro', 'Mercedes', 30),
+(85, 85, 'UZE-544', 'Sprinter', 'Volvo', 60),
+(86, 86, 'JXQ-218', 'Tourismo', 'Iveco', 50),
+(87, 87, 'OZR-685', 'Urvan', 'MAN', 70),
+(88, 88, 'TKF-080', 'Sprinter', 'Volvo', 30),
+(89, 89, 'OIJ-533', 'Coaster', 'Iveco', 60),
+(90, 90, 'JOT-041', 'Ducato', 'Mercedes', 40),
+(91, 91, 'EBH-964', 'Marcopolo', 'Scania', 50),
+(92, 92, 'DNW-199', 'Ducato', 'MAN', 40),
+(93, 93, 'JTD-289', 'Coaster', 'Mercedes', 40),
+(94, 94, 'CSX-024', 'Daily', 'Scania', 40),
+(95, 95, 'ECM-042', 'Volare', 'Volvo', 50),
+(96, 96, 'RHW-503', 'Sprinter', 'Mercedes', 70),
+(97, 97, 'ZIS-389', 'Tourismo', 'Mercedes', 50),
+(98, 98, 'WDS-229', 'Ducato', 'Volvo', 70),
+(99, 99, 'WLB-676', 'Marcopolo', 'Volvo', 50),
+(100, 100, 'JXX-218', 'Ducato', 'Volvo', 60),
+(101, 101, 'XNM-311', 'Volare', 'Volvo', 30),
+(102, 102, 'BVJ-163', 'Sprinter', 'Volvo', 40),
+(103, 103, 'GVP-628', 'Sprinter', 'MAN', 70),
+(104, 104, 'ENT-392', 'Citaro', 'MAN', 70),
+(105, 105, 'PPO-641', 'Daily', 'MAN', 50),
+(106, 106, 'GWL-222', 'Citaro', 'MAN', 50),
+(107, 107, 'EOX-165', 'Urvan', 'Volvo', 50),
+(108, 108, 'WYR-379', 'Tourismo', 'Iveco', 40),
+(109, 109, 'ZAI-773', 'Tourismo', 'Mercedes', 60),
+(110, 110, 'IFE-942', 'Urvan', 'MAN', 50),
+(111, 111, 'XNO-167', 'Urvan', 'Scania', 60),
+(112, 112, 'WOH-984', 'Tourismo', 'Iveco', 70),
+(113, 113, 'XFS-391', 'Daily', 'Iveco', 40),
+(114, 114, 'JOT-311', 'Sprinter', 'Iveco', 30),
+(115, 115, 'XNK-217', 'Sprinter', 'Volvo', 50),
+(116, 116, 'MKS-222', 'Daily', 'Iveco', 30),
+(117, 117, 'TML-615', 'Ducato', 'Scania', 30),
+(118, 118, 'LSB-595', 'Explorer', 'Volvo', 60),
+(119, 119, 'GWL-202', 'Ducato', 'Scania', 40),
+(120, 120, 'FIU-585', 'Citaro', 'Iveco', 40),
+(121, 121, 'ZQN-200', 'Explorer', 'MAN', 40),
+(122, 122, 'PIT-703', 'Ducato', 'Iveco', 40),
+(123, 123, 'PIT-903', 'Coaster', 'MAN', 30),
+(124, 124, 'WXF-936', 'Explorer', 'Mercedes', 70),
+(125, 125, 'MOR-931', 'Marcopolo', 'Mercedes', 70),
+(126, 126, 'NNE-551', 'Volare', 'Scania', 40),
+(127, 127, 'MHX-278', 'Citaro', 'Volvo', 70),
+(128, 128, 'ZOH-469', 'Volare', 'Iveco', 30),
+(129, 129, 'HEL-349', 'Marcopolo', 'Scania', 40),
+(130, 130, 'MWT-258', 'Sprinter', 'Mercedes', 50),
+(131, 131, 'HVN-758', 'Urvan', 'Scania', 50),
+(132, 132, 'GWW-222', 'Tourismo', 'Mercedes', 60),
+(133, 133, 'OGS-032', 'Marcopolo', 'Iveco', 60),
+(134, 134, 'FCF-671', 'Marcopolo', 'Scania', 40),
+(135, 135, 'JFT-807', 'Coaster', 'Mercedes', 50),
+(136, 136, 'ZSS-630', 'Urvan', 'Volvo', 60),
+(137, 137, 'KXG-839', 'Tourismo', 'Scania', 30),
+(138, 138, 'QHE-319', 'Explorer', 'Mercedes', 30),
+(139, 139, 'ZTK-365', 'Volare', 'Iveco', 60),
+(140, 140, 'FOX-165', 'Daily', 'Iveco', 60),
+(141, 141, 'EUO-881', 'Ducato', 'Scania', 70),
+(142, 142, 'QFY-583', 'Sprinter', 'Mercedes', 50),
+(143, 143, 'PFJ-829', 'Urvan', 'Volvo', 70),
+(144, 144, 'SIJ-533', 'Marcopolo', 'Iveco', 60),
+(145, 145, 'ERM-532', 'Volare', 'MAN', 30),
+(146, 146, 'JTP-374', 'Volare', 'Scania', 60),
+(147, 147, 'ZYT-354', 'Marcopolo', 'MAN', 30),
+(148, 148, 'JEB-945', 'Urvan', 'Mercedes', 60),
+(149, 149, 'CSX-224', 'Marcopolo', 'Volvo', 40),
+(150, 150, 'VDH-942', 'Explorer', 'Iveco', 30),
+(151, 151, 'TLU-680', 'Sprinter', 'Mercedes', 50),
+(152, 152, 'AHX-913', 'Coaster', 'Volvo', 40),
+(153, 153, 'HLL-349', 'Tourismo', 'Iveco', 50),
+(154, 154, 'ZRC-239', 'Tourismo', 'Volvo', 50),
+(155, 155, 'FTU-585', 'Daily', 'Volvo', 70),
+(156, 156, 'YKO-481', 'Daily', 'Iveco', 30),
+(157, 157, 'ESN-724', 'Daily', 'MAN', 70),
+(158, 158, 'OVI-640', 'Marcopolo', 'Volvo', 30),
+(159, 159, 'VTQ-371', 'Coaster', 'Scania', 30),
+(160, 160, 'TXR-944', 'Citaro', 'Iveco', 70),
+(161, 161, 'PGM-069', 'Daily', 'MAN', 40),
+(162, 162, 'BBR-589', 'Sprinter', 'MAN', 40),
+(163, 163, 'HGZ-656', 'Ducato', 'Mercedes', 70),
+(164, 164, 'HSV-924', 'Urvan', 'Scania', 60),
+(165, 165, 'GAY-131', 'Tourismo', 'Iveco', 40),
+(166, 166, 'XNM-331', 'Tourismo', 'Mercedes', 50),
+(167, 167, 'OLN-623', 'Urvan', 'Iveco', 70),
+(168, 168, 'EEM-532', 'Citaro', 'Iveco', 40),
+(169, 169, 'GBC-126', 'Citaro', 'Scania', 30),
+(170, 170, 'RGU-320', 'Tourismo', 'Scania', 50),
+(171, 171, 'ZSS-142', 'Marcopolo', 'Scania', 50),
+(172, 172, 'UNW-693', 'Daily', 'Volvo', 60),
+(173, 173, 'WMY-515', 'Explorer', 'Iveco', 50),
+(174, 174, 'KRV-282', 'Urvan', 'Mercedes', 50),
+(175, 175, 'DLQ-105', 'Daily', 'Mercedes', 70),
+(176, 176, 'DID-808', 'Explorer', 'Mercedes', 60),
+(177, 177, 'VGL-53', 'Ducato', 'Scania', 40),
+(178, 178, 'TOT-356', 'Sprinter', 'Volvo', 70),
+(179, 179, 'VIH-856', 'Tourismo', 'Iveco', 70),
+(180, 180, 'PDJ-283', 'Coaster', 'Iveco', 30),
+(181, 181, 'XFS-301', 'Urvan', 'Scania', 50),
+(182, 182, 'EXD-333', 'Volare', 'Iveco', 30),
+(183, 183, 'YUC-458', 'Marcopolo', 'Mercedes', 70),
+(184, 184, 'HNB-030', 'Marcopolo', 'Iveco', 50),
+(185, 185, 'WCJ-990', 'Sprinter', 'MAN', 40),
+(186, 186, 'VHP-662', 'Daily', 'Volvo', 40),
+(187, 187, 'FXD-554', 'Ducato', 'Volvo', 60),
+(188, 188, 'WUA-183', 'Sprinter', 'Iveco', 60),
+(189, 189, 'DPD-808', 'Citaro', 'Volvo', 50),
+(190, 190, 'XEB-945', 'Sprinter', 'Mercedes', 50),
+(191, 191, 'PPO-671', 'Volare', 'Scania', 60),
+(192, 192, 'CHH-764', 'Tourismo', 'Iveco', 40),
+(193, 193, 'GNL-195', 'Urvan', 'Mercedes', 40),
+(194, 194, 'VMH-856', 'Marcopolo', 'MAN', 70),
+(195, 195, 'BVJ-333', 'Explorer', 'Iveco', 60),
+(196, 196, 'NLA-360', 'Explorer', 'Scania', 60),
+(197, 197, 'ZWS-142', 'Marcopolo', 'Iveco', 40),
+(198, 198, 'RPC-318', 'Marcopolo', 'Mercedes', 70),
+(199, 199, 'EAY-492', 'Volare', 'Scania', 40),
+(200, 200, 'TOU-680', 'Ducato', 'Scania', 60),
+(201, 201, 'HED-469', 'Urvan', 'Mercedes', 60),
+(202, 202, 'ZBY-985', 'Sprinter', 'Scania', 50),
+(203, 203, 'JZT-341', 'Marcopolo', 'Mercedes', 40),
+(204, 204, 'WCW-696', 'Coaster', 'Volvo', 30),
+(205, 205, 'DLY-652', 'Sprinter', 'Iveco', 40),
+(206, 206, 'QOC-450', 'Explorer', 'Mercedes', 40),
+(207, 207, 'PTJ-829', 'Coaster', 'Scania', 30),
+(208, 208, 'ERG-532', 'Marcopolo', 'Volvo', 70),
+(209, 209, 'ZOO-469', 'Ducato', 'Volvo', 40),
+(210, 210, 'XSJ-125', 'Marcopolo', 'Scania', 70),
+(211, 211, 'FTK-558', 'Daily', 'Mercedes', 40),
+(212, 212, 'PML-615', 'Marcopolo', 'Iveco', 40),
+(213, 213, 'VTO-154', 'Daily', 'Volvo', 40),
+(214, 214, 'YOO-177', 'Urvan', 'Mercedes', 70),
+(215, 215, 'ZTK-305', 'Urvan', 'Mercedes', 50),
+(216, 216, 'DCP-235', 'Volare', 'Iveco', 50),
+(217, 217, 'DNM-351', 'Citaro', 'MAN', 30),
+(218, 218, 'XTA-939', 'Tourismo', 'Volvo', 30),
+(219, 219, 'SNM-351', 'Explorer', 'Mercedes', 50),
+(220, 220, 'CUW-533', 'Coaster', 'Mercedes', 70),
+(221, 221, 'RWE-406', 'Ducato', 'Iveco', 70),
+(222, 222, 'OZR-675', 'Volare', 'Scania', 70),
+(223, 223, 'XQH-232', 'Volare', 'MAN', 50),
+(224, 224, 'YGS-128', 'Ducato', 'Iveco', 50),
+(225, 225, 'CBX-211', 'Volare', 'Volvo', 50),
+(226, 226, 'XCE-355', 'Sprinter', 'Mercedes', 50),
+(227, 227, 'ZFX-713', 'Ducato', 'MAN', 70),
+(228, 228, 'NHI-744', 'Explorer', 'Mercedes', 50),
+(229, 229, 'HHT-940', 'Sprinter', 'MAN', 30),
+(230, 230, 'HVN-798', 'Sprinter', 'MAN', 40),
+(231, 231, 'TEQ-272', 'Daily', 'Mercedes', 60),
+(232, 232, 'YJI-794', 'Citaro', 'MAN', 60),
+(233, 233, 'OSS-632', 'Citaro', 'Volvo', 30),
+(234, 234, 'IVB-774', 'Citaro', 'MAN', 60),
+(235, 235, 'BWR-589', 'Explorer', 'MAN', 40),
+(236, 236, 'WKP-962', 'Ducato', 'Mercedes', 50),
+(237, 237, 'XHX-278', 'Coaster', 'MAN', 60),
+(238, 238, 'PTU-315', 'Sprinter', 'Mercedes', 30),
+(239, 239, 'ZRC-209', 'Citaro', 'Mercedes', 60),
+(240, 240, 'VEY-931', 'Tourismo', 'Iveco', 40),
+(241, 241, 'ESL-280', 'Daily', 'Mercedes', 40),
+(242, 242, 'ECC-842', 'Tourismo', 'Iveco', 30),
+(243, 243, 'GBC-220', 'Urvan', 'Volvo', 30),
+(244, 244, 'VTQ-301', 'Citaro', 'Volvo', 30),
+(245, 245, 'HBB-756', 'Explorer', 'Iveco', 50),
+(246, 246, 'NTZ-973', 'Marcopolo', 'MAN', 50),
+(247, 247, 'WXH-984', 'Citaro', 'Volvo', 70),
+(248, 248, 'KEX-367', 'Volare', 'Scania', 50),
+(249, 249, 'PGJ-665', 'Daily', 'Mercedes', 60),
+(250, 250, 'VGG-682', 'Explorer', 'Mercedes', 30),
+(251, 251, 'UZE-554', 'Volare', 'Volvo', 40),
+(252, 252, 'QNA-432', 'Daily', 'Volvo', 60),
+(253, 253, 'IVB-724', 'Citaro', 'Volvo', 70),
+(254, 254, 'YGS-138', 'Tourismo', 'MAN', 70),
+(255, 255, 'ZQN-280', 'Explorer', 'MAN', 40),
+(256, 256, 'WKC-930', 'Volare', 'Mercedes', 40),
+(257, 257, 'ZOX-469', 'Daily', 'Mercedes', 30),
+(258, 258, 'FRV-695', 'Volare', 'Mercedes', 50),
+(259, 259, 'KAY-482', 'Marcopolo', 'MAN', 30),
+(260, 260, 'YYO-177', 'Volare', 'Scania', 60),
+(261, 261, 'HED-460', 'Sprinter', 'Iveco', 70),
+(262, 262, 'KBY-985', 'Citaro', 'MAN', 30),
+(263, 263, 'VVD-792', 'Daily', 'MAN', 30),
+(264, 264, 'KEL-214', 'Urvan', 'Mercedes', 40),
+(265, 265, 'ZAH-672', 'Explorer', 'Volvo', 40),
+(266, 266, 'USS-571', 'Tourismo', 'Volvo', 50),
+(267, 267, 'XQV-313', 'Citaro', 'Mercedes', 50),
+(268, 268, 'ZOT-341', 'Tourismo', 'Iveco', 60),
+(269, 269, 'ANO-818', 'Ducato', 'Scania', 40),
+(270, 270, 'YQA-718', 'Sprinter', 'Iveco', 40),
+(271, 271, 'SDO-899', 'Ducato', 'Iveco', 50),
+(272, 272, 'OTB-434', 'Volare', 'Iveco', 70),
+(273, 273, 'NTN-876', 'Explorer', 'Iveco', 30),
+(274, 274, 'PKJ-368', 'Daily', 'Scania', 40),
+(275, 275, 'BPH-868', 'Daily', 'Mercedes', 50),
+(276, 276, 'BBJ-363', 'Volare', 'MAN', 30),
+(277, 277, 'KKT-610', 'Tourismo', 'Scania', 50),
+(278, 278, 'LUO-280', 'Volare', 'Iveco', 50),
+(279, 279, 'JUZ-756', 'Coaster', 'Mercedes', 60),
+(280, 280, 'HOB-730', 'Ducato', 'Iveco', 30),
+(281, 281, 'EAW-492', 'Citaro', 'Volvo', 50),
+(282, 282, 'NTN-076', 'Marcopolo', 'MAN', 70),
+(283, 283, 'FWR-767', 'Coaster', 'Mercedes', 70),
+(284, 284, 'VIH-806', 'Citaro', 'Mercedes', 30),
+(285, 285, 'EUX-384', 'Sprinter', 'Volvo', 60),
+(286, 286, 'PHB-551', 'Tourismo', 'Iveco', 50),
+(287, 287, 'JFT-847', 'Urvan', 'MAN', 70),
+(288, 288, 'IWK-561', 'Sprinter', 'Volvo', 30),
+(289, 289, 'WGC-426', 'Coaster', 'Iveco', 60),
+(290, 290, 'BYA-214', 'Ducato', 'Mercedes', 40),
+(291, 291, 'GBZ-226', 'Marcopolo', 'Scania', 50),
+(292, 292, 'BOO-594', 'Ducato', 'MAN', 40),
+(293, 293, 'EAY-432', 'Coaster', 'Mercedes', 40),
+(294, 294, 'HSR-903', 'Daily', 'Scania', 40),
+(295, 295, 'PGM-769', 'Volare', 'Volvo', 50),
+(296, 296, 'UZN-956', 'Sprinter', 'Mercedes', 70),
+(297, 297, 'ZOU-790', 'Tourismo', 'Mercedes', 50),
+(298, 298, 'SRF-848', 'Ducato', 'Volvo', 70),
+(299, 299, 'GMK-233', 'Marcopolo', 'Volvo', 50),
+(300, 300, 'FSO-702', 'Ducato', 'Volvo', 60);
 SET IDENTITY_INSERT Busses OFF;
 
 -- Insertar servicios diarios
@@ -1327,414 +1850,6 @@ INSERT INTO DailyServices (id, route_id, bus_id, departure_time, arrival_time, i
 INSERT INTO DailyServices (id, route_id, bus_id, departure_time, arrival_time, is_holiday) VALUES (499, 119, 161, '14:07:11', '19:41:28', 1);
 INSERT INTO DailyServices (id, route_id, bus_id, departure_time, arrival_time, is_holiday) VALUES (500, 155, 79, '00:08:08', '09:57:06', 0);
 SET IDENTITY_INSERT DailyServices OFF;
-
--- Insertar lugares turísticos
-SET IDENTITY_INSERT Places ON;
-INSERT INTO Places (id, name) VALUES (1, 'Salar de Uyuni');
-INSERT INTO Places (id, name) VALUES (2, 'Laguna Colorada');
-INSERT INTO Places (id, name) VALUES (3, 'Isla del Sol');
-INSERT INTO Places (id, name) VALUES (4, 'Valle de la Luna');
-INSERT INTO Places (id, name) VALUES (5, 'Parque Nacional Madidi');
-INSERT INTO Places (id, name) VALUES (6, 'Tiwanaku');
-INSERT INTO Places (id, name) VALUES (7, 'Cerro Rico de Potosí');
-INSERT INTO Places (id, name) VALUES (8, 'Misión Jesuítica de San José de Chiquitos');
-INSERT INTO Places (id, name) VALUES (9, 'Cristo de la Concordia');
-INSERT INTO Places (id, name) VALUES (10, 'Yungas Road');
-INSERT INTO Places (id, name) VALUES (11, 'Parque Nacional Noel Kempff Mercado');
-INSERT INTO Places (id, name) VALUES (12, 'Laguna Verde');
-INSERT INTO Places (id, name) VALUES (13, 'Reserva Eduardo Avaroa');
-INSERT INTO Places (id, name) VALUES (14, 'Cascadas de Cuevas');
-INSERT INTO Places (id, name) VALUES (15, 'Cavernas de Umajalanta');
-INSERT INTO Places (id, name) VALUES (16, 'Fortaleza de Samaipata');
-INSERT INTO Places (id, name) VALUES (17, 'Laguna Celeste');
-INSERT INTO Places (id, name) VALUES (18, 'Lomas de Arena');
-INSERT INTO Places (id, name) VALUES (19, 'Puerta del Sol');
-INSERT INTO Places (id, name) VALUES (20, 'Palacio de Sal');
-INSERT INTO Places (id, name) VALUES (21, 'Mirador Laikakota');
-INSERT INTO Places (id, name) VALUES (22, 'Río Yacuma');
-INSERT INTO Places (id, name) VALUES (23, 'Lago Titicaca');
-INSERT INTO Places (id, name) VALUES (24, 'Cataratas Arco Iris');
-INSERT INTO Places (id, name) VALUES (25, 'Piedra de los Apóstoles');
-INSERT INTO Places (id, name) VALUES (26, 'Potosí Casa de la Moneda');
-INSERT INTO Places (id, name) VALUES (27, 'Mercado de las Brujas');
-INSERT INTO Places (id, name) VALUES (28, 'Samaipata');
-INSERT INTO Places (id, name) VALUES (29, 'Parque Amboró');
-INSERT INTO Places (id, name) VALUES (30, 'Mirador Killi Killi');
-INSERT INTO Places (id, name) VALUES (31, 'San Javier Misiones Jesuíticas');
-INSERT INTO Places (id, name) VALUES (32, 'Cascadas Espejillos');
-INSERT INTO Places (id, name) VALUES (33, 'Templo de Kalasasaya');
-INSERT INTO Places (id, name) VALUES (34, 'Cueva del Diablo');
-INSERT INTO Places (id, name) VALUES (35, 'Bosque de Piedras de Paquío');
-INSERT INTO Places (id, name) VALUES (36, 'Chiquitania');
-INSERT INTO Places (id, name) VALUES (37, 'Parque Nacional Torotoro');
-INSERT INTO Places (id, name) VALUES (38, 'Ciudad de Piedra');
-INSERT INTO Places (id, name) VALUES (39, 'Laguna Suárez');
-INSERT INTO Places (id, name) VALUES (40, 'Aguas Termales de Polques');
-INSERT INTO Places (id, name) VALUES (41, 'Puente Colgante de Sorata');
-INSERT INTO Places (id, name) VALUES (42, 'Dunas de arena de San José');
-INSERT INTO Places (id, name) VALUES (43, 'Trufis del Desierto');
-INSERT INTO Places (id, name) VALUES (44, 'Santuario de Cotoca');
-INSERT INTO Places (id, name) VALUES (45, 'Valle de los Cóndores');
-INSERT INTO Places (id, name) VALUES (46, 'Pueblo Fantasma de Potosí');
-INSERT INTO Places (id, name) VALUES (47, 'Fuerte de Samaipata');
-INSERT INTO Places (id, name) VALUES (48, 'Pinturas Rupestres de Calamarca');
-INSERT INTO Places (id, name) VALUES (49, 'Oasis de Lipez');
-INSERT INTO Places (id, name) VALUES (50, 'Río Chapare');
-INSERT INTO Places (id, name) VALUES (51, 'Cataratas del Jukumari');
-INSERT INTO Places (id, name) VALUES (52, 'Pico Austria');
-INSERT INTO Places (id, name) VALUES (53, 'Reserva de Tariquía');
-INSERT INTO Places (id, name) VALUES (54, 'Los Frailes');
-INSERT INTO Places (id, name) VALUES (55, 'Lomas de Yunga Cruz');
-INSERT INTO Places (id, name) VALUES (56, 'Quebrada de Palala');
-INSERT INTO Places (id, name) VALUES (57, 'Aguas Calientes de Roboré');
-INSERT INTO Places (id, name) VALUES (58, 'Termas de Urmiri');
-INSERT INTO Places (id, name) VALUES (59, 'Caminos del Inca en Bolivia');
-INSERT INTO Places (id, name) VALUES (60, 'Reserva El Palmar');
-INSERT INTO Places (id, name) VALUES (61, 'Cerro de Chataquila');
-INSERT INTO Places (id, name) VALUES (62, 'Muelle de Puerto Quijarro');
-INSERT INTO Places (id, name) VALUES (63, 'Laguna Mandioré');
-INSERT INTO Places (id, name) VALUES (64, 'Ruinas de Incallajta');
-INSERT INTO Places (id, name) VALUES (65, 'Parque Nacional Cotapata');
-INSERT INTO Places (id, name) VALUES (66, 'Las Pampas del Yacuma');
-INSERT INTO Places (id, name) VALUES (67, 'Puente Sucre');
-INSERT INTO Places (id, name) VALUES (68, 'Chullpas de Sillustani');
-INSERT INTO Places (id, name) VALUES (69, 'Valle de Tucavaca');
-INSERT INTO Places (id, name) VALUES (70, 'Refugio Los Volcanes');
-INSERT INTO Places (id, name) VALUES (71, 'Trinidad y sus estancias');
-INSERT INTO Places (id, name) VALUES (72, 'Laguna San Luis');
-INSERT INTO Places (id, name) VALUES (73, 'El Vergel');
-INSERT INTO Places (id, name) VALUES (74, 'Cataratas de Arcoiris');
-INSERT INTO Places (id, name) VALUES (75, 'Reserva Manuripi');
-INSERT INTO Places (id, name) VALUES (76, 'Reserva Biológica Cordillera de Sama');
-INSERT INTO Places (id, name) VALUES (77, 'Misiones de Chiquitos');
-INSERT INTO Places (id, name) VALUES (78, 'El Pantanal Boliviano');
-INSERT INTO Places (id, name) VALUES (79, 'Laguna Concepción');
-INSERT INTO Places (id, name) VALUES (80, 'Río Mamoré');
-INSERT INTO Places (id, name) VALUES (81, 'Mina San José');
-INSERT INTO Places (id, name) VALUES (82, 'Camino de los Libertadores');
-INSERT INTO Places (id, name) VALUES (83, 'Cueva de los Murciélagos');
-INSERT INTO Places (id, name) VALUES (84, 'Bosques de Polylepis');
-INSERT INTO Places (id, name) VALUES (85, 'Parque Ecológico Machía');
-INSERT INTO Places (id, name) VALUES (86, 'El Choro Trek');
-INSERT INTO Places (id, name) VALUES (87, 'Parque Nacional Apolobamba');
-INSERT INTO Places (id, name) VALUES (88, 'Reserva de la Biosfera Pilón Lajas');
-INSERT INTO Places (id, name) VALUES (89, 'Las Cuevas de San Pedro');
-INSERT INTO Places (id, name) VALUES (90, 'Parque Nacional Otuquis');
-INSERT INTO Places (id, name) VALUES (91, 'Laguna Chiar Khota');
-INSERT INTO Places (id, name) VALUES (92, 'El Sajama');
-INSERT INTO Places (id, name) VALUES (93, 'Geysers de Sol de Mañana');
-INSERT INTO Places (id, name) VALUES (94, 'Puente de la Amistad');
-INSERT INTO Places (id, name) VALUES (95, 'Bosques de Toborochi');
-INSERT INTO Places (id, name) VALUES (96, 'Cerro Uchumachi');
-INSERT INTO Places (id, name) VALUES (97, 'Pueblo de Sorata');
-INSERT INTO Places (id, name) VALUES (98, 'Cataratas de Coroico');
-INSERT INTO Places (id, name) VALUES (99, 'Templo del Gran Poder');
-INSERT INTO Places (id, name) VALUES (100, 'Laguna Larga');
-INSERT INTO Places (id, name) VALUES (101, 'Balneario de Tarata');
-INSERT INTO Places (id, name) VALUES (102, 'Cataratas de Pailón');
-INSERT INTO Places (id, name) VALUES (103, 'Chiquitano Lodge');
-INSERT INTO Places (id, name) VALUES (104, 'Pico Illimani');
-INSERT INTO Places (id, name) VALUES (105, 'Paredón de Tupiza');
-INSERT INTO Places (id, name) VALUES (106, 'Cataratas de Jorochito');
-INSERT INTO Places (id, name) VALUES (107, 'Laguna de Pampalarama');
-INSERT INTO Places (id, name) VALUES (108, 'Ruinas de Pucara de Tilcara');
-INSERT INTO Places (id, name) VALUES (109, 'Laguna Chulluncani');
-INSERT INTO Places (id, name) VALUES (110, 'Serranías de Santiago de Chiquitos');
-INSERT INTO Places (id, name) VALUES (111, 'El Desierto de Dalí');
-INSERT INTO Places (id, name) VALUES (112, 'Cerro del Elefante');
-INSERT INTO Places (id, name) VALUES (113, 'Mirador de Incachaca');
-INSERT INTO Places (id, name) VALUES (114, 'Parque Nacional Kaa-Iya');
-INSERT INTO Places (id, name) VALUES (115, 'Cerro Kari Kari');
-INSERT INTO Places (id, name) VALUES (116, 'Ruinas de Iskanwaya');
-INSERT INTO Places (id, name) VALUES (117, 'Aguas termales de Sajama');
-INSERT INTO Places (id, name) VALUES (118, 'Parque Natural Serranía Sararenda');
-INSERT INTO Places (id, name) VALUES (119, 'Bosque de los Helechos Gigantes');
-INSERT INTO Places (id, name) VALUES (120, 'Pueblo de Villa Abecia');
-INSERT INTO Places (id, name) VALUES (121, 'Ruinas de Presto');
-INSERT INTO Places (id, name) VALUES (122, 'Balneario de Mizque');
-INSERT INTO Places (id, name) VALUES (123, 'Mirador de Tupiza');
-INSERT INTO Places (id, name) VALUES (124, 'San Ignacio de Velasco');
-INSERT INTO Places (id, name) VALUES (125, 'Parque Nacional Aguaragüe');
-INSERT INTO Places (id, name) VALUES (126, 'Túneles de Socopó');
-INSERT INTO Places (id, name) VALUES (127, 'Ruinas de Inkallajta');
-INSERT INTO Places (id, name) VALUES (128, 'Cerro Mutún');
-INSERT INTO Places (id, name) VALUES (129, 'San Rafael de Velasco');
-INSERT INTO Places (id, name) VALUES (130, 'Cueva de La Felicidad');
-INSERT INTO Places (id, name) VALUES (131, 'Reserva Tahuamanu');
-INSERT INTO Places (id, name) VALUES (132, 'Cueva de los Helechos');
-INSERT INTO Places (id, name) VALUES (133, 'Truchas de Sicasica');
-INSERT INTO Places (id, name) VALUES (134, 'Laguna Alalay');
-INSERT INTO Places (id, name) VALUES (135, 'Cerro de la Silla');
-INSERT INTO Places (id, name) VALUES (136, 'Reserva Ecológica El Tatarenda');
-INSERT INTO Places (id, name) VALUES (137, 'Refugio del Pájaro Bufeo');
-INSERT INTO Places (id, name) VALUES (138, 'El Paredón de Tiquipaya');
-INSERT INTO Places (id, name) VALUES (139, 'Mirador de Bella Vista');
-INSERT INTO Places (id, name) VALUES (140, 'Parque Nacional Carrasco');
-INSERT INTO Places (id, name) VALUES (141, 'Cascadas de Quirusillas');
-INSERT INTO Places (id, name) VALUES (142, 'Serranía del Iñao');
-INSERT INTO Places (id, name) VALUES (143, 'Reserva de Samaipata');
-INSERT INTO Places (id, name) VALUES (144, 'Volcán Tunupa');
-INSERT INTO Places (id, name) VALUES (145, 'Playa del río Parapetí');
-INSERT INTO Places (id, name) VALUES (146, 'Cataratas de Charobamba');
-INSERT INTO Places (id, name) VALUES (147, 'La Higuera');
-INSERT INTO Places (id, name) VALUES (148, 'Camino del Che');
-INSERT INTO Places (id, name) VALUES (149, 'Laguna Juatiña');
-INSERT INTO Places (id, name) VALUES (150, 'Laguna Pastos Grandes');
-INSERT INTO Places (id, name) VALUES (151, 'Ruinas de Tumichucua');
-INSERT INTO Places (id, name) VALUES (152, 'Valle de la Luna en Potosí');
-INSERT INTO Places (id, name) VALUES (153, 'Reserva Biológica Estación Biológica del Beni');
-INSERT INTO Places (id, name) VALUES (154, 'Reserva Biológica El Refugio');
-INSERT INTO Places (id, name) VALUES (155, 'Bosque Encantado de Chiquitos');
-INSERT INTO Places (id, name) VALUES (156, 'Cataratas del Urubó');
-INSERT INTO Places (id, name) VALUES (157, 'Río Grande');
-INSERT INTO Places (id, name) VALUES (158, 'Parque Nacional Cotacajes');
-INSERT INTO Places (id, name) VALUES (159, 'Cataratas de Luribay');
-INSERT INTO Places (id, name) VALUES (160, 'Las Torres del Paquió');
-INSERT INTO Places (id, name) VALUES (161, 'Laguna Huayñakota');
-INSERT INTO Places (id, name) VALUES (162, 'Las Cavernas de Repechón');
-INSERT INTO Places (id, name) VALUES (163, 'Mirador del Río Rocha');
-INSERT INTO Places (id, name) VALUES (164, 'Aguas Termales de Totora');
-INSERT INTO Places (id, name) VALUES (165, 'Reserva de Kaa-Iya');
-INSERT INTO Places (id, name) VALUES (166, 'Mirador del Valle de los Cóndores');
-INSERT INTO Places (id, name) VALUES (167, 'Río Ichilo');
-INSERT INTO Places (id, name) VALUES (168, 'Ruinas de Santa Ana de Velasco');
-INSERT INTO Places (id, name) VALUES (169, 'Piedra de los 12 ángulos de Potosí');
-INSERT INTO Places (id, name) VALUES (170, 'Camino del Yungas');
-INSERT INTO Places (id, name) VALUES (171, 'Parque Nacional Isiboro Sécure');
-INSERT INTO Places (id, name) VALUES (172, 'Laguna Caquingora');
-INSERT INTO Places (id, name) VALUES (173, 'Laguna Castrillo');
-INSERT INTO Places (id, name) VALUES (174, 'Reserva Natural del Bosque de Tarumá');
-INSERT INTO Places (id, name) VALUES (175, 'Los Toboganes de Toro Toro');
-INSERT INTO Places (id, name) VALUES (176, 'Mirador de Villa Montes');
-INSERT INTO Places (id, name) VALUES (177, 'Las Serranías del Pilcomayo');
-INSERT INTO Places (id, name) VALUES (178, 'Reserva de Vida Silvestre Bruno Racua');
-INSERT INTO Places (id, name) VALUES (179, 'Puente del Inca');
-INSERT INTO Places (id, name) VALUES (180, 'Serranías del Aguaragüe');
-INSERT INTO Places (id, name) VALUES (181, 'Laguna Jatuncocha');
-INSERT INTO Places (id, name) VALUES (182, 'Reserva de Vida Silvestre Ríos Blanco y Negro');
-INSERT INTO Places (id, name) VALUES (183, 'Campos do Jordão');
-INSERT INTO Places (id, name) VALUES (184, 'Serra do Rio do Rastro');
-INSERT INTO Places (id, name) VALUES (185, 'Porto Seguro');
-INSERT INTO Places (id, name) VALUES (186, 'Barra Grande');
-INSERT INTO Places (id, name) VALUES (187, 'Ilha do Mel');
-INSERT INTO Places (id, name) VALUES (188, 'Petrópolis');
-INSERT INTO Places (id, name) VALUES (189, 'Angra dos Reis');
-INSERT INTO Places (id, name) VALUES (190, 'Chapada dos Guimarães');
-INSERT INTO Places (id, name) VALUES (191, 'Lençóis Bahianos');
-INSERT INTO Places (id, name) VALUES (192, 'Tamandaré');
-INSERT INTO Places (id, name) VALUES (193, 'Morro de São Paulo');
-INSERT INTO Places (id, name) VALUES (194, 'Chapada das Mesas');
-INSERT INTO Places (id, name) VALUES (195, 'Gruta do Lago Azul');
-INSERT INTO Places (id, name) VALUES (196, 'Jalapão');
-INSERT INTO Places (id, name) VALUES (197, 'Ilha do Cardoso');
-INSERT INTO Places (id, name) VALUES (198, 'Santana de Parnaíba');
-INSERT INTO Places (id, name) VALUES (199, 'Poços de Caldas');
-INSERT INTO Places (id, name) VALUES (200, 'São Roque');
-SET IDENTITY_INSERT Places OFF;
-
--- Insertar actividades
-SET IDENTITY_INSERT Activities ON;
-INSERT INTO Activities (id, description) VALUES (1, 'Fotografía');
-INSERT INTO Activities (id, description) VALUES (2, 'Senderismo');
-INSERT INTO Activities (id, description) VALUES (3, 'Natación');
-INSERT INTO Activities (id, description) VALUES (4, 'Observación de fauna');
-INSERT INTO Activities (id, description) VALUES (5, 'Camping');
-INSERT INTO Activities (id, description) VALUES (6, 'Paseo en bote');
-INSERT INTO Activities (id, description) VALUES (7, 'Pesca recreativa');
-INSERT INTO Activities (id, description) VALUES (8, 'Picnic');
-INSERT INTO Activities (id, description) VALUES (9, 'Ciclismo de montaña');
-INSERT INTO Activities (id, description) VALUES (10, 'Exploración de cuevas');
-INSERT INTO Activities (id, description) VALUES (11, 'Escalada en roca');
-INSERT INTO Activities (id, description) VALUES (12, 'Paseo en kayak');
-INSERT INTO Activities (id, description) VALUES (13, 'Avistamiento de aves');
-INSERT INTO Activities (id, description) VALUES (14, 'Visita a museos');
-INSERT INTO Activities (id, description) VALUES (15, 'Tour gastronómico');
-INSERT INTO Activities (id, description) VALUES (16, 'Cabalgata');
-INSERT INTO Activities (id, description) VALUES (17, 'Visita a ruinas arqueológicas');
-INSERT INTO Activities (id, description) VALUES (18, 'Tour en 4x4');
-INSERT INTO Activities (id, description) VALUES (19, 'Surfing');
-INSERT INTO Activities (id, description) VALUES (20, 'Paddleboarding');
-INSERT INTO Activities (id, description) VALUES (21, 'Visita a viñedos');
-INSERT INTO Activities (id, description) VALUES (22, 'Paseo en globo aerostático');
-INSERT INTO Activities (id, description) VALUES (23, 'Observación astronómica');
-INSERT INTO Activities (id, description) VALUES (24, 'Descenso en rappel');
-INSERT INTO Activities (id, description) VALUES (25, 'Visita a cascadas');
-INSERT INTO Activities (id, description) VALUES (26, 'Esquí acuático');
-INSERT INTO Activities (id, description) VALUES (27, 'Tirolesa');
-INSERT INTO Activities (id, description) VALUES (28, 'Visita a santuarios naturales');
-INSERT INTO Activities (id, description) VALUES (29, 'Nado con delfines');
-INSERT INTO Activities (id, description) VALUES (30, 'Paseo en tren turístico');
-INSERT INTO Activities (id, description) VALUES (31, 'Excursión en motocicleta');
-INSERT INTO Activities (id, description) VALUES (32, 'Parapente');
-INSERT INTO Activities (id, description) VALUES (33, 'Paseo en teleférico');
-INSERT INTO Activities (id, description) VALUES (34, 'Baño en aguas termales');
-INSERT INTO Activities (id, description) VALUES (35, 'Pesca con mosca');
-INSERT INTO Activities (id, description) VALUES (36, 'Trekking en nevados');
-INSERT INTO Activities (id, description) VALUES (37, 'Yoga en la naturaleza');
-INSERT INTO Activities (id, description) VALUES (38, 'Exploración de manglares');
-INSERT INTO Activities (id, description) VALUES (39, 'Visita a jardines botánicos');
-INSERT INTO Activities (id, description) VALUES (40, 'Caminata por dunas');
-INSERT INTO Activities (id, description) VALUES (41, 'Tour en bicicleta eléctrica');
-INSERT INTO Activities (id, description) VALUES (42, 'Tour de café');
-INSERT INTO Activities (id, description) VALUES (43, 'Buceo en arrecifes');
-INSERT INTO Activities (id, description) VALUES (44, 'Snorkel en cenotes');
-INSERT INTO Activities (id, description) VALUES (45, 'Clases de cocina regional');
-INSERT INTO Activities (id, description) VALUES (46, 'Caminata nocturna');
-INSERT INTO Activities (id, description) VALUES (47, 'Exploración de cañones');
-INSERT INTO Activities (id, description) VALUES (48, 'Tour de mitos y leyendas');
-INSERT INTO Activities (id, description) VALUES (49, 'Vuelo en parapente');
-INSERT INTO Activities (id, description) VALUES (50, 'Tiro con arco');
-INSERT INTO Activities (id, description) VALUES (51, 'Juegos tradicionales locales');
-INSERT INTO Activities (id, description) VALUES (52, 'Patinaje sobre hielo');
-INSERT INTO Activities (id, description) VALUES (53, 'Observación de tortugas marinas');
-INSERT INTO Activities (id, description) VALUES (54, 'Excursión a islas');
-INSERT INTO Activities (id, description) VALUES (55, 'Recorrido por mercados locales');
-INSERT INTO Activities (id, description) VALUES (56, 'Baño en ríos cristalinos');
-INSERT INTO Activities (id, description) VALUES (57, 'Visita a fábricas de chocolate');
-INSERT INTO Activities (id, description) VALUES (58, 'Visita a talleres de artesanía');
-INSERT INTO Activities (id, description) VALUES (59, 'Tour fotográfico');
-INSERT INTO Activities (id, description) VALUES (60, 'Vuelo en ultraligero');
-INSERT INTO Activities (id, description) VALUES (61, 'Nado en lagunas escondidas');
-INSERT INTO Activities (id, description) VALUES (62, 'Exploración de minas antiguas');
-INSERT INTO Activities (id, description) VALUES (63, 'Rutas de vino y queso');
-INSERT INTO Activities (id, description) VALUES (64, 'Visita a represas');
-INSERT INTO Activities (id, description) VALUES (65, 'Tour en tranvía turístico');
-INSERT INTO Activities (id, description) VALUES (66, 'Experiencia de reforestación');
-INSERT INTO Activities (id, description) VALUES (67, 'Recolección de frutas en huertos');
-INSERT INTO Activities (id, description) VALUES (68, 'Clase de cerámica');
-INSERT INTO Activities (id, description) VALUES (69, 'Paseo en barco pirata');
-INSERT INTO Activities (id, description) VALUES (70, 'Escalada en árboles');
-INSERT INTO Activities (id, description) VALUES (71, 'Exploración de acantilados');
-INSERT INTO Activities (id, description) VALUES (72, 'Manejo de vehículos todoterreno');
-INSERT INTO Activities (id, description) VALUES (73, 'Tour de mariposas');
-INSERT INTO Activities (id, description) VALUES (74, 'Carrera de orientación');
-INSERT INTO Activities (id, description) VALUES (75, 'Construcción de balsas');
-INSERT INTO Activities (id, description) VALUES (76, 'Caminata en bosques de niebla');
-INSERT INTO Activities (id, description) VALUES (77, 'Paseo en carruaje');
-INSERT INTO Activities (id, description) VALUES (78, 'Pintura en paisajes naturales');
-INSERT INTO Activities (id, description) VALUES (79, 'Espeleología');
-INSERT INTO Activities (id, description) VALUES (80, 'Clases de danza tradicional');
-INSERT INTO Activities (id, description) VALUES (81, 'Tour de leyendas urbanas');
-INSERT INTO Activities (id, description) VALUES (82, 'Visita a plantaciones de té');
-INSERT INTO Activities (id, description) VALUES (83, 'Demostración de técnicas de pesca local');
-INSERT INTO Activities (id, description) VALUES (84, 'Paseo en trineo');
-INSERT INTO Activities (id, description) VALUES (85, 'Participación en festivales culturales');
-INSERT INTO Activities (id, description) VALUES (86, 'Tour nocturno en la selva');
-INSERT INTO Activities (id, description) VALUES (87, 'Taller de grabado en madera');
-INSERT INTO Activities (id, description) VALUES (88, 'Rappel en cascadas');
-INSERT INTO Activities (id, description) VALUES (89, 'Exploración de arrecifes artificiales');
-INSERT INTO Activities (id, description) VALUES (90, 'Observación de ballenas');
-INSERT INTO Activities (id, description) VALUES (91, 'Tour en góndolas');
-INSERT INTO Activities (id, description) VALUES (92, 'Avistamiento de luciérnagas');
-INSERT INTO Activities (id, description) VALUES (93, 'Recolección de sal en salinas');
-INSERT INTO Activities (id, description) VALUES (94, 'Vuelo en dirigible');
-INSERT INTO Activities (id, description) VALUES (95, 'Participación en ceremonias ancestrales');
-INSERT INTO Activities (id, description) VALUES (96, 'Caminata por viñedos');
-INSERT INTO Activities (id, description) VALUES (97, 'Tour en buggy por el desierto');
-INSERT INTO Activities (id, description) VALUES (98, 'Paseo en bicicleta por senderos históricos');
-INSERT INTO Activities (id, description) VALUES (99, 'Demostración de cocina prehispánica');
-INSERT INTO Activities (id, description) VALUES (100, 'Exploración de pueblos fantasmas');
-INSERT INTO Activities (id, description) VALUES (101, 'Paseo en bicicleta');
-INSERT INTO Activities (id, description) VALUES (102, 'Escalada en roca');
-INSERT INTO Activities (id, description) VALUES (103, 'Rafting');
-INSERT INTO Activities (id, description) VALUES (104, 'Tour en barco');
-INSERT INTO Activities (id, description) VALUES (105, 'Paseo en kayak');
-INSERT INTO Activities (id, description) VALUES (106, 'Esquí acuático');
-INSERT INTO Activities (id, description) VALUES (107, 'Snorkel');
-INSERT INTO Activities (id, description) VALUES (108, 'Buceo');
-INSERT INTO Activities (id, description) VALUES (109, 'Pesca deportiva');
-INSERT INTO Activities (id, description) VALUES (110, 'Tour en cuatrimoto');
-INSERT INTO Activities (id, description) VALUES (111, 'Paseo a caballo');
-INSERT INTO Activities (id, description) VALUES (112, 'Parapente');
-INSERT INTO Activities (id, description) VALUES (113, 'Vuelo en globo aerostático');
-INSERT INTO Activities (id, description) VALUES (114, 'Surf');
-INSERT INTO Activities (id, description) VALUES (115, 'Sandboarding');
-INSERT INTO Activities (id, description) VALUES (116, 'Yoga al aire libre');
-INSERT INTO Activities (id, description) VALUES (117, 'Tirolesa');
-INSERT INTO Activities (id, description) VALUES (118, 'Caminata nocturna');
-INSERT INTO Activities (id, description) VALUES (119, 'Visita a reservas naturales');
-INSERT INTO Activities (id, description) VALUES (120, 'Tour en jeep');
-INSERT INTO Activities (id, description) VALUES (121, 'Observación de estrellas');
-INSERT INTO Activities (id, description) VALUES (122, 'Paseo en góndola');
-INSERT INTO Activities (id, description) VALUES (123, 'Exploración de cuevas');
-INSERT INTO Activities (id, description) VALUES (124, 'Degustación de vinos');
-INSERT INTO Activities (id, description) VALUES (125, 'Visita a cafetales');
-INSERT INTO Activities (id, description) VALUES (126, 'Paseo en helicóptero');
-INSERT INTO Activities (id, description) VALUES (127, 'Festival cultural');
-INSERT INTO Activities (id, description) VALUES (128, 'Visita a sitios arqueológicos');
-INSERT INTO Activities (id, description) VALUES (129, 'Ruta gastronómica');
-INSERT INTO Activities (id, description) VALUES (130, 'Artesanías y manualidades');
-INSERT INTO Activities (id, description) VALUES (131, 'Avistamiento de ballenas');
-INSERT INTO Activities (id, description) VALUES (132, 'Navegación en velero');
-INSERT INTO Activities (id, description) VALUES (133, 'Safari fotográfico');
-INSERT INTO Activities (id, description) VALUES (134, 'Esquí en arena');
-INSERT INTO Activities (id, description) VALUES (135, 'Raquetas de nieve');
-INSERT INTO Activities (id, description) VALUES (136, 'Ciclismo de montaña');
-INSERT INTO Activities (id, description) VALUES (137, 'Espeleología');
-INSERT INTO Activities (id, description) VALUES (138, 'Escalada de árboles');
-INSERT INTO Activities (id, description) VALUES (139, 'Parques de aventura');
-INSERT INTO Activities (id, description) VALUES (140, 'Paseo en burro');
-INSERT INTO Activities (id, description) VALUES (141, 'Carrera de karting');
-INSERT INTO Activities (id, description) VALUES (142, 'Tour de graffiti y arte urbano');
-INSERT INTO Activities (id, description) VALUES (143, 'Festival de globos aerostáticos');
-INSERT INTO Activities (id, description) VALUES (144, 'Buceo con tiburones');
-INSERT INTO Activities (id, description) VALUES (145, 'Clases de cocina local');
-INSERT INTO Activities (id, description) VALUES (146, 'Viaje en tren panorámico');
-INSERT INTO Activities (id, description) VALUES (147, 'Visita a islas vírgenes');
-INSERT INTO Activities (id, description) VALUES (148, 'Aventura en tirolinas');
-INSERT INTO Activities (id, description) VALUES (149, 'Baños en aguas termales');
-INSERT INTO Activities (id, description) VALUES (150, 'Senderismo en volcanes');
-INSERT INTO Activities (id, description) VALUES (151, 'Bungee jumping');
-INSERT INTO Activities (id, description) VALUES (152, 'Descenso en rapel');
-INSERT INTO Activities (id, description) VALUES (153, 'Tour de mitos y leyendas');
-INSERT INTO Activities (id, description) VALUES (154, 'Noche de fogata');
-INSERT INTO Activities (id, description) VALUES (155, 'Observación de luciérnagas');
-INSERT INTO Activities (id, description) VALUES (156, 'Paddle surf');
-INSERT INTO Activities (id, description) VALUES (157, 'Barranquismo');
-INSERT INTO Activities (id, description) VALUES (158, 'Exploración de ruinas antiguas');
-INSERT INTO Activities (id, description) VALUES (159, 'Festival de danza');
-INSERT INTO Activities (id, description) VALUES (160, 'Fiesta de carnaval');
-INSERT INTO Activities (id, description) VALUES (161, 'Rally de orientación');
-INSERT INTO Activities (id, description) VALUES (162, 'Caza fotográfica');
-INSERT INTO Activities (id, description) VALUES (163, 'Día de spa en la naturaleza');
-INSERT INTO Activities (id, description) VALUES (164, 'Senderismo entre cascadas');
-INSERT INTO Activities (id, description) VALUES (165, 'Pesca artesanal');
-INSERT INTO Activities (id, description) VALUES (166, 'Esquí alpino');
-INSERT INTO Activities (id, description) VALUES (167, 'Visita a santuarios de animales');
-INSERT INTO Activities (id, description) VALUES (168, 'Recorridos en segway');
-INSERT INTO Activities (id, description) VALUES (169, 'Buceo nocturno');
-INSERT INTO Activities (id, description) VALUES (170, 'Excursión en bote');
-INSERT INTO Activities (id, description) VALUES (171, 'Recorridos en globo aerostático');
-INSERT INTO Activities (id, description) VALUES (172, 'Exploración de desiertos');
-INSERT INTO Activities (id, description) VALUES (173, 'Festival de luces');
-INSERT INTO Activities (id, description) VALUES (174, 'Ciclismo urbano');
-INSERT INTO Activities (id, description) VALUES (175, 'Picnic en parques naturales');
-INSERT INTO Activities (id, description) VALUES (176, 'Surf de remo');
-INSERT INTO Activities (id, description) VALUES (177, 'Día de pintura al aire libre');
-INSERT INTO Activities (id, description) VALUES (178, 'Caminata sobre puentes colgantes');
-INSERT INTO Activities (id, description) VALUES (179, 'Turismo en fábricas de chocolate');
-INSERT INTO Activities (id, description) VALUES (180, 'Concierto al aire libre');
-INSERT INTO Activities (id, description) VALUES (181, 'Exploración de cenotes');
-INSERT INTO Activities (id, description) VALUES (182, 'Tour de cervecerías artesanales');
-INSERT INTO Activities (id, description) VALUES (183, 'Exploración de glaciares');
-INSERT INTO Activities (id, description) VALUES (184, 'Tour en motocicleta');
-INSERT INTO Activities (id, description) VALUES (185, 'Tour de viñedos');
-INSERT INTO Activities (id, description) VALUES (186, 'Carrera de orientación');
-INSERT INTO Activities (id, description) VALUES (187, 'Pesca en hielo');
-INSERT INTO Activities (id, description) VALUES (188, 'Camping en la playa');
-INSERT INTO Activities (id, description) VALUES (189, 'Escalada en hielo');
-INSERT INTO Activities (id, description) VALUES (190, 'Día de playa con deportes acuáticos');
-INSERT INTO Activities (id, description) VALUES (191, 'Excursión a cañones');
-INSERT INTO Activities (id, description) VALUES (192, 'Visita a fábricas de queso');
-INSERT INTO Activities (id, description) VALUES (193, 'Tour en balsa');
-INSERT INTO Activities (id, description) VALUES (194, 'Excursión a lagunas escondidas');
-INSERT INTO Activities (id, description) VALUES (195, 'Expedición en la selva');
-INSERT INTO Activities (id, description) VALUES (196, 'Tour de iglesias coloniales');
-INSERT INTO Activities (id, description) VALUES (197, 'Caminata por dunas');
-INSERT INTO Activities (id, description) VALUES (198, 'Paseo en telesilla');
-INSERT INTO Activities (id, description) VALUES (199, 'Recorrido en tranvía turístico');
-INSERT INTO Activities (id, description) VALUES (200, 'Visita a minas de sal');
-SET IDENTITY_INSERT Activities OFF;
 
 -- Insertar paradas en la ruta
 SET IDENTITY_INSERT Stops ON;
@@ -5353,664 +5468,609 @@ SET IDENTITY_INSERT Tickets OFF;
 -- Insertar inspecciones de buses
 SET IDENTITY_INSERT Inspections ON;
 INSERT INTO Inspections (id, bus_id, [date], diagnosis) VALUES
-(1, 182, '2024-03-17', 'Luces delanteras defectuosas'),
-(2, 96, '2024-10-31', 'Radiador con fugas'),
-(3, 102, '2024-01-27', 'Ruido en el motor'),
-(4, 148, '2024-12-10', 'Radiador con fugas'),
-(5, 84, '2024-12-17', 'Sin novedades'),
-(6, 68, '2024-05-26', 'Sistema eléctrico revisado'),
-(7, 10, '2024-05-12', 'Luces delanteras defectuosas'),
-(8, 60, '2024-03-24', 'Dirección con holgura'),
-(9, 115, '2024-04-29', 'Aceite bajo'),
-(10, 94, '2024-01-16', 'Batería en mal estado'),
-(11, 152, '2024-12-17', 'Aceite bajo'),
-(12, 168, '2024-01-11', 'Radiador con fugas'),
-(13, 188, '2024-07-25', 'Luces delanteras defectuosas'),
-(14, 28, '2024-12-25', 'Aceite bajo'),
-(15, 91, '2024-11-16', 'Luces delanteras defectuosas'),
-(16, 158, '2024-05-13', 'Cambio de aceite realizado'),
-(17, 16, '2024-10-05', 'Ruido en el motor'),
-(18, 150, '2024-12-06', 'Ruido en el motor'),
-(19, 68, '2024-06-29', 'Dirección con holgura'),
-(20, 28, '2024-07-02', 'Sistema eléctrico revisado'),
-(21, 163, '2024-08-29', 'Revisión del sistema de suspensión'),
-(22, 19, '2024-12-06', 'Frenos desgastados'),
-(23, 188, '2024-09-15', 'Dirección con holgura'),
-(24, 54, '2024-12-26', 'Filtro de aire sucio'),
-(25, 107, '2024-05-14', 'Neumáticos en mal estado'),
-(26, 137, '2024-11-27', 'Sin novedades'),
-(27, 39, '2024-05-28', 'Filtro de aire sucio'),
-(28, 162, '2024-02-23', 'Neumáticos en mal estado'),
-(29, 18, '2024-11-16', 'Aceite bajo'),
-(30, 92, '2024-05-23', 'Frenos desgastados'),
-(31, 155, '2024-01-13', 'Filtro de aire sucio'),
-(32, 77, '2024-04-10', 'Filtro de aire sucio'),
-(33, 115, '2024-10-30', 'Revisión de inyectores'),
-(34, 127, '2024-05-31', 'Neumáticos en mal estado'),
-(35, 121, '2024-01-31', 'Luces delanteras defectuosas'),
-(36, 52, '2024-04-30', 'Ruido en el motor'),
-(37, 130, '2024-04-15', 'Aceite bajo'),
-(38, 186, '2024-03-29', 'Sistema de escape con corrosión'),
-(39, 19, '2024-09-24', 'Sistema de escape con corrosión'),
-(40, 70, '2024-07-31', 'Cambio de aceite realizado'),
-(41, 144, '2024-11-10', 'Radiador con fugas'),
-(42, 65, '2024-09-08', 'Sistema de escape con corrosión'),
-(43, 19, '2024-10-23', 'Ruido en el motor'),
-(44, 20, '2024-03-28', 'Dirección con holgura'),
-(45, 200, '2024-07-04', 'Cambio de aceite realizado'),
-(46, 37, '2024-02-20', 'Batería en mal estado'),
-(47, 19, '2024-01-02', 'Sin novedades'),
-(48, 33, '2024-05-02', 'Ruido en el motor'),
-(49, 177, '2024-01-02', 'Sistema de escape con corrosión'),
-(50, 112, '2024-08-10', 'Sistema eléctrico revisado'),
-(51, 69, '2024-01-22', 'Sistema eléctrico revisado'),
-(52, 162, '2024-05-27', 'Cambio de aceite realizado'),
-(53, 199, '2024-08-01', 'Frenos desgastados'),
-(54, 79, '2024-02-29', 'Sistema eléctrico revisado'),
-(55, 72, '2024-04-23', 'Sin novedades'),
-(56, 35, '2024-04-30', 'Filtro de aire sucio'),
-(57, 25, '2024-09-17', 'Frenos desgastados'),
-(58, 50, '2024-07-02', 'Ruido en el motor'),
-(59, 142, '2024-10-18', 'Luces delanteras defectuosas'),
-(60, 120, '2024-10-20', 'Frenos desgastados'),
-(61, 49, '2024-06-29', 'Dirección con holgura'),
-(62, 67, '2024-02-11', 'Aceite bajo'),
-(63, 121, '2024-07-22', 'Sistema eléctrico revisado'),
-(64, 117, '2024-10-07', 'Revisión del sistema de suspensión'),
-(65, 91, '2024-03-14', 'Sistema de escape con corrosión'),
-(66, 129, '2024-07-30', 'Sistema de escape con corrosión'),
-(67, 38, '2024-12-21', 'Luces delanteras defectuosas'),
-(68, 160, '2024-07-10', 'Cambio de aceite realizado'),
-(69, 40, '2024-08-22', 'Sin novedades'),
-(70, 50, '2024-04-26', 'Sin novedades'),
-(71, 75, '2024-04-14', 'Cambio de aceite realizado'),
-(72, 42, '2024-11-30', 'Neumáticos en mal estado'),
-(73, 64, '2024-12-25', 'Revisión del sistema de suspensión'),
-(74, 144, '2024-12-22', 'Filtro de aire sucio'),
-(75, 68, '2024-08-31', 'Frenos desgastados'),
-(76, 73, '2024-08-06', 'Sin novedades'),
-(77, 184, '2024-10-22', 'Ruido en el motor'),
-(78, 87, '2024-09-28', 'Batería en mal estado'),
-(79, 94, '2024-01-08', 'Sin novedades'),
-(80, 88, '2024-03-30', 'Frenos desgastados'),
-(81, 25, '2024-07-08', 'Ruido en el motor'),
-(82, 139, '2024-01-17', 'Filtro de aire sucio'),
-(83, 126, '2024-08-26', 'Radiador con fugas'),
-(84, 124, '2024-06-26', 'Radiador con fugas'),
-(85, 189, '2024-10-22', 'Luces delanteras defectuosas'),
-(86, 135, '2024-07-31', 'Neumáticos en mal estado'),
-(87, 24, '2024-08-23', 'Neumáticos en mal estado'),
-(88, 191, '2024-08-13', 'Sin novedades'),
-(89, 121, '2024-08-16', 'Sistema eléctrico revisado'),
-(90, 166, '2024-08-22', 'Cambio de aceite realizado'),
-(91, 40, '2024-04-24', 'Ruido en el motor'),
-(92, 190, '2024-05-28', 'Dirección con holgura'),
-(93, 49, '2024-09-16', 'Sistema de escape con corrosión'),
-(94, 89, '2024-06-26', 'Sin novedades'),
-(95, 185, '2024-02-13', 'Batería en mal estado'),
-(96, 84, '2024-08-20', 'Revisión del sistema de suspensión'),
-(97, 3, '2024-02-12', 'Filtro de aire sucio'),
-(98, 39, '2024-05-17', 'Cambio de aceite realizado'),
-(99, 77, '2024-11-12', 'Dirección con holgura'),
-(100, 193, '2024-02-26', 'Ruido en el motor'),
-(101, 123, '2024-01-22', 'Filtro de aire sucio'),
-(102, 48, '2024-04-14', 'Revisión del sistema de suspensión'),
-(103, 72, '2024-04-09', 'Dirección con holgura'),
-(104, 20, '2024-09-10', 'Frenos desgastados'),
-(105, 153, '2024-05-29', 'Revisión del sistema de suspensión'),
-(106, 67, '2024-11-23', 'Revisión del sistema de suspensión'),
-(107, 171, '2024-03-28', 'Filtro de aire sucio'),
-(108, 44, '2024-11-02', 'Sin novedades'),
-(109, 27, '2024-08-12', 'Aceite bajo'),
-(110, 42, '2024-04-15', 'Sistema de escape con corrosión'),
-(111, 18, '2024-06-18', 'Aceite bajo'),
-(112, 42, '2024-05-02', 'Sistema eléctrico revisado'),
-(113, 51, '2024-11-04', 'Filtro de aire sucio'),
-(114, 51, '2024-10-22', 'Filtro de aire sucio'),
-(115, 169, '2024-12-11', 'Frenos desgastados'),
-(116, 94, '2024-12-05', 'Filtro de aire sucio'),
-(117, 120, '2024-04-06', 'Frenos desgastados'),
-(118, 189, '2024-02-22', 'Cambio de aceite realizado'),
-(119, 135, '2024-10-06', 'Batería en mal estado'),
-(120, 124, '2024-11-18', 'Luces delanteras defectuosas'),
-(121, 179, '2024-01-18', 'Sin novedades'),
-(122, 76, '2024-11-02', 'Radiador con fugas'),
-(123, 160, '2024-06-05', 'Revisión de inyectores'),
-(124, 79, '2024-09-26', 'Frenos desgastados'),
-(125, 74, '2024-07-03', 'Dirección con holgura'),
-(126, 127, '2024-06-08', 'Revisión de inyectores'),
-(127, 173, '2024-09-13', 'Sin novedades'),
-(128, 160, '2024-05-20', 'Ruido en el motor'),
-(129, 72, '2024-02-17', 'Ruido en el motor'),
-(130, 142, '2024-12-25', 'Dirección con holgura'),
-(131, 187, '2024-01-09', 'Radiador con fugas'),
-(132, 104, '2024-11-05', 'Sistema eléctrico revisado'),
-(133, 82, '2024-06-04', 'Sistema eléctrico revisado'),
-(134, 8, '2024-11-07', 'Frenos desgastados'),
-(135, 50, '2024-06-06', 'Cambio de aceite realizado'),
-(136, 62, '2024-06-30', 'Cambio de aceite realizado'),
-(137, 50, '2024-04-20', 'Radiador con fugas'),
-(138, 49, '2024-03-16', 'Dirección con holgura'),
-(139, 54, '2024-12-16', 'Ruido en el motor'),
-(140, 187, '2024-03-15', 'Filtro de aire sucio'),
-(141, 137, '2024-07-17', 'Aceite bajo'),
-(142, 33, '2024-08-02', 'Filtro de aire sucio'),
-(143, 38, '2024-08-03', 'Luces delanteras defectuosas'),
-(144, 38, '2024-07-21', 'Frenos desgastados'),
-(145, 27, '2024-12-24', 'Ruido en el motor'),
-(146, 32, '2024-04-11', 'Filtro de aire sucio'),
-(147, 197, '2024-04-03', 'Sin novedades'),
-(148, 43, '2024-11-24', 'Aceite bajo'),
-(149, 181, '2024-07-28', 'Sistema eléctrico revisado'),
-(150, 161, '2024-08-01', 'Batería en mal estado'),
-(151, 143, '2024-12-04', 'Sin novedades'),
-(152, 35, '2024-11-29', 'Revisión de inyectores'),
-(153, 131, '2024-11-25', 'Aceite bajo'),
-(154, 179, '2024-09-02', 'Aceite bajo'),
-(155, 193, '2024-12-28', 'Batería en mal estado'),
-(156, 118, '2024-02-14', 'Batería en mal estado'),
-(157, 174, '2024-11-13', 'Luces delanteras defectuosas'),
-(158, 30, '2024-08-11', 'Radiador con fugas'),
-(159, 70, '2024-12-25', 'Sistema eléctrico revisado'),
+(1, 1, '2024-03-17', 'Luces delanteras defectuosas'),
+(2, 2, '2024-10-31', 'Radiador con fugas'),
+(3, 3, '2024-01-27', 'Ruido en el motor'),
+(4, 4, '2024-12-10', 'Radiador con fugas'),
+(5, 5, '2024-12-17', 'Sin novedades'),
+(6, 6, '2024-05-26', 'Sistema eléctrico revisado'),
+(7, 7, '2024-05-12', 'Luces delanteras defectuosas'),
+(8, 8, '2024-03-24', 'Dirección con holgura'),
+(9, 9, '2024-04-29', 'Aceite bajo'),
+(10, 10, '2024-01-16', 'Batería en mal estado'),
+(11, 11, '2024-12-17', 'Aceite bajo'),
+(12, 12, '2024-01-11', 'Radiador con fugas'),
+(13, 13, '2024-07-25', 'Luces delanteras defectuosas'),
+(14, 14, '2024-12-25', 'Aceite bajo'),
+(15, 15, '2024-11-16', 'Luces delanteras defectuosas'),
+(16, 16, '2024-05-13', 'Cambio de aceite realizado'),
+(17, 17, '2024-10-05', 'Ruido en el motor'),
+(18, 18, '2024-12-06', 'Ruido en el motor'),
+(19, 19, '2024-06-29', 'Dirección con holgura'),
+(20, 20, '2024-07-02', 'Sistema eléctrico revisado'),
+(21, 21, '2024-08-29', 'Revisión del sistema de suspensión'),
+(22, 22, '2024-12-06', 'Frenos desgastados'),
+(23, 23, '2024-09-15', 'Dirección con holgura'),
+(24, 24, '2024-12-26', 'Filtro de aire sucio'),
+(25, 25, '2024-05-14', 'Neumáticos en mal estado'),
+(26, 26, '2024-11-27', 'Sin novedades'),
+(27, 27, '2024-05-28', 'Filtro de aire sucio'),
+(28, 28, '2024-02-23', 'Neumáticos en mal estado'),
+(29, 29, '2024-11-16', 'Aceite bajo'),
+(30, 30, '2024-05-23', 'Frenos desgastados'),
+(31, 31, '2024-01-13', 'Filtro de aire sucio'),
+(32, 32, '2024-04-10', 'Filtro de aire sucio'),
+(33, 33, '2024-10-30', 'Revisión de inyectores'),
+(34, 34, '2024-05-31', 'Neumáticos en mal estado'),
+(35, 35, '2024-01-31', 'Luces delanteras defectuosas'),
+(36, 36, '2024-04-30', 'Ruido en el motor'),
+(37, 37, '2024-04-15', 'Aceite bajo'),
+(38, 38, '2024-03-29', 'Sistema de escape con corrosión'),
+(39, 39, '2024-09-24', 'Sistema de escape con corrosión'),
+(40, 40, '2024-07-31', 'Cambio de aceite realizado'),
+(41, 41, '2024-11-10', 'Radiador con fugas'),
+(42, 42, '2024-09-08', 'Sistema de escape con corrosión'),
+(43, 43, '2024-10-23', 'Ruido en el motor'),
+(44, 44, '2024-03-28', 'Dirección con holgura'),
+(45, 45, '2024-07-04', 'Cambio de aceite realizado'),
+(46, 46, '2024-02-20', 'Batería en mal estado'),
+(47, 47, '2024-01-02', 'Sin novedades'),
+(48, 48, '2024-05-02', 'Ruido en el motor'),
+(49, 49, '2024-01-02', 'Sistema de escape con corrosión'),
+(50, 50, '2024-08-10', 'Sistema eléctrico revisado'),
+(51, 51, '2024-01-22', 'Sistema eléctrico revisado'),
+(52, 52, '2024-05-27', 'Cambio de aceite realizado'),
+(53, 53, '2024-08-01', 'Frenos desgastados'),
+(54, 54, '2024-02-29', 'Sistema eléctrico revisado'),
+(55, 55, '2024-04-23', 'Sin novedades'),
+(56, 56, '2024-04-30', 'Filtro de aire sucio'),
+(57, 57, '2024-09-17', 'Frenos desgastados'),
+(58, 58, '2024-07-02', 'Ruido en el motor'),
+(59, 59, '2024-10-18', 'Luces delanteras defectuosas'),
+(60, 60, '2024-10-20', 'Frenos desgastados'),
+(61, 61, '2024-06-29', 'Dirección con holgura'),
+(62, 62, '2024-02-11', 'Aceite bajo'),
+(63, 63, '2024-07-22', 'Sistema eléctrico revisado'),
+(64, 64, '2024-10-07', 'Revisión del sistema de suspensión'),
+(65, 65, '2024-03-14', 'Sistema de escape con corrosión'),
+(66, 66, '2024-07-30', 'Sistema de escape con corrosión'),
+(67, 67, '2024-12-21', 'Luces delanteras defectuosas'),
+(68, 68, '2024-07-10', 'Cambio de aceite realizado'),
+(69, 69, '2024-08-22', 'Sin novedades'),
+(70, 70, '2024-04-26', 'Sin novedades'),
+(71, 71, '2024-04-14', 'Cambio de aceite realizado'),
+(72, 72, '2024-11-30', 'Neumáticos en mal estado'),
+(73, 73, '2024-12-25', 'Revisión del sistema de suspensión'),
+(74, 74, '2024-12-22', 'Filtro de aire sucio'),
+(75, 75, '2024-08-31', 'Frenos desgastados'),
+(76, 76, '2024-08-06', 'Sin novedades'),
+(77, 77, '2024-10-22', 'Ruido en el motor'),
+(78, 78, '2024-09-28', 'Batería en mal estado'),
+(79, 79, '2024-01-08', 'Sin novedades'),
+(80, 80, '2024-03-30', 'Frenos desgastados'),
+(81, 81, '2024-07-08', 'Ruido en el motor'),
+(82, 82, '2024-01-17', 'Filtro de aire sucio'),
+(83, 83, '2024-08-26', 'Radiador con fugas'),
+(84, 84, '2024-06-26', 'Radiador con fugas'),
+(85, 85, '2024-10-22', 'Luces delanteras defectuosas'),
+(86, 86, '2024-07-31', 'Neumáticos en mal estado'),
+(87, 87, '2024-08-23', 'Neumáticos en mal estado'),
+(88, 88, '2024-08-13', 'Sin novedades'),
+(89, 89, '2024-08-16', 'Sistema eléctrico revisado'),
+(90, 90, '2024-08-22', 'Cambio de aceite realizado'),
+(91, 91, '2024-04-24', 'Ruido en el motor'),
+(92, 92, '2024-05-28', 'Dirección con holgura'),
+(93, 93, '2024-09-16', 'Sistema de escape con corrosión'),
+(94, 94, '2024-06-26', 'Sin novedades'),
+(95, 95, '2024-02-13', 'Batería en mal estado'),
+(96, 96, '2024-08-20', 'Revisión del sistema de suspensión'),
+(97, 97, '2024-02-12', 'Filtro de aire sucio'),
+(98, 98, '2024-05-17', 'Cambio de aceite realizado'),
+(99, 99, '2024-11-12', 'Dirección con holgura'),
+(100, 100, '2024-02-26', 'Ruido en el motor'),
+(101, 101, '2024-01-22', 'Filtro de aire sucio'),
+(102, 102, '2024-04-14', 'Revisión del sistema de suspensión'),
+(103, 103, '2024-04-09', 'Dirección con holgura'),
+(104, 104, '2024-09-10', 'Frenos desgastados'),
+(105, 105, '2024-05-29', 'Revisión del sistema de suspensión'),
+(106, 106, '2024-11-23', 'Revisión del sistema de suspensión'),
+(107, 107, '2024-03-28', 'Filtro de aire sucio'),
+(108, 108, '2024-11-02', 'Sin novedades'),
+(109, 109, '2024-08-12', 'Aceite bajo'),
+(110, 110, '2024-04-15', 'Sistema de escape con corrosión'),
+(111, 111, '2024-06-18', 'Aceite bajo'),
+(112, 112, '2024-05-02', 'Sistema eléctrico revisado'),
+(113, 113, '2024-11-04', 'Filtro de aire sucio'),
+(114, 114, '2024-10-22', 'Filtro de aire sucio'),
+(115, 115, '2024-12-11', 'Frenos desgastados'),
+(116, 116, '2024-12-05', 'Filtro de aire sucio'),
+(117, 117, '2024-04-06', 'Frenos desgastados'),
+(118, 118, '2024-02-22', 'Cambio de aceite realizado'),
+(119, 119, '2024-10-06', 'Batería en mal estado'),
+(120, 120, '2024-11-18', 'Luces delanteras defectuosas'),
+(121, 121, '2024-01-18', 'Sin novedades'),
+(122, 122, '2024-11-02', 'Radiador con fugas'),
+(123, 123, '2024-06-05', 'Revisión de inyectores'),
+(124, 124, '2024-09-26', 'Frenos desgastados'),
+(125, 125, '2024-07-03', 'Dirección con holgura'),
+(126, 126, '2024-06-08', 'Revisión de inyectores'),
+(127, 127, '2024-09-13', 'Sin novedades'),
+(128, 128, '2024-05-20', 'Ruido en el motor'),
+(129, 129, '2024-02-17', 'Ruido en el motor'),
+(130, 130, '2024-12-25', 'Dirección con holgura'),
+(131, 131, '2024-01-09', 'Radiador con fugas'),
+(132, 132, '2024-11-05', 'Sistema eléctrico revisado'),
+(133, 133, '2024-06-04', 'Sistema eléctrico revisado'),
+(134, 134, '2024-11-07', 'Frenos desgastados'),
+(135, 135, '2024-06-06', 'Cambio de aceite realizado'),
+(136, 136, '2024-06-30', 'Cambio de aceite realizado'),
+(137, 137, '2024-04-20', 'Radiador con fugas'),
+(138, 138, '2024-03-16', 'Dirección con holgura'),
+(139, 139, '2024-12-16', 'Ruido en el motor'),
+(140, 140, '2024-03-15', 'Filtro de aire sucio'),
+(141, 141, '2024-07-17', 'Aceite bajo'),
+(142, 142, '2024-08-02', 'Filtro de aire sucio'),
+(143, 143, '2024-08-03', 'Luces delanteras defectuosas'),
+(144, 144, '2024-07-21', 'Frenos desgastados'),
+(145, 145, '2024-12-24', 'Ruido en el motor'),
+(146, 146, '2024-04-11', 'Filtro de aire sucio'),
+(147, 147, '2024-04-03', 'Sin novedades'),
+(148, 148, '2024-11-24', 'Aceite bajo'),
+(149, 149, '2024-07-28', 'Sistema eléctrico revisado'),
+(150, 150, '2024-08-01', 'Batería en mal estado'),
+(151, 151, '2024-12-04', 'Sin novedades'),
+(152, 152, '2024-11-29', 'Revisión de inyectores'),
+(153, 153, '2024-11-25', 'Aceite bajo'),
+(154, 154, '2024-09-02', 'Aceite bajo'),
+(155, 155, '2024-12-28', 'Batería en mal estado'),
+(156, 156, '2024-02-14', 'Batería en mal estado'),
+(157, 157, '2024-11-13', 'Luces delanteras defectuosas'),
+(158, 158, '2024-08-11', 'Radiador con fugas'),
+(159, 159, '2024-12-25', 'Sistema eléctrico revisado'),
 (160, 160, '2024-01-01', 'Sin novedades'),
-(161, 188, '2024-05-02', 'Aceite bajo'),
-(162, 163, '2024-05-14', 'Revisión del sistema de suspensión'),
-(163, 120, '2024-01-17', 'Luces delanteras defectuosas'),
-(164, 102, '2024-01-03', 'Cambio de aceite realizado'),
-(165, 57, '2024-03-22', 'Luces delanteras defectuosas'),
-(166, 153, '2024-10-21', 'Cambio de aceite realizado'),
-(167, 96, '2024-11-16', 'Dirección con holgura'),
-(168, 125, '2024-08-26', 'Aceite bajo'),
-(169, 151, '2024-02-05', 'Sistema eléctrico revisado'),
-(170, 118, '2024-07-26', 'Revisión de inyectores'),
-(171, 19, '2024-10-11', 'Filtro de aire sucio'),
-(172, 170, '2024-09-10', 'Luces delanteras defectuosas'),
-(173, 145, '2024-02-27', 'Batería en mal estado'),
-(174, 18, '2024-02-01', 'Filtro de aire sucio'),
-(175, 188, '2024-04-21', 'Dirección con holgura'),
-(176, 77, '2024-11-20', 'Batería en mal estado'),
-(177, 65, '2024-08-02', 'Filtro de aire sucio'),
-(178, 129, '2024-06-14', 'Sistema eléctrico revisado'),
-(179, 175, '2024-03-13', 'Sin novedades'),
-(180, 36, '2024-01-17', 'Sistema eléctrico revisado'),
-(181, 68, '2024-04-22', 'Sin novedades'),
-(182, 18, '2024-07-19', 'Filtro de aire sucio'),
-(183, 64, '2024-07-06', 'Sistema de escape con corrosión'),
-(184, 94, '2024-04-18', 'Cambio de aceite realizado'),
-(185, 129, '2024-10-22', 'Aceite bajo'),
-(186, 159, '2024-08-24', 'Ruido en el motor'),
-(187, 12, '2024-03-26', 'Sistema eléctrico revisado'),
-(188, 22, '2024-05-05', 'Revisión de inyectores'),
-(189, 193, '2024-01-08', 'Revisión de inyectores'),
-(190, 174, '2024-12-20', 'Aceite bajo'),
-(191, 11, '2024-10-07', 'Revisión de inyectores'),
-(192, 51, '2024-04-26', 'Luces delanteras defectuosas'),
-(193, 84, '2024-05-20', 'Frenos desgastados'),
-(194, 90, '2024-12-09', 'Filtro de aire sucio'),
-(195, 136, '2024-11-13', 'Luces delanteras defectuosas'),
-(196, 170, '2024-07-31', 'Frenos desgastados'),
-(197, 65, '2024-09-15', 'Dirección con holgura'),
-(198, 138, '2024-06-26', 'Ruido en el motor'),
-(199, 146, '2024-08-23', 'Ruido en el motor'),
-(200, 127, '2024-07-28', 'Revisión de inyectores'),
-(201, 156, '2024-09-06', 'Frenos desgastados'),
-(202, 3, '2024-03-03', 'Sistema de escape con corrosión'),
-(203, 163, '2024-09-14', 'Batería en mal estado'),
-(204, 131, '2024-01-26', 'Batería en mal estado'),
-(205, 122, '2024-08-23', 'Sin novedades'),
-(206, 158, '2024-04-16', 'Frenos desgastados'),
-(207, 154, '2024-02-10', 'Aceite bajo'),
-(208, 190, '2024-05-12', 'Filtro de aire sucio'),
-(209, 67, '2024-12-04', 'Sistema de escape con corrosión'),
-(210, 30, '2024-02-14', 'Batería en mal estado'),
-(211, 153, '2024-12-28', 'Batería en mal estado'),
-(212, 97, '2024-05-02', 'Ruido en el motor'),
-(213, 6, '2024-07-11', 'Filtro de aire sucio'),
-(214, 200, '2024-09-13', 'Revisión de inyectores'),
-(215, 72, '2024-06-27', 'Frenos desgastados'),
-(216, 198, '2024-04-16', 'Aceite bajo'),
-(217, 178, '2024-11-11', 'Aceite bajo'),
-(218, 187, '2024-09-18', 'Luces delanteras defectuosas'),
-(219, 133, '2024-10-04', 'Frenos desgastados'),
-(220, 42, '2024-01-06', 'Radiador con fugas'),
-(221, 183, '2024-09-13', 'Radiador con fugas'),
-(222, 88, '2024-09-26', 'Filtro de aire sucio'),
-(223, 170, '2024-01-22', 'Aceite bajo'),
-(224, 112, '2024-07-22', 'Sistema de escape con corrosión'),
-(225, 112, '2024-12-30', 'Dirección con holgura'),
-(226, 170, '2024-06-07', 'Sin novedades'),
-(227, 21, '2024-07-13', 'Batería en mal estado'),
-(228, 60, '2024-07-07', 'Ruido en el motor'),
-(229, 34, '2024-01-28', 'Ruido en el motor'),
-(230, 87, '2024-07-12', 'Luces delanteras defectuosas'),
-(231, 95, '2024-12-15', 'Sistema de escape con corrosión'),
-(232, 9, '2024-02-11', 'Luces delanteras defectuosas'),
-(233, 146, '2024-02-27', 'Filtro de aire sucio'),
-(234, 54, '2024-10-20', 'Dirección con holgura'),
-(235, 6, '2024-05-26', 'Revisión de inyectores'),
-(236, 132, '2024-06-03', 'Cambio de aceite realizado'),
-(237, 191, '2024-11-04', 'Neumáticos en mal estado'),
-(238, 178, '2024-05-15', 'Cambio de aceite realizado'),
-(239, 170, '2024-01-10', 'Batería en mal estado'),
-(240, 40, '2024-04-04', 'Aceite bajo'),
-(241, 65, '2024-12-14', 'Dirección con holgura'),
-(242, 35, '2024-04-25', 'Sistema de escape con corrosión'),
-(243, 29, '2024-09-05', 'Aceite bajo'),
-(244, 169, '2024-08-11', 'Revisión de inyectores'),
-(245, 180, '2024-02-01', 'Aceite bajo'),
-(246, 130, '2024-04-02', 'Ruido en el motor'),
-(247, 167, '2024-03-29', 'Luces delanteras defectuosas'),
-(248, 49, '2024-01-02', 'Luces delanteras defectuosas'),
-(249, 200, '2024-01-11', 'Ruido en el motor'),
-(250, 115, '2024-08-01', 'Sistema de escape con corrosión'),
-(251, 10, '2024-04-24', 'Neumáticos en mal estado'),
-(252, 21, '2024-09-17', 'Filtro de aire sucio'),
-(253, 139, '2024-05-08', 'Filtro de aire sucio'),
-(254, 170, '2024-08-10', 'Sistema eléctrico revisado'),
-(255, 118, '2024-02-04', 'Revisión del sistema de suspensión'),
-(256, 105, '2024-12-21', 'Batería en mal estado'),
-(257, 183, '2024-12-24', 'Revisión del sistema de suspensión'),
-(258, 72, '2024-02-29', 'Revisión del sistema de suspensión'),
-(259, 156, '2024-12-28', 'Sistema eléctrico revisado'),
-(260, 17, '2024-11-28', 'Revisión del sistema de suspensión'),
-(261, 157, '2024-04-24', 'Aceite bajo'),
-(262, 62, '2024-09-10', 'Neumáticos en mal estado'),
-(263, 112, '2024-11-20', 'Cambio de aceite realizado'),
-(264, 27, '2024-02-23', 'Revisión de inyectores'),
-(265, 42, '2024-06-06', 'Sin novedades'),
-(266, 147, '2024-07-06', 'Revisión del sistema de suspensión'),
-(267, 123, '2024-12-31', 'Sistema de escape con corrosión'),
-(268, 63, '2024-07-22', 'Sistema eléctrico revisado'),
-(269, 194, '2024-08-29', 'Revisión del sistema de suspensión'),
-(270, 107, '2024-09-11', 'Frenos desgastados'),
-(271, 1, '2024-01-18', 'Frenos desgastados'),
-(272, 199, '2024-06-12', 'Batería en mal estado'),
-(273, 191, '2024-11-29', 'Sistema eléctrico revisado'),
-(274, 3, '2024-04-03', 'Filtro de aire sucio'),
-(275, 124, '2024-05-04', 'Dirección con holgura'),
-(276, 190, '2024-04-28', 'Frenos desgastados'),
-(277, 117, '2024-08-04', 'Filtro de aire sucio'),
-(278, 111, '2024-08-21', 'Sistema eléctrico revisado'),
-(279, 162, '2024-11-20', 'Cambio de aceite realizado'),
-(280, 141, '2024-01-28', 'Sin novedades'),
-(281, 198, '2024-07-18', 'Filtro de aire sucio'),
-(282, 154, '2024-10-23', 'Ruido en el motor'),
-(283, 29, '2024-11-20', 'Ruido en el motor'),
-(284, 73, '2024-09-22', 'Batería en mal estado'),
-(285, 197, '2024-11-21', 'Revisión de inyectores'),
-(286, 150, '2024-06-30', 'Sin novedades'),
-(287, 197, '2024-03-24', 'Sistema eléctrico revisado'),
-(288, 171, '2024-01-18', 'Aceite bajo'),
-(289, 160, '2024-10-04', 'Sistema eléctrico revisado'),
-(290, 185, '2024-05-25', 'Sistema de escape con corrosión'),
-(291, 39, '2024-10-25', 'Aceite bajo'),
-(292, 127, '2024-07-22', 'Batería en mal estado'),
-(293, 50, '2024-11-04', 'Cambio de aceite realizado'),
-(294, 55, '2024-08-11', 'Sin novedades'),
-(295, 168, '2024-03-27', 'Batería en mal estado'),
-(296, 109, '2024-09-24', 'Neumáticos en mal estado'),
-(297, 8, '2024-08-15', 'Revisión de inyectores'),
-(298, 109, '2024-06-26', 'Sin novedades'),
-(299, 35, '2024-07-24', 'Sistema de escape con corrosión'),
-(300, 49, '2024-08-03', 'Neumáticos en mal estado');
+(161, 161, '2024-05-02', 'Aceite bajo'),
+(162, 162, '2024-05-14', 'Revisión del sistema de suspensión'),
+(163, 163, '2024-01-17', 'Luces delanteras defectuosas'),
+(164, 164, '2024-01-03', 'Cambio de aceite realizado'),
+(165, 165, '2024-03-22', 'Luces delanteras defectuosas'),
+(166, 166, '2024-10-21', 'Cambio de aceite realizado'),
+(167, 167, '2024-11-16', 'Dirección con holgura'),
+(168, 168, '2024-08-26', 'Aceite bajo'),
+(169, 169, '2024-02-05', 'Sistema eléctrico revisado'),
+(170, 170, '2024-07-26', 'Revisión de inyectores'),
+(171, 171, '2024-10-11', 'Filtro de aire sucio'),
+(172, 172, '2024-09-10', 'Luces delanteras defectuosas'),
+(173, 173, '2024-02-27', 'Batería en mal estado'),
+(174, 174, '2024-02-01', 'Filtro de aire sucio'),
+(175, 175, '2024-04-21', 'Dirección con holgura'),
+(176, 176, '2024-11-20', 'Batería en mal estado'),
+(177, 177, '2024-08-02', 'Filtro de aire sucio'),
+(178, 178, '2024-06-14', 'Sistema eléctrico revisado'),
+(179, 179, '2024-03-13', 'Sin novedades'),
+(180, 180, '2024-01-17', 'Sistema eléctrico revisado'),
+(181, 181, '2024-04-22', 'Sin novedades'),
+(182, 182, '2024-07-19', 'Filtro de aire sucio'),
+(183, 183, '2024-07-06', 'Sistema de escape con corrosión'),
+(184, 184, '2024-04-18', 'Cambio de aceite realizado'),
+(185, 185, '2024-10-22', 'Aceite bajo'),
+(186, 186, '2024-08-24', 'Ruido en el motor'),
+(187, 187, '2024-03-26', 'Sistema eléctrico revisado'),
+(188, 188, '2024-05-05', 'Revisión de inyectores'),
+(189, 189, '2024-01-08', 'Revisión de inyectores'),
+(190, 190, '2024-12-20', 'Aceite bajo'),
+(191, 191, '2024-10-07', 'Revisión de inyectores'),
+(192, 192, '2024-04-26', 'Luces delanteras defectuosas'),
+(193, 193, '2024-05-20', 'Frenos desgastados'),
+(194, 194, '2024-12-09', 'Filtro de aire sucio'),
+(195, 195, '2024-11-13', 'Luces delanteras defectuosas'),
+(196, 196, '2024-07-31', 'Frenos desgastados'),
+(197, 197, '2024-09-15', 'Dirección con holgura'),
+(198, 198, '2024-06-26', 'Ruido en el motor'),
+(199, 199, '2024-08-23', 'Ruido en el motor'),
+(200, 200, '2024-07-28', 'Revisión de inyectores'),
+(201, 201, '2024-09-06', 'Frenos desgastados'),
+(202, 202, '2024-03-03', 'Sistema de escape con corrosión'),
+(203, 203, '2024-09-14', 'Batería en mal estado'),
+(204, 204, '2024-01-26', 'Batería en mal estado'),
+(205, 205, '2024-08-23', 'Sin novedades'),
+(206, 206, '2024-04-16', 'Frenos desgastados'),
+(207, 207, '2024-02-10', 'Aceite bajo'),
+(208, 208, '2024-05-12', 'Filtro de aire sucio'),
+(209, 209, '2024-12-04', 'Sistema de escape con corrosión'),
+(210, 210, '2024-02-14', 'Batería en mal estado'),
+(211, 211, '2024-12-28', 'Batería en mal estado'),
+(212, 212, '2024-05-02', 'Ruido en el motor'),
+(213, 213, '2024-07-11', 'Filtro de aire sucio'),
+(214, 214, '2024-09-13', 'Revisión de inyectores'),
+(215, 215, '2024-06-27', 'Frenos desgastados'),
+(216, 216, '2024-04-16', 'Aceite bajo'),
+(217, 217, '2024-11-11', 'Aceite bajo'),
+(218, 218, '2024-09-18', 'Luces delanteras defectuosas'),
+(219, 219, '2024-10-04', 'Frenos desgastados'),
+(220, 220, '2024-01-06', 'Radiador con fugas'),
+(221, 221, '2024-09-13', 'Radiador con fugas'),
+(222, 222, '2024-09-26', 'Filtro de aire sucio'),
+(223, 223, '2024-01-22', 'Aceite bajo'),
+(224, 224, '2024-07-22', 'Sistema de escape con corrosión'),
+(225, 225, '2024-12-30', 'Dirección con holgura'),
+(226, 226, '2024-06-07', 'Sin novedades'),
+(227, 227, '2024-07-13', 'Batería en mal estado'),
+(228, 228, '2024-07-07', 'Ruido en el motor'),
+(229, 229, '2024-01-28', 'Ruido en el motor'),
+(230, 230, '2024-07-12', 'Luces delanteras defectuosas'),
+(231, 231, '2024-12-15', 'Sistema de escape con corrosión'),
+(232, 232, '2024-02-11', 'Luces delanteras defectuosas'),
+(233, 233, '2024-02-27', 'Filtro de aire sucio'),
+(234, 234, '2024-10-20', 'Dirección con holgura'),
+(235, 235, '2024-05-26', 'Revisión de inyectores'),
+(236, 236, '2024-06-03', 'Cambio de aceite realizado'),
+(237, 237, '2024-11-04', 'Neumáticos en mal estado'),
+(238, 238, '2024-05-15', 'Cambio de aceite realizado'),
+(239, 239, '2024-01-10', 'Batería en mal estado'),
+(240, 240, '2024-04-04', 'Aceite bajo'),
+(241, 241, '2024-12-14', 'Dirección con holgura'),
+(242, 242, '2024-04-25', 'Sistema de escape con corrosión'),
+(243, 243, '2024-09-05', 'Aceite bajo'),
+(244, 244, '2024-08-11', 'Revisión de inyectores'),
+(245, 245, '2024-02-01', 'Aceite bajo'),
+(246, 246, '2024-04-02', 'Ruido en el motor'),
+(247, 247, '2024-03-29', 'Luces delanteras defectuosas'),
+(248, 248, '2024-01-02', 'Luces delanteras defectuosas'),
+(249, 249, '2024-01-11', 'Ruido en el motor'),
+(250, 250, '2024-08-01', 'Sistema de escape con corrosión'),
+(251, 251, '2024-04-24', 'Neumáticos en mal estado'),
+(252, 252, '2024-09-17', 'Filtro de aire sucio'),
+(253, 253, '2024-05-08', 'Filtro de aire sucio'),
+(254, 254, '2024-08-10', 'Sistema eléctrico revisado'),
+(255, 255, '2024-02-04', 'Revisión del sistema de suspensión'),
+(256, 256, '2024-12-21', 'Batería en mal estado'),
+(257, 257, '2024-12-24', 'Revisión del sistema de suspensión'),
+(258, 258, '2024-02-29', 'Revisión del sistema de suspensión'),
+(259, 259, '2024-12-28', 'Sistema eléctrico revisado'),
+(260, 260, '2024-11-28', 'Revisión del sistema de suspensión'),
+(261, 261, '2024-04-24', 'Aceite bajo'),
+(262, 262, '2024-09-10', 'Neumáticos en mal estado'),
+(263, 263, '2024-11-20', 'Cambio de aceite realizado'),
+(264, 264, '2024-02-23', 'Revisión de inyectores'),
+(265, 265, '2024-06-06', 'Sin novedades'),
+(266, 266, '2024-07-06', 'Revisión del sistema de suspensión'),
+(267, 267, '2024-12-31', 'Sistema de escape con corrosión'),
+(268, 268, '2024-07-22', 'Sistema eléctrico revisado'),
+(269, 269, '2024-08-29', 'Revisión del sistema de suspensión'),
+(270, 270, '2024-09-11', 'Frenos desgastados'),
+(271, 271, '2024-01-18', 'Frenos desgastados'),
+(272, 272, '2024-06-12', 'Batería en mal estado'),
+(273, 273, '2024-11-29', 'Sistema eléctrico revisado'),
+(274, 274, '2024-04-03', 'Filtro de aire sucio'),
+(275, 275, '2024-05-04', 'Dirección con holgura'),
+(276, 276, '2024-04-28', 'Frenos desgastados'),
+(277, 277, '2024-08-04', 'Filtro de aire sucio'),
+(278, 278, '2024-08-21', 'Sistema eléctrico revisado'),
+(279, 279, '2024-11-20', 'Cambio de aceite realizado'),
+(280, 280, '2024-01-28', 'Sin novedades'),
+(281, 281, '2024-07-18', 'Filtro de aire sucio'),
+(282, 282, '2024-10-23', 'Ruido en el motor'),
+(283, 283, '2024-11-20', 'Ruido en el motor'),
+(284, 284, '2024-09-22', 'Batería en mal estado'),
+(285, 285, '2024-11-21', 'Revisión de inyectores'),
+(286, 286, '2024-06-30', 'Sin novedades'),
+(287, 287, '2024-03-24', 'Sistema eléctrico revisado'),
+(288, 288, '2024-01-18', 'Aceite bajo'),
+(289, 289, '2024-10-04', 'Sistema eléctrico revisado'),
+(290, 290, '2024-05-25', 'Sistema de escape con corrosión'),
+(291, 291, '2024-10-25', 'Aceite bajo'),
+(292, 292, '2024-07-22', 'Batería en mal estado'),
+(293, 293, '2024-11-04', 'Cambio de aceite realizado'),
+(294, 294, '2024-08-11', 'Sin novedades'),
+(295, 295, '2024-03-27', 'Batería en mal estado'),
+(296, 296, '2024-09-24', 'Neumáticos en mal estado'),
+(297, 297, '2024-08-15', 'Revisión de inyectores'),
+(298, 298, '2024-06-26', 'Sin novedades'),
+(299, 299, '2024-07-24', 'Sistema de escape con corrosión'),
+(300, 300, '2024-08-03', 'Neumáticos en mal estado');
 SET IDENTITY_INSERT Inspections OFF;
 
 -- Insertar reparaciones de buses
 SET IDENTITY_INSERT Repairs ON;
 INSERT INTO Repairs (id, inspection_id, type, time_spent, comment) VALUES
-(1, 20, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(2, 30, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(3, 200, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(4, 100, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(5, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(6, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(7, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(8, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(9, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(10, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(11, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(12, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(13, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(14, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(15, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(16, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(17, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(18, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(19, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(20, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(21, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(22, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(23, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(24, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(25, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(26, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(27, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(28, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(29, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(30, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(31, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(32, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(33, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(34, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(35, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(36, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(37, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(38, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(39, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(40, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(41, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(42, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(43, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(44, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(45, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(46, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(47, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(48, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(49, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(50, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(51, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(52, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(53, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(54, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(55, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(56, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(57, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(58, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(59, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(60, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(61, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(62, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(63, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(64, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(65, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(66, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(67, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(68, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(69, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(70, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(71, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(72, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(73, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(74, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(75, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(76, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(77, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(78, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(79, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(80, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(81, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(82, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(83, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(84, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(85, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(86, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(87, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(88, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(89, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(90, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(91, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(92, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(93, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(94, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(95, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(96, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(97, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(98, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(99, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(100, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(101, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(102, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(103, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(104, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(105, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(106, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(107, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(108, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(109, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(110, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(111, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(112, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(113, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(114, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(115, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(116, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(117, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(118, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(119, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(120, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(121, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(122, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(123, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(124, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(125, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(126, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(127, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(128, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(129, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(130, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(131, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(132, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(133, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(134, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(135, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(136, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(137, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(138, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(139, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(140, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(141, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(142, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(143, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(144, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(145, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(146, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(147, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(148, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(149, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(150, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(151, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(152, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(153, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(154, 10, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(155, 1, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(156, 10, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(157, 150, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(158, 104, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(159, 18, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(160, 18, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(161, 20, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(162, 30, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(163, 200, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(164, 100, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(165, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(166, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(167, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(168, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(169, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(170, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(171, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(172, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(173, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(174, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(175, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(176, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(177, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(178, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(179, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(180, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(181, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(182, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(183, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(184, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(185, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(186, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(187, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(188, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(189, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(190, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(191, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(192, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(193, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(194, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(195, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(196, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(197, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(198, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(199, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(200, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(201, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(202, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(203, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(204, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(205, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(206, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(207, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(208, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(209, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(210, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(211, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(212, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(213, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(214, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(215, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(216, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(217, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(218, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(219, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(220, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(221, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(222, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(223, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(224, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(225, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(226, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(227, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(228, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(229, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(230, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(231, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(232, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(233, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(234, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(235, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(236, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(237, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(238, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(239, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(240, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(241, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(242, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(243, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(244, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(245, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(246, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(247, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(248, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(249, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(1, 1, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(2, 2, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(3, 3, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(4, 4, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(5, 5, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(6, 6, 'Revisión de batería', 45, 'Batería descargada'),
+(7, 7, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(8, 8, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(9, 9, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(10, 10, 'Remplazo de correas', 120, 'Correas desgastadas'),
+(11, 11, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(12, 12, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(13, 13, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(14, 14, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(15, 15, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(16, 16, 'Revisión de batería', 45, 'Batería descargada'),
+(17, 17, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(18, 18, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(19, 19, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(20, 20, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(21, 21, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(22, 22, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(23, 23, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(24, 24, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(25, 25, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(26, 26, 'Revisión de batería', 45, 'Batería descargada'),
+(27, 27, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(28, 28, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(29, 29, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(30, 30, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(31, 31, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(32, 32, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(33, 33, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(34, 34, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(35, 35, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(36, 36, 'Revisión de batería', 45, 'Batería descargada'),
+(37, 37, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(38, 38, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(39, 39, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(40, 40, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(41, 41, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(42, 42, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(43, 43, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(44, 44, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(45, 45, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(46, 46, 'Revisión de batería', 45, 'Batería descargada'),
+(47, 47, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(48, 48, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(49, 49, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(50, 50, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(51, 51, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(52, 52, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(53, 53, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(54, 54, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(55, 55, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(56, 56, 'Revisión de batería', 45, 'Batería descargada'),
+(57, 57, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(58, 58, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(59, 59, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(60, 60, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(61, 61, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(62, 62, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(63, 63, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(64, 64, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(65, 65, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(66, 66, 'Revisión de batería', 45, 'Batería descargada'),
+(67, 67, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(68, 68, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(69, 69, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(70, 70, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(71, 71, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(72, 72, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(73, 73, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(74, 74, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(75, 75, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(76, 76, 'Revisión de batería', 45, 'Batería descargada'),
+(77, 77, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(78, 78, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(79, 79, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(80, 80, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(81, 81, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(82, 82, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(83, 83, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(84, 84, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(85, 85, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(86, 86, 'Revisión de batería', 45, 'Batería descargada'),
+(87, 87, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(88, 88, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(89, 89, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(90, 90, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(91, 91, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(92, 92, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(93, 93, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(94, 94, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(95, 95, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(96, 96, 'Revisión de batería', 45, 'Batería descargada'),
+(97, 97, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(98, 98, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(99, 99, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(100, 100, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(101, 181, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(102, 102, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(103, 103, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(104, 104, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(105, 105, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(106, 106, 'Revisión de batería', 45, 'Batería descargada'),
+(107, 107, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(108, 108, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(109, 109, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(110, 110, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(111, 111, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(112, 112, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(113, 113, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(114, 114, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(115, 115, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(116, 116, 'Revisión de batería', 45, 'Batería descargada'),
+(117, 117, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(118, 118, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(119, 119, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(120, 120, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(121, 121, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(122, 122, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(123, 123, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(124, 124, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(125, 125, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(126, 126, 'Revisión de batería', 45, 'Batería descargada'),
+(127, 127, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(128, 128, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(129, 129, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(130, 130, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(131, 131, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(132, 132, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(133, 133, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(134, 134, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(135, 135, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(136, 136, 'Revisión de batería', 45, 'Batería descargada'),
+(137, 137, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(138, 138, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(139, 139, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(140, 140, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(141, 141, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(142, 142, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(143, 143, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(144, 144, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(145, 145, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(146, 146, 'Revisión de batería', 45, 'Batería descargada'),
+(147, 147, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(148, 148, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(149, 149, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(150, 150, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(151, 151, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(152, 152, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(153, 153, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(154, 154, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(155, 155, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(156, 156, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(157, 157, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(158, 158, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(159, 159, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(160, 160, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(161, 161, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(162, 162, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(163, 163, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(164, 164, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(165, 165, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(166, 166, 'Revisión de batería', 45, 'Batería descargada'),
+(167, 167, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(168, 168, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(169, 169, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(170, 170, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(171, 171, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(172, 172, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(173, 173, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(174, 174, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(175, 175, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(176, 176, 'Revisión de batería', 45, 'Batería descargada'),
+(177, 177, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(178, 178, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(179, 179, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(180, 180, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(181, 181, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(182, 182, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(183, 183, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(184, 184, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(185, 185, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(186, 186, 'Revisión de batería', 45, 'Batería descargada'),
+(187, 187, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(188, 188, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(189, 189, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(190, 190, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(191, 191, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(192, 192, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(193, 193, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(194, 194, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(195, 195, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(196, 196, 'Revisión de batería', 45, 'Batería descargada'),
+(197, 197, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(198, 198, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(199, 199, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(200, 200, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(201, 201, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(202, 202, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(203, 203, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(204, 204, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(205, 205, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(206, 206, 'Revisión de batería', 45, 'Batería descargada'),
+(207, 207, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(208, 208, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(209, 209, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(210, 210, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(211, 211, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(212, 212, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(213, 213, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(214, 214, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(215, 215, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(216, 216, 'Revisión de batería', 45, 'Batería descargada'),
+(217, 217, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(218, 218, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(219, 219, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(220, 220, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(221, 221, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(222, 222, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(223, 223, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(224, 224, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(225, 225, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(226, 226, 'Revisión de batería', 45, 'Batería descargada'),
+(227, 227, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(228, 228, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(229, 229, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(230, 230, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(231, 231, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(232, 232, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(233, 233, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(234, 234, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(235, 235, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(236, 236, 'Revisión de batería', 45, 'Batería descargada'),
+(237, 237, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(238, 238, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(239, 239, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(240, 240, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(241, 241, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(242, 242, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(243, 243, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(244, 244, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(245, 245, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(246, 246, 'Revisión de batería', 45, 'Batería descargada'),
+(247, 247, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(248, 248, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(249, 249, 'Revisión de frenos', 60, 'Frenos defectuosos'),
 (250, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(251, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(252, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(253, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(254, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(255, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(256, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(257, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(258, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(259, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(260, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(261, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(262, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(263, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(264, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(265, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(266, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(267, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(268, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(269, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(270, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(271, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(272, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(273, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(274, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(275, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(276, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(277, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(278, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(279, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(280, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(281, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(282, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(283, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(284, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(285, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(286, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(287, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(288, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(289, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(290, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(291, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(292, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(293, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(294, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(295, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(296, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(297, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(298, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(299, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(300, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(301, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(302, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(303, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(304, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(305, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(306, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(307, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(308, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(309, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(310, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(311, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(312, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(313, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(314, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(315, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(316, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(317, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(318, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(319, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(320, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(321, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(322, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(323, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(324, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(325, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(326, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(327, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(328, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(329, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(330, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(331, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(332, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(333, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(334, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(335, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(336, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(337, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(338, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(339, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(340, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(341, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(342, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(343, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(344, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(345, 20, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
-(346, 15, 'Revisión de batería', 45, 'Batería descargada'),
-(347, 280, 'Reemplazo de filtros', 30, 'Filtros sucios'),
-(348, 120, 'Ajuste de dirección', 90, 'Dirección desalineada'),
-(349, 50, 'Revisión de frenos', 60, 'Frenos defectuosos'),
-(350, 250, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(351, 180, 'Cambio de frenos', 90, 'Frenos desgastados'),
-(352, 220, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
-(353, 100, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
-(354, 80, 'Ajuste de motor', 75, 'Motor con vibraciones'),
-(355, 15, 'Revisión de batería', 45, 'Batería descargada');
+(251, 251, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(252, 252, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(253, 253, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(254, 254, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(255, 255, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(256, 256, 'Revisión de batería', 45, 'Batería descargada'),
+(257, 257, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(258, 258, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(259, 259, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(260, 260, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(261, 261, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(262, 262, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(263, 263, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(264, 264, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(265, 265, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(266, 266, 'Revisión de batería', 45, 'Batería descargada'),
+(267, 267, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(268, 268, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(269, 269, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(270, 270, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(271, 271, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(272, 272, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(273, 273, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(274, 274, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(275, 275, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(276, 276, 'Revisión de batería', 45, 'Batería descargada'),
+(277, 277, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(278, 278, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(279, 279, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(280, 280, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(281, 281, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(282, 282, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(283, 283, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(284, 284, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(285, 285, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(286, 286, 'Revisión de batería', 45, 'Batería descargada'),
+(287, 287, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(288, 288, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(289, 289, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(290, 290, 'Reemplazo de correas', 120, 'Correas desgastadas'),
+(291, 291, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(292, 292, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
+(293, 293, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
+(294, 294, 'Ajuste de motor', 75, 'Motor con vibraciones'),
+(295, 295, 'Ajuste de suspensión', 110, 'Sistema de suspensión necesita ajuste'),
+(296, 296, 'Revisión de batería', 45, 'Batería descargada'),
+(297, 297, 'Reemplazo de filtros', 30, 'Filtros sucios'),
+(298, 298, 'Ajuste de dirección', 90, 'Dirección desalineada'),
+(299, 299, 'Revisión de frenos', 60, 'Frenos defectuosos'),
+(300, 300, 'Reemplazo de correas', 120, 'Correas desgastadas');
 SET IDENTITY_INSERT Repairs OFF;
