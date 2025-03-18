@@ -5873,7 +5873,7 @@ INSERT INTO Repairs (id, inspection_id, type, time_spent, comment) VALUES
 (98, 98, 'Ajuste de dirección', 90, 'Dirección desalineada'),
 (99, 99, 'Revisión de frenos', 60, 'Frenos defectuosos'),
 (100, 100, 'Reemplazo de correas', 120, 'Correas desgastadas'),
-(101, 181, 'Cambio de frenos', 90, 'Frenos desgastados'),
+(101, 101, 'Cambio de frenos', 90, 'Frenos desgastados'),
 (102, 102, 'Cambio de neumáticos', 120, 'Neumáticos en mal estado'),
 (103, 103, 'Reparación de luces', 60, 'Luces traseras defectuosas'),
 (104, 104, 'Ajuste de motor', 75, 'Motor con vibraciones'),
