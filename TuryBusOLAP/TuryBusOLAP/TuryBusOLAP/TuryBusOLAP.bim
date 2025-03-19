@@ -6,7 +6,18 @@
     "dataSources": [
       {
         "name": "TuryBusDW",
-        "connectionString": "Provider=SQLOLEDB;Data Source=DESKTOP-9TNEIDI;Initial Catalog=TuryBusDW;User ID=sa;Persist Security Info=false",
+        "connectionString": "Provider=SQLOLEDB;Data Source=JARAJORECHI\\MSSQLSERVER22DEV;User ID=sa;Persist Security Info=false;Initial Catalog=TuryBusDW",
+        "impersonationMode": "impersonateServiceAccount",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      },
+      {
+        "name": "SqlServer JARAJORECHIMSSQLSERVER22DEV TuryBusDW",
+        "connectionString": "Provider=SQLOLEDB;Data Source=JARAJORECHI\\MSSQLSERVER22DEV;Persist Security Info=false;User ID=sa;Initial Catalog=TuryBusDW",
         "impersonationMode": "impersonateServiceAccount",
         "annotations": [
           {
@@ -121,54 +132,6 @@
               "query": " \t\t\t\tSELECT [dbo].[DimBus].*   FROM [dbo].[DimBus] ",
               "dataSource": "TuryBusDW"
             }
-          }
-        ],
-        "measures": [
-          {
-            "name": "Total Duracion Hrs Ticket",
-            "expression": " SUM(Services[DuracionHrs_Ticket])"
-          },
-          {
-            "name": "Total Cant Ticket",
-            "expression": " SUM(Services[cantTickets])"
-          },
-          {
-            "name": "Total Ingresos Ventas",
-            "expression": " SUM(Services[ImporteTotal])"
-          },
-          {
-            "name": "Total_KM",
-            "expression": [
-              " ",
-              "SUMX(",
-              "    FILTER(",
-              "        Services, ",
-              "        NOT(ISBLANK(Services[BusSK])) && NOT(ISBLANK(Services[RouteSK]))",
-              "    ),",
-              "    RELATED(Route[distance])",
-              ")"
-            ]
-          },
-          {
-            "name": "Servicios en Días Festivos (%)",
-            "expression": [
-              "  ",
-              "DIVIDE(",
-              "    CALCULATE(COUNTROWS(Services), Services[IsHoliday] = TRUE), ",
-              "    COUNTROWS(Services), ",
-              "    0",
-              ") * 100"
-            ]
-          },
-          {
-            "name": "Avg_Passengers",
-            "expression": [
-              " ",
-              "VAR TotalServices = COUNTROWS(Services)",
-              "VAR DistinctServices = COUNTROWS(SUMMARIZE(Services, Services[service_id]))",
-              "RETURN",
-              "    DIVIDE(TotalServices, DistinctServices)"
-            ]
           }
         ],
         "annotations": [
@@ -595,6 +558,584 @@
             }
           }
         ],
+        "measures": [
+          {
+            "name": "Total Duracion Hrs Ticket",
+            "expression": " SUM(Services[DuracionHrs_Ticket])"
+          },
+          {
+            "name": "Total Cant Ticket",
+            "expression": " SUM(Services[cantTickets])"
+          },
+          {
+            "name": "Total Ingresos Ventas",
+            "expression": " SUM(Services[ImporteTotal])"
+          },
+          {
+            "name": "Servicios en Días Festivos (%)",
+            "expression": [
+              "  ",
+              "DIVIDE(",
+              "    CALCULATE(COUNTROWS(Services), Services[IsHoliday] = TRUE), ",
+              "    COUNTROWS(Services), ",
+              "    0",
+              ") * 100"
+            ]
+          },
+          {
+            "name": "Avg_Passengers",
+            "expression": [
+              " ",
+              "VAR TotalServices = COUNTROWS(Services)",
+              "VAR DistinctServices = COUNTROWS(SUMMARIZE(Services, Services[service_id]))",
+              "RETURN",
+              "    DIVIDE(TotalServices, DistinctServices)"
+            ]
+          },
+          {
+            "name": "Total_KM",
+            "expression": [
+              " ",
+              "SUMX(",
+              "    FILTER(",
+              "        Services, ",
+              "        NOT(ISBLANK(Services[BusSK])) && NOT(ISBLANK(Services[RouteSK]))",
+              "    ),",
+              "    RELATED(Route[distance])",
+              ")"
+            ]
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[FactServices].*   FROM [dbo].[FactServices] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "FactServices"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimBus",
+        "columns": [
+          {
+            "name": "BusSK",
+            "dataType": "int64",
+            "sourceColumn": "BusSK",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "BusID",
+            "dataType": "int64",
+            "sourceColumn": "BusID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "LicensePlate",
+            "dataType": "string",
+            "sourceColumn": "LicensePlate",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Model",
+            "dataType": "string",
+            "sourceColumn": "Model",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Manufacturer",
+            "dataType": "string",
+            "sourceColumn": "Manufacturer",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "SeatCount",
+            "dataType": "int64",
+            "sourceColumn": "SeatCount",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DriverDni",
+            "dataType": "string",
+            "sourceColumn": "DriverDni",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DriverName",
+            "dataType": "string",
+            "sourceColumn": "DriverName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DriverPhone",
+            "dataType": "string",
+            "sourceColumn": "DriverPhone",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DriverAddress",
+            "dataType": "string",
+            "sourceColumn": "DriverAddress",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "InspectionDate",
+            "dataType": "string",
+            "sourceColumn": "InspectionDate",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "InspectionDiagnosis",
+            "dataType": "string",
+            "sourceColumn": "InspectionDiagnosis",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "RepairType",
+            "dataType": "string",
+            "sourceColumn": "RepairType",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "RepairTimeSpent",
+            "dataType": "int64",
+            "sourceColumn": "RepairTimeSpent",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "RepairComment",
+            "dataType": "string",
+            "sourceColumn": "RepairComment",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimBus",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DimBus].*   FROM [dbo].[DimBus] ",
+              "dataSource": "SqlServer JARAJORECHIMSSQLSERVER22DEV TuryBusDW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DimBus].*   FROM [dbo].[DimBus] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimBus"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimDate",
+        "columns": [
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "FullDate",
+            "dataType": "string",
+            "sourceColumn": "FullDate",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DayNumberOfWeek",
+            "dataType": "int64",
+            "sourceColumn": "DayNumberOfWeek",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "DayNameOfWeek",
+            "dataType": "string",
+            "sourceColumn": "DayNameOfWeek",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "DayNumberOfMonth",
+            "dataType": "int64",
+            "sourceColumn": "DayNumberOfMonth",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "DayNumberOfYear",
+            "dataType": "int64",
+            "sourceColumn": "DayNumberOfYear",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "WeekNumberOfYear",
+            "dataType": "int64",
+            "sourceColumn": "WeekNumberOfYear",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "MonthName",
+            "dataType": "string",
+            "sourceColumn": "MonthName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "MonthNumberOfYear",
+            "dataType": "int64",
+            "sourceColumn": "MonthNumberOfYear",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "CalendarQuarter",
+            "dataType": "int64",
+            "sourceColumn": "CalendarQuarter",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "CalendarYear",
+            "dataType": "int64",
+            "sourceColumn": "CalendarYear",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "CalendarSemester",
+            "dataType": "int64",
+            "sourceColumn": "CalendarSemester",
+            "sourceProviderType": "UnsignedTinyInt"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimDate",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DimDate].*   FROM [dbo].[DimDate] ",
+              "dataSource": "SqlServer JARAJORECHIMSSQLSERVER22DEV TuryBusDW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DimDate].*   FROM [dbo].[DimDate] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimDate"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimPassenger",
+        "columns": [
+          {
+            "name": "PassengerSK",
+            "dataType": "int64",
+            "sourceColumn": "PassengerSK",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "PassengerID",
+            "dataType": "int64",
+            "sourceColumn": "PassengerID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Dni",
+            "dataType": "string",
+            "sourceColumn": "Dni",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "sourceColumn": "Name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Phone",
+            "dataType": "string",
+            "sourceColumn": "Phone",
+            "sourceProviderType": "WChar"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimPassenger",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DimPassenger].*   FROM [dbo].[DimPassenger] ",
+              "dataSource": "SqlServer JARAJORECHIMSSQLSERVER22DEV TuryBusDW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DimPassenger].*   FROM [dbo].[DimPassenger] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimPassenger"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimRoute",
+        "columns": [
+          {
+            "name": "RouteSK",
+            "dataType": "int64",
+            "sourceColumn": "RouteSK",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "RouteID",
+            "dataType": "int64",
+            "sourceColumn": "RouteID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "sourceColumn": "Name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Description",
+            "dataType": "string",
+            "sourceColumn": "Description",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Distance",
+            "dataType": "double",
+            "sourceColumn": "Distance",
+            "sourceProviderType": "Numeric"
+          },
+          {
+            "name": "Price",
+            "dataType": "double",
+            "sourceColumn": "Price",
+            "sourceProviderType": "Numeric"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimRoute",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DimRoute].*   FROM [dbo].[DimRoute] ",
+              "dataSource": "SqlServer JARAJORECHIMSSQLSERVER22DEV TuryBusDW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DimRoute].*   FROM [dbo].[DimRoute] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimRoute"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "DimStop",
+        "columns": [
+          {
+            "name": "StopSK",
+            "dataType": "int64",
+            "sourceColumn": "StopSK",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "StopID",
+            "dataType": "int64",
+            "sourceColumn": "StopID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "PlaceName",
+            "dataType": "string",
+            "sourceColumn": "PlaceName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ActivityDescription",
+            "dataType": "string",
+            "sourceColumn": "ActivityDescription",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ArrivalTime",
+            "dataType": "dateTime",
+            "sourceColumn": "ArrivalTime",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "StopDuration",
+            "dataType": "int64",
+            "sourceColumn": "StopDuration",
+            "sourceProviderType": "Integer"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "DimStop",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[DimStop].*   FROM [dbo].[DimStop] ",
+              "dataSource": "SqlServer JARAJORECHIMSSQLSERVER22DEV TuryBusDW"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " \t\t\t\tSELECT [dbo].[DimStop].*   FROM [dbo].[DimStop] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "DimStop"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "dbo"
+          }
+        ]
+      },
+      {
+        "name": "FactServices",
+        "columns": [
+          {
+            "name": "ServicioSK",
+            "dataType": "int64",
+            "sourceColumn": "ServicioSK",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "service_id",
+            "dataType": "int64",
+            "sourceColumn": "service_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ticket_id",
+            "dataType": "int64",
+            "sourceColumn": "ticket_id",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "StopSK",
+            "dataType": "int64",
+            "sourceColumn": "StopSK",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "PassengerSK",
+            "dataType": "int64",
+            "sourceColumn": "PassengerSK",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "RouteSK",
+            "dataType": "int64",
+            "sourceColumn": "RouteSK",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "BusSK",
+            "dataType": "int64",
+            "sourceColumn": "BusSK",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "sourceColumn": "DateKey",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DepartureTime",
+            "dataType": "string",
+            "sourceColumn": "DepartureTime",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ArrivalTime",
+            "dataType": "string",
+            "sourceColumn": "ArrivalTime",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "IsHoliday",
+            "dataType": "boolean",
+            "sourceColumn": "IsHoliday",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "DuracionHrs_Ticket",
+            "dataType": "int64",
+            "sourceColumn": "DuracionHrs_Ticket",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "cantTickets",
+            "dataType": "int64",
+            "sourceColumn": "cantTickets",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "ImporteTotal",
+            "dataType": "double",
+            "sourceColumn": "ImporteTotal",
+            "sourceProviderType": "Numeric"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "FactServices",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " \t\t\t\tSELECT [dbo].[FactServices].*   FROM [dbo].[FactServices] ",
+              "dataSource": "SqlServer JARAJORECHIMSSQLSERVER22DEV TuryBusDW"
+            }
+          }
+        ],
         "annotations": [
           {
             "name": "_TM_ExtProp_QueryDefinition",
@@ -645,6 +1186,41 @@
         "fromTable": "Services",
         "fromColumn": "StopSK",
         "toTable": "Stop",
+        "toColumn": "StopSK"
+      },
+      {
+        "name": "20ade3a3-2028-48dc-bfce-89ac9f546f09",
+        "fromTable": "FactServices",
+        "fromColumn": "BusSK",
+        "toTable": "DimBus",
+        "toColumn": "BusSK"
+      },
+      {
+        "name": "11dd064e-706f-421f-866c-a8a50e7e90f0",
+        "fromTable": "FactServices",
+        "fromColumn": "DateKey",
+        "toTable": "DimDate",
+        "toColumn": "DateKey"
+      },
+      {
+        "name": "47e445e8-81d2-413b-92f3-d0a41ed7fd62",
+        "fromTable": "FactServices",
+        "fromColumn": "PassengerSK",
+        "toTable": "DimPassenger",
+        "toColumn": "PassengerSK"
+      },
+      {
+        "name": "7043ef30-fde5-47a9-b9f0-5ae2371e8b28",
+        "fromTable": "FactServices",
+        "fromColumn": "RouteSK",
+        "toTable": "DimRoute",
+        "toColumn": "RouteSK"
+      },
+      {
+        "name": "491faca5-c6f6-4c04-bf1a-8405ca6f46e6",
+        "fromTable": "FactServices",
+        "fromColumn": "StopSK",
+        "toTable": "DimStop",
         "toColumn": "StopSK"
       }
     ],
