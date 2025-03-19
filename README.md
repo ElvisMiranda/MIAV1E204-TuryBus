@@ -1,6 +1,6 @@
 # MIAV1E204-TuryBus
-1.2 Tarea: Modelo Entidad-Relacion
-## Grupo: Deep BI
+
+## 📌 Grupo: Deep BI
 1. Yesika Luna Robles
 2. Karem Huacota Saavedra
 3. Karen Torrico Vargas
@@ -8,12 +8,12 @@
 5. Ivan Mamani Condori
 
 ---
-# OLTP: Modelo Entidad-Relación
+## 📌 OLTP: Modelo Entidad-Relación
 
 ![alt text](<TuryBusOLTP/TuryBusOLTP-Modelo E-R.png>)
 
 
-## Tablas:
+### Tablas:
 
 - **Routes**: Define las rutas turísticas.
 - **DailyServices**: Representa los servicios diarios programados.
@@ -26,7 +26,7 @@
 - **Inspections**: Registro de mantenimiento de los autobuses.
 - **Repairs**: Detalles de reparaciones en inspecciones.
 
-## Problema:
+### Problema:
 Con el fin de mejorar la calidad del servicio, la compañía desea poder conocer en cada momento la media de viajeros de cada ruta y de cada servicio diario, así como los km. diarios realizados por cada autobús y cada conductor.
 Además, para premiar a los mejores usuarios, también desea conocer el total de horas de viaje realizados por cada usuario.
 
@@ -62,12 +62,12 @@ JOIN DailyServices ds ON t.service_id = ds.id
 GROUP BY t.passenger_id;
 ```
 ---
-# Data Warehouse: Modelo Estrella
+## 📌 Data Warehouse: Modelo Estrella
 
 ![WhatsApp-Image-2025-03-10-at-10 22 19-PM-_1_](https://github.com/user-attachments/assets/56a24da3-c525-4926-ad1b-2c609e55db6b)
 
 
-## Tablas de Dimensión (Dim Tables)
+### Tablas de Dimensión (Dim Tables)
 
 Estas tablas almacenan información descriptiva:
 
@@ -77,9 +77,9 @@ Estas tablas almacenan información descriptiva:
 - **DimPassenger** → Clientes que compran boletos.
 - **DimStop** → Datos de los lugares de parada.
 
-## Tablas de Hechos (Fact Tables)
+### Tabla de Hechos (Fact Table)
 
-Estas tablas registran eventos medibles:
+Esta tabla registra eventos medibles:
 
 - **FactServices** → Registro de cada servicio de transporte realizado.
 
@@ -87,3 +87,20 @@ Este modelo está diseñado para:
 - Optimizar consultas analíticas sobre viajes de Turismo.
 - Mejorar la trazabilidad de viajes, paradas y reparaciones.
 - Facilitar reportes de rendimiento de rutas, buses y conductores.
+
+---
+## 📌 Instalación y Configuración
+
+Antes de proceder con la configuración y despliegue del proyecto, asegúrese de cumplir con los siguientes requisitos:
+1. Tener **SQL Server** instalado y funcionando.
+2. Tener **Visual Studio 2022** instalado.
+3. Clonar el repositorio:
+   ```sh
+   git clone https://github.com/ElvisMiranda/MIAV1E204-TuryBus.git
+   ```
+### 📂 Guías por Proyecto
+- [📘 TuryBusOLTP](TuryBusOLTP.md)
+- [📘 TuryBusDW](TuryBusDW.md)
+- [📘 TuryBusETL](TuryBusETL.md)
+- [📘 TuryBusRpt](TuryBusRpt.md)
+- [📘 TuryBusOLAP](TuryBusOLAP.md)
