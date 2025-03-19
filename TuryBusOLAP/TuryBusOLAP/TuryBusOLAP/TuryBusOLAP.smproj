@@ -24,11 +24,11 @@
     <DeploymentOptionQueryImpersonation>Default</DeploymentOptionQueryImpersonation>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == '' ">
-    <DeploymentServerName>DESKTOP-9TNEIDI</DeploymentServerName>
+    <DeploymentServerName>localhost</DeploymentServerName>
     <DeploymentServerEdition>Developer</DeploymentServerEdition>
     <DeploymentServerVersion>Unknown</DeploymentServerVersion>
     <DeploymentServerDatabase>TuryBusOLAP</DeploymentServerDatabase>
-    <DeploymentServerCubeName>Modelo</DeploymentServerCubeName>
+    <DeploymentServerCubeName>Model</DeploymentServerCubeName>
     <DeploymentOptionProcessing>Default</DeploymentOptionProcessing>
     <DeploymentOptionTransactionalDeployment>False</DeploymentOptionTransactionalDeployment>
     <DeploymentOptionADALCache>Default</DeploymentOptionADALCache>
