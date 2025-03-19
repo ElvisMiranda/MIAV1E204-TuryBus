@@ -11,36 +11,10 @@
   DTS:LocaleID="2058"
   DTS:ObjectName="Passenger"
   DTS:PackageType="5"
-  DTS:VersionBuild="60"
-  DTS:VersionGUID="{4B6EFDC6-AE33-422D-911F-6838ACCF5B1A}">
+  DTS:VersionBuild="65"
+  DTS:VersionGUID="{692A0E45-5D04-4C74-8765-3E7126A2E47A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
-  <DTS:ConnectionManagers>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Source OLTP]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{89096352-07AC-4B98-988B-7CE3CE6265B0}"
-      DTS:ObjectName="Source OLTP">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=TuryBusOLTP;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Passenger-{89096352-07AC-4B98-988B-7CE3CE6265B0}localhost.TuryBusOLTP;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[Target DW]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{EDDA877A-0733-43C0-84EB-22CF8C30462D}"
-      DTS:ObjectName="Target DW">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectRetryCount="1"
-          DTS:ConnectRetryInterval="5"
-          DTS:ConnectionString="Data Source=localhost;Initial Catalog=TuryBusDW;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Application Name=SSIS-Passenger-{EDDA877A-0733-43C0-84EB-22CF8C30462D}localhost.TuryBusDW;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-  </DTS:ConnectionManagers>
   <DTS:Variables>
     <DTS:Variable
       DTS:CreationName=""
@@ -75,7 +49,7 @@
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{EDDA877A-0733-43C0-84EB-22CF8C30462D}"
+          SQLTask:Connection="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
           SQLTask:SqlStatementSource="truncate table [staging].[Passenger]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -152,8 +126,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Load Passenger.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Target DW]"
-                  connectionManagerRefId="Package.ConnectionManagers[Target DW]"
+                  connectionManagerID="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Target DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -305,8 +279,8 @@
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Load Staging.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Target DW]"
-                  connectionManagerRefId="Package.ConnectionManagers[Target DW]"
+                  connectionManagerID="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Target DW]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -409,14 +383,14 @@
                   description="Specifies the SQL statement that generates the lookup table."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[DimPassenger]</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [staging].[Passenger]</property>
                 <property
                   dataType="System.String"
                   description="Specifies a SQL statement that uses parameters to generate the lookup table."
                   expressionType="Notify"
                   name="SqlCommandParam"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[DimPassenger]) [refTable]
-where [refTable].[PassengerID] = ?</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [staging].[Passenger]) [refTable]
+where [refTable].[PassengerSK] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the type of connection used to access the reference dataset."
@@ -447,7 +421,7 @@ where [refTable].[PassengerID] = ?</property>
                 <property
                   dataType="System.String"
                   description="Indicates whether to reference metadata in an XML format."
-                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PassengerSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="PassengerID" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Dni" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Phone" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="PassengerSK" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Dni" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Name" dataType="DT_WSTR" length="100" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Phone" dataType="DT_WSTR" length="20" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
                 <property
                   containsID="true"
                   dataType="System.String"
@@ -465,8 +439,8 @@ where [refTable].[PassengerID] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\Lookup.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Target DW]"
-                  connectionManagerRefId="Package.ConnectionManagers[Target DW]"
+                  connectionManagerID="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Target DW]"
                   description="Connection manager used to access lookup data."
                   name="OleDbConnection" />
               </connections>
@@ -484,7 +458,7 @@ where [refTable].[PassengerID] = ?</property>
                         <property
                           dataType="System.String"
                           description="Specifies the column in the reference table that a column joins."
-                          name="JoinToReferenceColumn">PassengerID</property>
+                          name="JoinToReferenceColumn">PassengerSK</property>
                         <property
                           dataType="System.Null"
                           description="Specifies the column in the reference table from which a column is copied."
@@ -568,7 +542,7 @@ where [refTable].[PassengerID] = ?</property>
                 <property
                   dataType="System.String"
                   description="Specifies the name of the database object used to open a rowset."
-                  name="OpenRowset">[dbo].[Busses]</property>
+                  name="OpenRowset">[dbo].[Passengers]</property>
                 <property
                   dataType="System.String"
                   description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -594,7 +568,7 @@ where [refTable].[PassengerID] = ?</property>
                   dataType="System.Int32"
                   description="Specifies the mode used to access the database."
                   name="AccessMode"
-                  typeConverter="AccessMode">2</property>
+                  typeConverter="AccessMode">0</property>
                 <property
                   dataType="System.String"
                   description="The mappings between the parameters in the SQL command and variables."
@@ -603,8 +577,8 @@ where [refTable].[PassengerID] = ?</property>
               <connections>
                 <connection
                   refId="Package\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
-                  connectionManagerID="Package.ConnectionManagers[Source OLTP]"
-                  connectionManagerRefId="Package.ConnectionManagers[Source OLTP]"
+                  connectionManagerID="{A348B0EF-F278-4990-A457-15C7759BAC98}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[Source OLTP]"
                   description="The OLE DB runtime connection used to access the database."
                   name="OleDbConnection" />
               </connections>
@@ -652,6 +626,16 @@ where [refTable].[PassengerID] = ?</property>
                       lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[phone]"
                       name="phone"
                       truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[rowversion]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rowversion]"
+                      length="8"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[rowversion]"
+                      name="rowversion"
+                      truncationRowDisposition="FailComponent" />
                   </outputColumns>
                   <externalMetadataColumns
                     isUsed="True">
@@ -674,6 +658,11 @@ where [refTable].[PassengerID] = ?</property>
                       dataType="wstr"
                       length="20"
                       name="phone" />
+                    <externalMetadataColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[rowversion]"
+                      dataType="bytes"
+                      length="8"
+                      name="rowversion" />
                   </externalMetadataColumns>
                 </output>
                 <output
@@ -704,6 +693,12 @@ where [refTable].[PassengerID] = ?</property>
                       length="20"
                       lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[phone]"
                       name="phone" />
+                    <outputColumn
+                      refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rowversion]"
+                      dataType="bytes"
+                      length="8"
+                      lineageId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[rowversion]"
+                      name="rowversion" />
                     <outputColumn
                       refId="Package\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                       dataType="i4"
@@ -755,7 +750,7 @@ where [refTable].[PassengerID] = ?</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{89096352-07AC-4B98-988B-7CE3CE6265B0}"
+          SQLTask:Connection="{A348B0EF-F278-4990-A457-15C7759BAC98}"
           SQLTask:SqlStatementSource="EXECUTE  [dbo].[GetDatabaseRowVersion] "
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
@@ -777,7 +772,7 @@ where [refTable].[PassengerID] = ?</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{EDDA877A-0733-43C0-84EB-22CF8C30462D}"
+          SQLTask:Connection="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
           SQLTask:SqlStatementSource="EXECUTE [dbo].[GetLastPackageRowVersion]  @tableName = 'Passenger'"
           SQLTask:ResultType="ResultSetType_SingleRow" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ResultBinding
@@ -799,7 +794,7 @@ where [refTable].[PassengerID] = ?</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{EDDA877A-0733-43C0-84EB-22CF8C30462D}"
+          SQLTask:Connection="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
           SQLTask:SqlStatementSource="EXECUTE  [dbo].[DW_MergeDimPassenger] " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
       </DTS:ObjectData>
     </DTS:Executable>
@@ -816,7 +811,7 @@ where [refTable].[PassengerID] = ?</property>
       <DTS:Variables />
       <DTS:ObjectData>
         <SQLTask:SqlTaskData
-          SQLTask:Connection="{EDDA877A-0733-43C0-84EB-22CF8C30462D}"
+          SQLTask:Connection="{7C335B8B-BEE7-4201-AA23-4436F7C9C127}"
           SQLTask:SqlStatementSource="EXECUTE [dbo].[UpdateLastPackageRowVersion] @tableName='Passenger',@lastRowVersion=?" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask">
           <SQLTask:ParameterBinding
             SQLTask:ParameterName="0"
@@ -871,39 +866,39 @@ where [refTable].[PassengerID] = ?</property>
       DTS:To="Package\Update Conf" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
-<!--Esta sección CDATA contiene la información de diseño del paquete. Esta sección incluye información como, por ejemplo, las coordenadas (x,y), el ancho y el alto.-->
-<!--Si edita manualmente esta sección y comete un error, puede eliminarlo. -->
-<!--El paquete podrá cargarse normalmente, pero se perderá la información de diseño anterior y el diseñador reorganizará los elementos automáticamente en la superficie de diseño.-->
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
 <Objects
   Version="8">
-  <!--Cada uno de los nodos siguientes contiene propiedades que no afectan al comportamiento en tiempo de ejecución.-->
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
   <Package
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="169.6,41.6"
+          Size="170,42"
           Id="Package\Clean"
           TopLeft="143.571428877054,163.647058680086" />
         <NodeLayout
-          Size="151.2,41.6"
+          Size="151,42"
           Id="Package\Data Flow Task"
           TopLeft="158,239" />
         <NodeLayout
-          Size="200.8,41.6"
+          Size="201,42"
           Id="Package\Get DataBase RowVersion"
           TopLeft="135.142857434798,14.5294117519703" />
         <NodeLayout
-          Size="156,41.6"
+          Size="156,42"
           Id="Package\Last VersionRow"
           TopLeft="140.71428601383,82.5882352217254" />
         <NodeLayout
-          Size="132.8,41.6"
+          Size="133,42"
           Id="Package\syn Staging"
           TopLeft="138.571428866411,318.164705619598" />
         <NodeLayout
-          Size="136.8,41.6"
+          Size="137,42"
           Id="Package\Update Conf"
           TopLeft="135.714286003186,383.035293901812" />
         <EdgeLayout
@@ -1061,47 +1056,47 @@ where [refTable].[PassengerID] = ?</property>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="180,41.6"
-          Id="Package\Data Flow Task\Load Passenger"
-          TopLeft="382.142856806821,207.705882377742" />
+          Size="113,42"
+          Id="Package\Data Flow Task\Lookup"
+          TopLeft="202.142856806821,127.705882377742" />
         <NodeLayout
-          Size="150.4,41.6"
+          Size="180,42"
+          Id="Package\Data Flow Task\Load Passenger"
+          TopLeft="414.142856806821,245.705882377742" />
+        <NodeLayout
+          Size="150,42"
           Id="Package\Data Flow Task\OLE DB Source"
           TopLeft="197.142856806821,39.7058823777421" />
         <NodeLayout
-          Size="171.2,41.6"
+          Size="171,42"
           Id="Package\Data Flow Task\Load Staging"
-          TopLeft="38.1428568068207,212.705882377742" />
-        <NodeLayout
-          Size="112.8,41.6"
-          Id="Package\Data Flow Task\Lookup"
-          TopLeft="202.142856806821,126.705882377742" />
+          TopLeft="31.1428568068207,257.705882377742" />
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[OLE DB Source Output]"
-          TopLeft="272.342856806821,81.3058823777421">
+          TopLeft="272.142856806821,81.7058823777421">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-13.8,45.3999999999999"
+              EndConnector="-13.5,45.9999999999999"
               Start="0,0"
-              End="-13.8,37.8999999999999">
+              End="-13.5,38.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,18.7" />
+                    End="0,19" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,18.7"
-                    Point2="0,22.7"
-                    Point3="-4,22.7" />
+                    Point1="0,19"
+                    Point2="0,23"
+                    Point3="-4,23" />
                   <mssgle:LineSegment
-                    End="-9.80000000000001,22.7" />
+                    End="-9.5,23" />
                   <mssgle:CubicBezierSegment
-                    Point1="-9.80000000000001,22.7"
-                    Point2="-13.8,22.7"
-                    Point3="-13.8,26.7" />
+                    Point1="-9.5,23"
+                    Point2="-13.5,23"
+                    Point3="-13.5,27" />
                   <mssgle:LineSegment
-                    End="-13.8,37.8999999999999" />
+                    End="-13.5,38.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1112,79 +1107,102 @@ where [refTable].[PassengerID] = ?</property>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup No Match Output]"
-          TopLeft="276.009523473488,168.305882377742">
+          TopLeft="276.142856806821,169.705882377742">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="196.133333333333,39.4"
+              EndConnector="228,76"
               Start="0,0"
-              End="196.133333333333,31.9">
+              End="228,68.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12.0906293706294" />
+                    End="0,27.0366492146597" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,12.0906293706294"
-                    Point2="0,16.0906293706294"
-                    Point3="4,16.0906293706294" />
+                    Point1="0,27.0366492146597"
+                    Point2="0,31.0366492146597"
+                    Point3="4,31.0366492146597" />
                   <mssgle:LineSegment
-                    End="192.133333333333,16.0906293706294" />
+                    End="224,31.0366492146597" />
                   <mssgle:CubicBezierSegment
-                    Point1="192.133333333333,16.0906293706294"
-                    Point2="196.133333333333,16.0906293706294"
-                    Point3="196.133333333333,20.0906293706294" />
+                    Point1="224,31.0366492146597"
+                    Point2="228,31.0366492146597"
+                    Point3="228,35.0366492146597" />
                   <mssgle:LineSegment
-                    End="196.133333333333,31.9" />
+                    End="228,68.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="42.2602799479165,21.0906293706294,111.6127734375,11.609375"
+              BoundingBox="58.19361328125,36.0366492146597,111.6127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\Data Flow Task.Paths[Lookup Match Output]"
-          TopLeft="241.076190140154,168.305882377742">
+          TopLeft="241.142856806821,169.705882377742">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-117.333333333334,44.4"
+              EndConnector="-124.5,88"
               Start="0,0"
-              End="-117.333333333334,36.9">
+              End="-124.5,80.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,14.1325874125874" />
+                    End="0,31.9371727748691" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,14.1325874125874"
-                    Point2="0,18.1325874125874"
-                    Point3="-4,18.1325874125874" />
+                    Point1="0,31.9371727748691"
+                    Point2="0,35.9371727748691"
+                    Point3="-4,35.9371727748691" />
                   <mssgle:LineSegment
-                    End="-113.333333333334,18.1325874125874" />
+                    End="-120.5,35.9371727748691" />
                   <mssgle:CubicBezierSegment
-                    Point1="-113.333333333334,18.1325874125874"
-                    Point2="-117.333333333334,18.1325874125874"
-                    Point3="-117.333333333334,22.1325874125874" />
+                    Point1="-120.5,35.9371727748691"
+                    Point2="-124.5,35.9371727748691"
+                    Point3="-124.5,39.9371727748691" />
                   <mssgle:LineSegment
-                    End="-117.333333333334,36.9" />
+                    End="-124.5,80.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-106.858053385417,23.1325874125874,96.3827734375,11.609375"
+              BoundingBox="-110.44138671875,40.9371727748691,96.3827734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Data Flow Task\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[staging].[Passenger]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\Data Flow Task\Load Passenger">
     <Properties>
@@ -1221,29 +1239,6 @@ where [refTable].[PassengerID] = ?</property>
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\Data Flow Task\Lookup">
-    <Properties>
-      <Property>
-        <Name>OverwriteParamsSQLProp</Name>
-        <Value
-          type="q2:boolean">false</Value>
-      </Property>
-      <Property>
-        <Name>UsedTableName</Name>
-        <Value
-          type="q3:string">[dbo].[DimPassenger]</Value>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q4:int">0</Value>
-      </Property>
-      <Property>
-        <Name>DataSourceViewID</Name>
       </Property>
     </Properties>
   </PipelineComponentMetadata>
